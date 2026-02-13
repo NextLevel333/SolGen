@@ -6,6 +6,8 @@ interface MenuLink {
   icon: string;
 }
 
+const ANIMATION_STAGGER_DELAY_MS = 50;
+
 const menuLinks: MenuLink[] = [
   { 
     name: 'DexScreener', 
@@ -102,7 +104,7 @@ export const HamburgerMenu: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 px-4 py-3 hover:bg-gray-700/50 transition-colors group"
-              style={{ animationDelay: `${index * 50}ms` }}
+              style={{ animationDelay: `${index * ANIMATION_STAGGER_DELAY_MS}ms` }}
             >
               <span className="text-2xl group-hover:scale-110 transition-transform">
                 {link.icon}
