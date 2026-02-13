@@ -2,6 +2,8 @@
 const nextConfig = {
   output: 'export',
   basePath: '/SolGen',
+  assetPrefix: '/SolGen',
+  trailingSlash: true,
   reactStrictMode: true,
   images: {
     unoptimized: true,

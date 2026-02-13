@@ -56,7 +56,47 @@ The application will be available at `http://localhost:3000`
 
 ## Deployment Options
 
-### Option 1: Vercel (Recommended)
+### Option 1: GitHub Pages
+
+**Current Setup**: This repository is configured to deploy to GitHub Pages automatically.
+
+The site is available at: **https://nextlevel333.github.io/SolGen/**
+
+#### How it works:
+
+1. Every push to the `main` branch triggers the GitHub Actions workflow
+2. The workflow builds the Next.js app as a static export
+3. Static files are deployed to GitHub Pages
+4. The site is served at `https://nextlevel333.github.io/SolGen/`
+
+#### Key Configuration:
+
+The following settings in `next.config.js` are required for GitHub Pages:
+
+```javascript
+{
+  output: 'export',           // Static export
+  basePath: '/SolGen',        // Project path on GitHub Pages
+  assetPrefix: '/SolGen',     // Asset path prefix
+  trailingSlash: true,        // Required for GitHub Pages routing
+}
+```
+
+#### Manual Deployment:
+
+To manually deploy to GitHub Pages:
+
+```bash
+# Build the application
+npm run build
+
+# The static export will be in the 'out' directory
+# Upload the contents of 'out' to GitHub Pages
+```
+
+**Note**: The `.nojekyll` file is automatically copied to prevent Jekyll processing.
+
+### Option 2: Vercel (Alternative)
 
 1. Push code to GitHub repository
 2. Import project to Vercel
@@ -66,23 +106,20 @@ The application will be available at `http://localhost:3000`
    - Output Directory: `.next`
 4. Deploy
 
-### Option 2: Netlify
+**Note**: For Vercel, you may need to remove or adjust the `basePath` and `assetPrefix` settings in `next.config.js` since Vercel doesn't require them.
+
+### Option 3: Netlify
 
 1. Push code to GitHub repository
 2. Create new site from Git
 3. Build settings:
-   - Build command: `npm run build && npm run export`
+   - Build command: `npm run build`
    - Publish directory: `out`
-4. Add `next.config.js` export configuration:
+4. The `output: 'export'` is already configured in `next.config.js`
 
-```javascript
-module.exports = {
-  ...nextConfig,
-  output: 'export',
-}
-```
+**Note**: For Netlify, you may need to remove or adjust the `basePath` and `assetPrefix` settings in `next.config.js`.
 
-### Option 3: Self-Hosted
+### Option 4: Self-Hosted
 
 ```bash
 # Build the application
@@ -95,7 +132,9 @@ pm2 start npm --name "solgen" -- start
 sudo systemctl start solgen
 ```
 
-### Option 4: Docker
+### Option 5: Docker
+
+**Note**: Docker deployment requires a server to serve the static files. For GitHub Pages deployment, Docker is not needed.
 
 Create `Dockerfile`:
 
