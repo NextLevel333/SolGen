@@ -137,7 +137,12 @@ export const VanityGenerator: React.FC<VanityGeneratorProps> = ({ vanityLength, 
               <input
                 type="text"
                 value={characters}
-                onChange={(e) => setCharacters(e.target.value.slice(0, vanityLength))}
+                onChange={(e) => {
+                  const filtered = e.target.value
+                    .slice(0, vanityLength)
+                    .replace(/[^1-9A-HJ-NP-Za-km-z]/g, '');
+                  setCharacters(filtered);
+                }}
                 placeholder={`Enter ${vanityLength} characters`}
                 maxLength={vanityLength}
                 className="solana-input uppercase"

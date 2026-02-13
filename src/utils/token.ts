@@ -2,6 +2,8 @@ import { Connection, PublicKey } from '@solana/web3.js';
 import { getAccount, getAssociatedTokenAddress } from '@solana/spl-token';
 import { CONFIG } from '../config/constants';
 
+// Note: This assumes the token has 9 decimals (standard for SPL tokens)
+// If your token uses different decimals, update the divisor accordingly
 export async function getTokenBalance(
   connection: Connection,
   walletAddress: PublicKey,
@@ -14,7 +16,8 @@ export async function getTokenBalance(
     );
     
     const account = await getAccount(connection, tokenAccount);
-    return Number(account.amount) / 1e9; // Assuming 9 decimals
+    // Assuming 9 decimals (standard for most SPL tokens)
+    return Number(account.amount) / 1e9;
   } catch (error) {
     // Token account doesn't exist or other error
     return 0;

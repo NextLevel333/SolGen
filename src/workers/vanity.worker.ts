@@ -45,14 +45,14 @@ function base58Encode(buffer: Uint8Array): string {
   return encoded;
 }
 
-function generateVanityAddress(characters: string, position: 'prefix' | 'suffix'): { publicKey: string; secretKey: Uint8Array } | null {
+async function generateVanityAddress(characters: string, position: 'prefix' | 'suffix'): Promise<{ publicKey: string; secretKey: Uint8Array } | null> {
   const targetChars = characters.toLowerCase();
   let attempts = 0;
   const startTime = Date.now();
   
   while (!isCancelled) {
     if (isPaused) {
-      setTimeout(() => {}, 100);
+      await new Promise(resolve => setTimeout(resolve, 100));
       continue;
     }
     
@@ -91,12 +91,17 @@ function generateVanityAddress(characters: string, position: 'prefix' | 'suffix'
         elapsed,
       });
     }
+    
+    // Yield control every 10000 attempts to keep worker responsive
+    if (attempts % 10000 === 0) {
+      await new Promise(resolve => setTimeout(resolve, 0));
+    }
   }
   
   return null;
 }
 
-self.addEventListener('message', (event: MessageEvent<WorkerMessage>) => {
+self.addEventListener('message', async (event: MessageEvent<WorkerMessage>) => {
   const { type } = event.data;
   
   switch (type) {
@@ -104,7 +109,7 @@ self.addEventListener('message', (event: MessageEvent<WorkerMessage>) => {
       isCancelled = false;
       isPaused = false;
       const { characters, position } = event.data;
-      generateVanityAddress(characters, position);
+      await generateVanityAddress(characters, position);
       break;
       
     case 'pause':

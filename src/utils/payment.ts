@@ -1,6 +1,9 @@
 import { Connection, PublicKey, Transaction, SystemProgram, LAMPORTS_PER_SOL } from '@solana/web3.js';
 import { CONFIG } from '../config/constants';
 
+// Payment verification tolerance to account for minor rounding differences
+const PAYMENT_TOLERANCE_SOL = 0.0001;
+
 export async function createPaymentTransaction(
   fromPubkey: PublicKey,
   amount: number
@@ -47,7 +50,7 @@ export async function verifyPayment(
         
         // Verify amount, destination, and source
         if (
-          Math.abs(amount - expectedAmount) < 0.0001 &&
+          Math.abs(amount - expectedAmount) < PAYMENT_TOLERANCE_SOL &&
           destination.equals(CONFIG.TREASURY_ADDRESS) &&
           source.equals(fromAddress)
         ) {
