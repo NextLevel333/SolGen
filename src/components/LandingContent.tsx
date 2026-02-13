@@ -80,7 +80,7 @@ export const LandingContent: React.FC = () => {
             <div className="text-sm md:text-base text-gray-400">
               <span className="line-through">0.15 SOL</span>
               <span className="text-solana-green ml-2 font-semibold">0.075 SOL</span>
-              <span className="text-xs md:text-sm ml-2">(with SolGen tokens)</span>
+              <span className="text-xs md:text-sm ml-2">(for SolGen holders)</span>
             </div>
           </div>
           <div className="bg-gray-700/50 p-4 md:p-6 rounded-lg">
@@ -89,7 +89,7 @@ export const LandingContent: React.FC = () => {
             <div className="text-sm md:text-base text-gray-400">
               <span className="line-through">0.40 SOL</span>
               <span className="text-solana-green ml-2 font-semibold">0.20 SOL</span>
-              <span className="text-xs md:text-sm ml-2">(with SolGen tokens)</span>
+              <span className="text-xs md:text-sm ml-2">(for SolGen holders)</span>
             </div>
           </div>
         </div>
