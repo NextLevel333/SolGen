@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --solana-purple: #9945FF;
+  --solana-green: #14F195;
+  --solana-blue: #00D4FF;
+}
+
+body {
+  @apply bg-gray-900 text-gray-100;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.solana-gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-solana-purple to-solana-green;
+}
+
+.solana-gradient-bg {
+  @apply bg-gradient-to-r from-solana-purple to-solana-green;
+}
+
+.solana-card {
+  @apply bg-gray-800 border border-gray-700 rounded-lg shadow-lg;
+}
+
+.solana-button {
+  @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105;
+}
+
+.solana-button-primary {
+  @apply solana-button solana-gradient-bg text-white hover:shadow-lg hover:shadow-solana-purple/50;
+}
+
+.solana-button-secondary {
+  @apply solana-button bg-gray-700 text-gray-100 hover:bg-gray-600 border border-gray-600;
+}
+
+.solana-input {
+  @apply w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-solana-purple focus:border-transparent;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(153, 69, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(153, 69, 255, 0.8);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
