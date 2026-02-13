@@ -101,7 +101,7 @@ export default function Home() {
                 <h3 className="text-xl md:text-2xl font-bold mb-2">3 Characters</h3>
                 <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">0.15 SOL</div>
                 <div className="text-sm text-gray-400 mb-2">
-                  <span className="text-solana-green">0.075 SOL</span> with SolGen tokens
+                  <span className="text-solana-green">0.075 SOL</span> for SolGen holders
                 </div>
                 <p className="text-xs md:text-sm text-gray-400">
                   Faster generation, perfect for most users
@@ -116,7 +116,7 @@ export default function Home() {
                 <h3 className="text-xl md:text-2xl font-bold mb-2">4 Characters</h3>
                 <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">0.40 SOL</div>
                 <div className="text-sm text-gray-400 mb-2">
-                  <span className="text-solana-green">0.20 SOL</span> with SolGen tokens
+                  <span className="text-solana-green">0.20 SOL</span> for SolGen holders
                 </div>
                 <p className="text-xs md:text-sm text-gray-400">
                   More unique, takes longer to generate
