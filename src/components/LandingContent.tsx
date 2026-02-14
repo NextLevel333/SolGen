@@ -22,7 +22,7 @@ export const LandingContent: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
         <div className="solana-card p-4 md:p-6 space-y-3">
           <div className="flex justify-center">
-            <Image src="/locks.png" alt="" width={60} height={60} className="object-contain" />
+            <Image src="/lock.png" alt="" width={60} height={60} className="object-contain" />
           </div>
           <h3 className="text-lg md:text-xl font-semibold">Fully Private</h3>
           <p className="text-sm md:text-base text-gray-400">
@@ -48,9 +48,9 @@ export const LandingContent: React.FC = () => {
           </div>
           <h3 className="text-lg md:text-xl font-semibold">Token Benefits</h3>
           <p className="text-sm md:text-base text-gray-400">
-            Tier 1 Holders: All services are FREE. *10M SOLGEN
-            Tier 2 Holders: 40% discount on all services. *1M SOLGEN
-            Launched on pump.fun/LP (xxxxxxxxxxxxxxxxxxxxxxxxxxpump).
+            *2 Tier holder system from Discounted to VIP
+             membership for Free services. 
+            Launched on pump.fun/LP (contract TBA).
           </p>
         </div>
       </div>
