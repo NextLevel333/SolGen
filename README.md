@@ -21,6 +21,15 @@ A privacy-first, client-side Solana vanity wallet generator with token-gated pri
 | 3 Characters | 0.15 SOL | 0.075 SOL (50% off) |
 | 4 Characters | 0.40 SOL | 0.20 SOL (50% off) |
 
+## 🔒 Security & Protection
+
+- **Critical Files Validation**: Automated checks prevent deployment if essential files are missing
+- **Client-Side Key Generation**: All private keys are generated in your browser
+- **Zero Server Storage**: No sensitive data is ever sent to or stored on servers
+- **Token-Based Access Control**: Payment verification before generation
+
+For details on critical file protection, see [docs/CRITICAL_FILES_PROTECTION.md](docs/CRITICAL_FILES_PROTECTION.md).
+
 ## 🚀 Getting Started
 
 ### Prerequisites
