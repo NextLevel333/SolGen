@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
+import Link from 'next/link';
 import { WalletConnect } from '../components/WalletConnect';
 import { LandingContent } from '../components/LandingContent';
 import { PaymentGate } from '../components/PaymentGate';
@@ -166,17 +167,69 @@ export default function Home() {
         )}
       </main>
       
-      <footer className="border-t border-gray-800 mt-20">
-        <div className="max-w-7xl mx-auto px-4 py-8 text-center text-gray-500 text-sm">
-          <p className="mb-2">
-            <strong className="solana-gradient-text">SolGen</strong> - Privacy-First Solana Vanity Generator
-          </p>
-          <p>
-            100% Client-Side • No Server Storage • Your Keys Never Leave Your Browser
-          </p>
-          <p className="mt-4 text-xs">
-            Always verify you&apos;ve securely saved your keys. This tool is provided as-is without warranty.
-          </p>
+      <footer className="border-t border-gray-800 mt-20 bg-gray-900/80 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 py-12">
+          {/* About Section */}
+          <div className="max-w-3xl mx-auto mb-8 text-center">
+            <h2 className="text-xl font-bold solana-gradient-text mb-3">About SolGen</h2>
+            <p className="text-gray-400 text-sm mb-4">
+              SolGen is a <strong className="text-gray-300">100% client-side</strong> Solana vanity wallet generator. 
+              All cryptographic operations happen in your browser using Web Workers. We <strong className="text-gray-300">never store, transmit, or have access</strong> to your private keys. 
+              The entire application is <strong className="text-gray-300">open-source</strong> and available on GitHub for full transparency.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 text-xs text-gray-500">
+              <span className="flex items-center gap-1">
+                <span className="text-solana-green">✓</span> No data collection
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="text-solana-green">✓</span> No analytics
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="text-solana-green">✓</span> No tracking
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="text-solana-green">✓</span> No external scripts
+              </span>
+            </div>
+          </div>
+          
+          {/* Links */}
+          <div className="flex flex-wrap justify-center gap-6 mb-6 text-sm">
+            <Link href="/privacy" className="text-gray-400 hover:text-solana-purple transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="text-gray-400 hover:text-solana-purple transition-colors">
+              Terms of Service
+            </Link>
+            <Link href="/contact" className="text-gray-400 hover:text-solana-purple transition-colors">
+              Contact
+            </Link>
+            <Link href="/resources" className="text-gray-400 hover:text-solana-purple transition-colors">
+              Resources
+            </Link>
+            <a 
+              href="https://github.com/NextLevel333/SolGen" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-solana-purple transition-colors inline-flex items-center gap-1"
+            >
+              <span>GitHub</span>
+              <span className="text-xs">↗</span>
+            </a>
+          </div>
+          
+          {/* Copyright & Disclaimer */}
+          <div className="text-center text-gray-500 text-xs space-y-2">
+            <p>
+              <strong className="solana-gradient-text">SolGen</strong> - Privacy-First Solana Vanity Generator
+            </p>
+            <p>
+              100% Client-Side • No Server Storage • Your Keys Never Leave Your Browser
+            </p>
+            <p className="text-xs text-gray-600">
+              Always verify you&apos;ve securely saved your keys. This tool is provided as-is without warranty.
+            </p>
+          </div>
         </div>
       </footer>
     </div>

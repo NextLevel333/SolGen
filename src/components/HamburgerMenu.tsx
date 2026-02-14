@@ -1,28 +1,41 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 interface MenuLink {
   name: string;
   url: string;
   icon: string;
+  external?: boolean;
 }
 
 const ANIMATION_STAGGER_DELAY_MS = 50;
 
 const menuLinks: MenuLink[] = [
   { 
-    name: 'DexScreener', 
-    url: 'https://dexscreener.com/solana', 
-    icon: '📊' 
+    name: 'Privacy Policy', 
+    url: '/privacy', 
+    icon: '🔒' 
   },
   { 
-    name: 'pump.fun', 
-    url: 'https://pump.fun', 
-    icon: '🚀' 
+    name: 'Terms of Service', 
+    url: '/terms', 
+    icon: '📄' 
   },
   { 
-    name: 'Solscan', 
-    url: 'https://solscan.io', 
-    icon: '🔍' 
+    name: 'Contact', 
+    url: '/contact', 
+    icon: '📧' 
+  },
+  { 
+    name: 'Resources', 
+    url: '/resources', 
+    icon: '🔗' 
+  },
+  { 
+    name: 'GitHub', 
+    url: 'https://github.com/NextLevel333/SolGen', 
+    icon: '💻',
+    external: true
   },
 ];
 
@@ -98,24 +111,43 @@ export const HamburgerMenu: React.FC = () => {
       >
         <div className="py-2">
           {menuLinks.map((link, index) => (
-            <a
-              key={link.name}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 px-4 py-3 hover:bg-gray-700/50 transition-colors group"
-              style={{ animationDelay: `${index * ANIMATION_STAGGER_DELAY_MS}ms` }}
-            >
-              <span className="text-2xl group-hover:scale-110 transition-transform">
-                {link.icon}
-              </span>
-              <span className="font-medium group-hover:text-solana-purple transition-colors">
-                {link.name}
-              </span>
-              <span className="ml-auto text-gray-500 group-hover:text-solana-green transition-colors">
-                →
-              </span>
-            </a>
+            link.external ? (
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-4 py-3 hover:bg-gray-700/50 transition-colors group"
+                style={{ animationDelay: `${index * ANIMATION_STAGGER_DELAY_MS}ms` }}
+              >
+                <span className="text-2xl group-hover:scale-110 transition-transform">
+                  {link.icon}
+                </span>
+                <span className="font-medium group-hover:text-solana-purple transition-colors">
+                  {link.name}
+                </span>
+                <span className="ml-auto text-gray-500 group-hover:text-solana-green transition-colors">
+                  ↗
+                </span>
+              </a>
+            ) : (
+              <Link
+                key={link.name}
+                href={link.url}
+                className="flex items-center gap-3 px-4 py-3 hover:bg-gray-700/50 transition-colors group"
+                style={{ animationDelay: `${index * ANIMATION_STAGGER_DELAY_MS}ms` }}
+              >
+                <span className="text-2xl group-hover:scale-110 transition-transform">
+                  {link.icon}
+                </span>
+                <span className="font-medium group-hover:text-solana-purple transition-colors">
+                  {link.name}
+                </span>
+                <span className="ml-auto text-gray-500 group-hover:text-solana-green transition-colors">
+                  →
+                </span>
+              </Link>
+            )
           ))}
         </div>
       </div>
@@ -144,23 +176,41 @@ export const HamburgerMenu: React.FC = () => {
           <div className="flex-1 overflow-y-auto p-4">
             <div className="space-y-2">
               {menuLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-4 p-4 solana-card hover:border-solana-purple transition-all"
-                >
-                  <span className="text-3xl">{link.icon}</span>
-                  <div className="flex-1">
-                    <span className="text-lg font-medium block">{link.name}</span>
-                    <span className="text-sm text-gray-400 block">
-                      {link.url.replace('https://', '')}
-                    </span>
-                  </div>
-                  <span className="text-solana-green text-xl">→</span>
-                </a>
+                link.external ? (
+                  <a
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center gap-4 p-4 solana-card hover:border-solana-purple transition-all"
+                  >
+                    <span className="text-3xl">{link.icon}</span>
+                    <div className="flex-1">
+                      <span className="text-lg font-medium block">{link.name}</span>
+                      <span className="text-sm text-gray-400 block">
+                        {link.url.replace('https://', '')}
+                      </span>
+                    </div>
+                    <span className="text-solana-green text-xl">↗</span>
+                  </a>
+                ) : (
+                  <Link
+                    key={link.name}
+                    href={link.url}
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center gap-4 p-4 solana-card hover:border-solana-purple transition-all"
+                  >
+                    <span className="text-3xl">{link.icon}</span>
+                    <div className="flex-1">
+                      <span className="text-lg font-medium block">{link.name}</span>
+                      <span className="text-sm text-gray-400 block">
+                        {link.url}
+                      </span>
+                    </div>
+                    <span className="text-solana-green text-xl">→</span>
+                  </Link>
+                )
               ))}
             </div>
           </div>
