@@ -56,8 +56,7 @@ export default function Home() {
       <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <Logo size={40} className="transform hover:scale-110 transition-transform" />
-            <h1 className="text-2xl font-bold solana-gradient-text">SolGen</h1>
+            <Logo size={100} className="transform hover:scale-110 transition-transform" />
           </div>
           <div className="flex items-center gap-4">
             <WalletConnect />

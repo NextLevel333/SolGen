@@ -5,10 +5,12 @@ export const LandingContent: React.FC = () => {
     <div className="max-w-4xl mx-auto px-4 py-12 space-y-12 stagger-animation">
       <div className="text-center space-y-6 fade-in-up">
         <h1 className="text-4xl md:text-6xl font-bold">
-          <span className="solana-gradient-text">SolGen</span>
+        <div className="flex justify-center">
+             <img src="/SolGenLogo.png" alt="SolGen Logo" className="h-28 w-auto"/>
+        </div>
         </h1>
         <p className="text-xl md:text-2xl text-gray-300">
-          Privacy-First Solana Vanity Wallet Generator
+          First Solana Vanity Wallet Generator
         </p>
         <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
           Generate custom Solana wallet addresses with your chosen prefix or suffix.

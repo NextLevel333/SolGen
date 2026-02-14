@@ -9,9 +9,9 @@ interface LogoProps {
 export const Logo: React.FC<LogoProps> = ({ className = '', size = 40 }) => {
   return (
     <Image
-      src="/SolGenLogo.png"
+      src="/favicon.png"
       alt="SolGen Logo"
-      width={size * 1.5}
+      width={size * .5}
       height={size}
       className={className}
       priority
