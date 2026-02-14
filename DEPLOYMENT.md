@@ -207,6 +207,107 @@ TREASURY_ADDRESS: new PublicKey(
 4. **Treasury Security**: Use a secure wallet for treasury
 5. **Monitor Transactions**: Set up alerts for treasury wallet activity
 
+### Cloudflare Security Headers (Recommended)
+
+If you're using a custom domain with Cloudflare CDN, you can add security headers to improve reputation and security:
+
+#### Option 1: Cloudflare Transform Rules (Recommended)
+
+1. Log into your Cloudflare dashboard
+2. Go to Rules > Transform Rules > Modify Response Header
+3. Create a new rule with these headers:
+
+```
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+```
+
+#### Option 2: Cloudflare Workers (Advanced)
+
+Create a Cloudflare Worker to add security headers:
+
+```javascript
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+
+async function handleRequest(request) {
+  const response = await fetch(request)
+  const newResponse = new Response(response.body, response)
+  
+  // Security Headers
+  newResponse.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload')
+  newResponse.headers.set('X-Content-Type-Options', 'nosniff')
+  newResponse.headers.set('X-Frame-Options', 'DENY')
+  newResponse.headers.set('X-XSS-Protection', '1; mode=block')
+  newResponse.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
+  newResponse.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()')
+  
+  // Content Security Policy (adjust as needed for your RPC endpoints)
+  const csp = [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval'", // Required for Next.js and Web Workers
+    "style-src 'self' 'unsafe-inline'", // Required for Tailwind and dynamic styles
+    "img-src 'self' data: https:",
+    "font-src 'self' data:",
+    "connect-src 'self' https://*.solana.com https://*.helius-rpc.com https://*.quicknode.pro wss://*.solana.com", // Add your RPC endpoints
+    "frame-ancestors 'none'",
+    "base-uri 'self'",
+    "form-action 'self'"
+  ].join('; ')
+  
+  newResponse.headers.set('Content-Security-Policy', csp)
+  
+  return newResponse
+}
+```
+
+#### Option 3: Netlify Headers
+
+If deploying to Netlify, create a `_headers` file in the `public` directory:
+
+```
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.solana.com https://*.helius-rpc.com wss://*.solana.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+```
+
+#### GitHub Pages Limitations
+
+**Note**: GitHub Pages does not support custom security headers. For production deployments requiring security headers, consider:
+- Using Cloudflare in front of GitHub Pages
+- Deploying to Vercel or Netlify instead
+- Self-hosting with nginx or Apache
+
+### CSP Header Explanation
+
+The Content Security Policy (CSP) header helps prevent XSS attacks and other injection attacks:
+
+- `default-src 'self'`: Only allow resources from your own domain by default
+- `script-src 'self' 'unsafe-inline' 'unsafe-eval'`: Required for Next.js and Web Workers (client-side generation)
+- `style-src 'self' 'unsafe-inline'`: Required for Tailwind CSS and dynamic styles
+- `connect-src`: Whitelist your Solana RPC endpoints
+- `frame-ancestors 'none'`: Prevent clickjacking by disallowing iframe embedding
+
+**Important**: Update the `connect-src` directive with your actual RPC endpoints.
+
+### HSTS Header Explanation
+
+HTTP Strict Transport Security (HSTS) forces browsers to only connect via HTTPS:
+
+- `max-age=31536000`: Enforce HTTPS for 1 year
+- `includeSubDomains`: Also enforce on all subdomains
+- `preload`: Submit your domain to HSTS preload list (optional, requires meeting additional criteria)
+
 ## Monitoring
 
 Consider setting up:
