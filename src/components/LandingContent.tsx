@@ -6,7 +6,7 @@ export const LandingContent: React.FC = () => {
       <div className="text-center space-y-6 fade-in-up">
         <h1 className="text-4xl md:text-6xl font-bold">
         <div className="flex justify-center">
-             <img src="/SolGenLogo.png" alt="SolGen Logo" className="h-28 w-auto"/>
+             <img src="/SolGenLogo.png" alt="SolGen Logo" className="h-auto w-80"/>
         </div>
         </h1>
         <p className="text-xl md:text-2xl text-gray-300">

@@ -11,7 +11,7 @@ export const Logo: React.FC<LogoProps> = ({ className = '', size = 40 }) => {
     <Image
       src="/favicon.png"
       alt="SolGen Logo"
-      width={size * .5}
+      width={size * .4}
       height={size}
       className={className}
       priority
