@@ -7,7 +7,7 @@ export const LandingContent: React.FC = () => {
       <div className="text-center space-y-6 fade-in-up">
         <h1 className="text-4xl md:text-6xl font-bold">
         <div className="flex justify-center">
-             <Image src="/SolGenLogo.png" alt="SolGen Logo" width={320} height={103} priority className="h-auto w-80"/>
+             <Image src="/SolGenLogo.png" alt="SolGen Logo" width={320} height={103} priority className="h-auto"/>
         </div>
         </h1>
         <p className="text-xl md:text-2xl text-gray-300">
@@ -22,7 +22,7 @@ export const LandingContent: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
         <div className="solana-card p-4 md:p-6 space-y-3">
           <div className="flex justify-center">
-            <Image src="/locks.jpg" alt="Security lock icon" width={48} height={48} className="object-contain" />
+            <Image src="/locks.jpg" alt="" width={48} height={48} className="object-contain" />
           </div>
           <h3 className="text-lg md:text-xl font-semibold">Fully Private</h3>
           <p className="text-sm md:text-base text-gray-400">
@@ -33,7 +33,7 @@ export const LandingContent: React.FC = () => {
         
         <div className="solana-card p-4 md:p-6 space-y-3">
           <div className="flex justify-center">
-            <Image src="/power.jpg" alt="Lightning bolt representing high performance" width={48} height={48} className="object-contain" />
+            <Image src="/power.jpg" alt="" width={48} height={48} className="object-contain" />
           </div>
           <h3 className="text-lg md:text-xl font-semibold">High Performance</h3>
           <p className="text-sm md:text-base text-gray-400">
@@ -44,7 +44,7 @@ export const LandingContent: React.FC = () => {
         
         <div className="solana-card p-4 md:p-6 space-y-3">
           <div className="flex justify-center">
-            <Image src="/tokens.jpg" alt="Token icon representing benefits" width={48} height={48} className="object-contain" />
+            <Image src="/tokens.jpg" alt="" width={48} height={48} className="object-contain" />
           </div>
           <h3 className="text-lg md:text-xl font-semibold">Token Benefits</h3>
           <p className="text-sm md:text-base text-gray-400">
