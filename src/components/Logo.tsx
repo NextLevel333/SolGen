@@ -11,9 +11,9 @@ export const Logo: React.FC<LogoProps> = ({ className = '', size = 40 }) => {
     <Image
       src="/favicon.png"
       alt="SolGen Logo"
-      width={size * .4}
+      width={size * .9}
       height={size}
-      className={className}
+      className={`object-contain drop-shadow-[0_0_5px_rgba(255,255,255,0.9)] animate-pulse ${className}`}
       priority
       style={{ objectFit: 'contain' }}
     />
