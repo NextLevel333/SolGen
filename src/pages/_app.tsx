@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>SolGen - First Solana Vanity Wallet Generator</title>
         <meta name="description" content="Generate custom Solana wallet addresses with your chosen prefix or suffix. 100% client-side, zero server storage." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" type="image/png" href={`${basePath}/favicon.png`} />
+        <link rel="icon" type="image/png" href={`${basePath}/SolGenLogo.png`} />
       </Head>
       <WalletContextProvider>
         <Component {...pageProps} />
