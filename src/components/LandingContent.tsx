@@ -22,7 +22,7 @@ export const LandingContent: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
         <div className="solana-card p-4 md:p-6 space-y-3">
           <div className="flex justify-center">
-            <Image src="/locks.jpg" alt="" width={48} height={48} className="object-contain" />
+            <Image src="/locks.png" alt="" width={60} height={60} className="object-contain" />
           </div>
           <h3 className="text-lg md:text-xl font-semibold">Fully Private</h3>
           <p className="text-sm md:text-base text-gray-400">
@@ -33,7 +33,7 @@ export const LandingContent: React.FC = () => {
         
         <div className="solana-card p-4 md:p-6 space-y-3">
           <div className="flex justify-center">
-            <Image src="/power.jpg" alt="" width={48} height={48} className="object-contain" />
+            <Image src="/power.png" alt="" width={60} height={60} className="object-contain" />
           </div>
           <h3 className="text-lg md:text-xl font-semibold">High Performance</h3>
           <p className="text-sm md:text-base text-gray-400">
@@ -44,12 +44,13 @@ export const LandingContent: React.FC = () => {
         
         <div className="solana-card p-4 md:p-6 space-y-3">
           <div className="flex justify-center">
-            <Image src="/tokens.jpg" alt="" width={48} height={48} className="object-contain" />
+            <Image src="/tokens.png" alt="" width={60} height={60} className="object-contain" />
           </div>
           <h3 className="text-lg md:text-xl font-semibold">Token Benefits</h3>
           <p className="text-sm md:text-base text-gray-400">
-            Hold SolGen tokens for 50% discount on all vanity address generation.
-            Launched on pump.fun/LP (contract address TBA).
+            Tier 1 Holders: All services are FREE. *10M SOLGEN
+            Tier 2 Holders: 40% discount on all services. *1M SOLGEN
+            Launched on pump.fun/LP (xxxxxxxxxxxxxxxxxxxxxxxxxxpump).
           </p>
         </div>
       </div>
@@ -67,7 +68,7 @@ export const LandingContent: React.FC = () => {
           </li>
           <li className="flex gap-3">
             <span className="solana-gradient-text font-bold">3.</span>
-            <span>Pay the generation fee (50% off for SolGen token holders)</span>
+            <span>Pay the generation fee (50% off for tier 2 SolGen token holders)</span>
           </li>
           <li className="flex gap-3">
             <span className="solana-gradient-text font-bold">4.</span>
