@@ -5,14 +5,23 @@ import { getTokenBalance, getPrice, getTier, getDiscountPercentage } from '../ut
 import { createPaymentTransaction, verifyPayment, waitForConfirmation } from '../utils/payment';
 import { formatSolAmount } from '../utils/format';
 import { CONFIG, VanityLength } from '../config/constants';
+import { getTicket, createTicket, hasValidTicket } from '../utils/ticket';
 
 interface PaymentGateProps {
   vanityLength: VanityLength;
+  vanityCharacters: string;
+  vanityPosition: 'prefix' | 'suffix';
   onPaymentSuccess: () => void;
   onBack: () => void;
 }
 
-export const PaymentGate: React.FC<PaymentGateProps> = ({ vanityLength, onPaymentSuccess, onBack }) => {
+export const PaymentGate: React.FC<PaymentGateProps> = ({ 
+  vanityLength, 
+  vanityCharacters,
+  vanityPosition,
+  onPaymentSuccess, 
+  onBack 
+}) => {
   const { publicKey, sendTransaction } = useWallet();
   const { connection } = useConnection();
   const [tokenBalance, setTokenBalance] = useState<number>(0);
@@ -20,10 +29,22 @@ export const PaymentGate: React.FC<PaymentGateProps> = ({ vanityLength, onPaymen
   const [error, setError] = useState<string>('');
   const [checkingBalance, setCheckingBalance] = useState(true);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
+  const [hasExistingTicket, setHasExistingTicket] = useState(false);
   
   useEffect(() => {
     async function checkBalance() {
       if (!publicKey) {
+        setCheckingBalance(false);
+        return;
+      }
+      
+      // Check for existing ticket
+      const existingTicket = hasValidTicket(publicKey.toBase58());
+      setHasExistingTicket(existingTicket);
+      
+      // If ticket exists, automatically proceed to generation
+      if (existingTicket) {
+        setPaymentConfirmed(true);
         setCheckingBalance(false);
         return;
       }
@@ -57,8 +78,14 @@ export const PaymentGate: React.FC<PaymentGateProps> = ({ vanityLength, onPaymen
       return;
     }
     
-    // Skip payment for VIP wallet or free tier
+    // Skip payment for VIP wallet or free tier, but still create ticket
     if (price === 0) {
+      createTicket(
+        publicKey.toBase58(),
+        vanityLength,
+        vanityCharacters,
+        vanityPosition
+      );
       setPaymentConfirmed(true);
       return;
     }
@@ -86,7 +113,16 @@ export const PaymentGate: React.FC<PaymentGateProps> = ({ vanityLength, onPaymen
         throw new Error('Payment verification failed');
       }
       
-      // Payment successful - show confirmation
+      // Payment successful - create ticket
+      createTicket(
+        publicKey.toBase58(),
+        vanityLength,
+        vanityCharacters,
+        vanityPosition,
+        signature
+      );
+      
+      // Show confirmation
       setPaymentConfirmed(true);
     } catch (err: any) {
       console.error('Payment error:', err);
@@ -152,11 +188,30 @@ export const PaymentGate: React.FC<PaymentGateProps> = ({ vanityLength, onPaymen
         <div className="solana-card p-8 space-y-6">
           <div className="text-center">
             <div className="mb-4 text-6xl">✅</div>
-            <h3 className="text-2xl font-semibold mb-2">Payment Confirmed!</h3>
+            <h3 className="text-2xl font-semibold mb-2">
+              {hasExistingTicket ? 'Resuming Your Order' : 'Payment Confirmed!'}
+            </h3>
             <p className="text-gray-400">
-              Your transaction has been successfully verified on-chain.
+              {hasExistingTicket 
+                ? 'Your previous order is ready to continue. No payment needed.'
+                : 'Your transaction has been successfully verified on-chain.'}
             </p>
           </div>
+          
+          {hasExistingTicket && (
+            <div className="bg-blue-900/30 border border-blue-700 rounded-lg p-6 space-y-3">
+              <div className="flex items-start gap-3">
+                <span className="text-2xl">🎟️</span>
+                <div>
+                  <h4 className="font-semibold text-blue-300 mb-2">Active Order Found</h4>
+                  <p className="text-sm text-blue-200">
+                    We found your previous purchase for this wallet. You can continue generating 
+                    without paying again until your order is complete.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
           
           <div className="bg-yellow-900/30 border border-yellow-700 rounded-lg p-6 space-y-3">
             <div className="flex items-start gap-3">
@@ -176,7 +231,7 @@ export const PaymentGate: React.FC<PaymentGateProps> = ({ vanityLength, onPaymen
             onClick={handleBeginGeneration}
             className="solana-button-primary w-full text-lg"
           >
-            Begin Address Generation
+            {hasExistingTicket ? 'Continue Generation' : 'Begin Address Generation'}
           </button>
         </div>
       </div>

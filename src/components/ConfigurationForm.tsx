@@ -4,12 +4,14 @@ import { validateVanityCharacters } from '../utils/format';
 
 interface ConfigurationFormProps {
   vanityLength: VanityLength;
+  isRestartingFromCancel?: boolean;
   onComplete: (characters: string, position: VanityPosition) => void;
   onBack: () => void;
 }
 
 export const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ 
   vanityLength, 
+  isRestartingFromCancel = false,
   onComplete, 
   onBack 
 }) => {
@@ -185,7 +187,7 @@ export const ConfigurationForm: React.FC<ConfigurationFormProps> = ({
             disabled={!acknowledged || characters.length !== vanityLength}
             className="solana-button-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Continue to Payment
+            {isRestartingFromCancel ? 'Re-start Generation' : 'Continue to Payment'}
           </button>
         </div>
       </div>

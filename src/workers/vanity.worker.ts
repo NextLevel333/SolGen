@@ -23,6 +23,8 @@ type WorkerMessage = GenerateMessage | PauseMessage | ResumeMessage | CancelMess
 
 let isPaused = false;
 let isCancelled = false;
+let pausedTime = 0; // Track total time spent paused
+let lastPauseStart = 0; // Track when last pause started
 
 function base58Encode(buffer: Uint8Array): string {
   const ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
@@ -72,7 +74,7 @@ async function generateVanityAddress(characters: string, position: 'prefix' | 's
         publicKey: publicKeyBase58,
         secretKey: Array.from(keypair.secretKey),
         attempts,
-        duration: Date.now() - startTime,
+        duration: Date.now() - startTime - pausedTime,
       });
       return {
         publicKey: publicKeyBase58,
@@ -81,7 +83,7 @@ async function generateVanityAddress(characters: string, position: 'prefix' | 's
     }
     
     if (attempts % 1000 === 0) {
-      const elapsed = Date.now() - startTime;
+      const elapsed = Date.now() - startTime - pausedTime;
       const rate = attempts / (elapsed / 1000);
       self.postMessage({
         type: 'progress',
@@ -107,16 +109,23 @@ self.addEventListener('message', async (event: MessageEvent<WorkerMessage>) => {
     case 'generate':
       isCancelled = false;
       isPaused = false;
+      pausedTime = 0;
+      lastPauseStart = 0;
       const { characters, position } = event.data;
       await generateVanityAddress(characters, position);
       break;
       
     case 'pause':
       isPaused = true;
+      lastPauseStart = Date.now();
       self.postMessage({ type: 'paused' });
       break;
       
     case 'resume':
+      if (isPaused && lastPauseStart > 0) {
+        pausedTime += Date.now() - lastPauseStart;
+        lastPauseStart = 0;
+      }
       isPaused = false;
       self.postMessage({ type: 'resumed' });
       break;

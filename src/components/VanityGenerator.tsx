@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useWallet } from '@solana/wallet-adapter-react';
 import { VanityLength, VanityPosition } from '../config/constants';
 import { validateVanityCharacters, formatDuration, estimateTime } from '../utils/format';
 import { analyzeDifficulty, getDifficultyDescription } from '../utils/difficulty';
+import { consumeTicket } from '../utils/ticket';
 
 interface VanityGeneratorProps {
   vanityLength: VanityLength;
@@ -31,6 +33,7 @@ export const VanityGenerator: React.FC<VanityGeneratorProps> = ({
   onComplete,
   onCancel
 }) => {
+  const { publicKey } = useWallet();
   const [isGenerating, setIsGenerating] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState<ProgressData | null>(null);
@@ -58,6 +61,12 @@ export const VanityGenerator: React.FC<VanityGeneratorProps> = ({
           });
         } else if (type === 'success') {
           setIsGenerating(false);
+          
+          // Consume ticket on successful generation
+          if (publicKey) {
+            consumeTicket(publicKey.toBase58());
+          }
+          
           onComplete({
             publicKey: event.data.publicKey,
             secretKey: event.data.secretKey,
