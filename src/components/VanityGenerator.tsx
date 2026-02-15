@@ -105,6 +105,7 @@ export const VanityGenerator: React.FC<VanityGeneratorProps> = ({
         workerRef.current.terminate();
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vanityCharacters, vanityPosition, onComplete]);
   
   const pauseGeneration = () => {
