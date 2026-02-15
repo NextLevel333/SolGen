@@ -10,7 +10,7 @@ export const LandingContent: React.FC = () => {
         <div className="text-center space-y-6">
           <h1 className="text-4xl md:text-6xl font-bold">
             <div className="flex justify-center">
-              <Image src="/SolGenLogo.png" alt="SolGen Logo" width={320} height={103} priority className="h-auto drop-shadow-[0_0_20px_rgba(255,255,255,0.9)] animate-pulse"/>
+              <Image src="/SolGenLogo.svg" alt="SolGen Logo" width={320} height={103} priority className="h-auto drop-shadow-[0_0_20px_rgba(255,255,255,0.9)] animate-pulse"/>
             </div>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300">
@@ -27,7 +27,7 @@ export const LandingContent: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           <div className="solana-card p-4 md:p-6 space-y-3">
             <div className="flex justify-center">
-              <Image src="/lock.png" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] animate-pulse" />
+              <Image src="/lock.png" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]" />
             </div>
             <h3 className="text-lg md:text-xl font-semibold">Fully Private</h3>
             <p className="text-sm md:text-base text-gray-400">
@@ -38,7 +38,7 @@ export const LandingContent: React.FC = () => {
           
           <div className="solana-card p-4 md:p-6 space-y-3">
             <div className="flex justify-center">
-              <Image src="/power.png" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] animate-pulse" />
+              <Image src="/power.png" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]" />
             </div>
             <h3 className="text-lg md:text-xl font-semibold">High Performance</h3>
             <p className="text-sm md:text-base text-gray-400">
@@ -49,15 +49,13 @@ export const LandingContent: React.FC = () => {
           
           <div className="solana-card p-4 md:p-6 space-y-3">
             <div className="flex justify-center">
-              <Image src="/tokens.png" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] animate-pulse" />
+              <Image src="/tokens.png" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]" />
             </div>
             <h3 className="text-lg md:text-xl font-semibold">Token Benefits</h3>
             <p className="text-sm md:text-base text-gray-400">
               Yes, There are benefits to holding SolGen!
               A two tier system which grants holders 40-100%
-              discounts off all current and future services.
-              *Currently Live on pump.fun*
-              
+              discounts off all current and future services.          
             </p>
           </div>
         </div>
