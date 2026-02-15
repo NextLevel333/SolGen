@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ScrollReveal } from './ScrollReveal';
+import { CONFIG } from '../config/constants';
 
 interface LandingContentProps {
   onStartGeneration: () => void;
@@ -102,10 +103,10 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <div className="bg-gray-700/50 p-4 md:p-6 rounded-lg">
               <h4 className="text-lg md:text-xl font-semibold mb-2">3-Character Vanity</h4>
-              <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">0.15 SOL</div>
+              <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">{CONFIG.PRICING.THREE_CHAR.full} SOL</div>
               <div className="text-sm md:text-base text-gray-400 space-y-1">
                 <div>
-                  <span className="text-solana-green font-semibold">0.09 SOL</span>
+                  <span className="text-solana-green font-semibold">{CONFIG.PRICING.THREE_CHAR.discounted} SOL</span>
                   <span className="text-xs md:text-sm ml-2">(Tier 2: 1M+ tokens)</span>
                 </div>
                 <div>
@@ -116,10 +117,10 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             </div>
             <div className="bg-gray-700/50 p-4 md:p-6 rounded-lg">
               <h4 className="text-lg md:text-xl font-semibold mb-2">4-Character Vanity</h4>
-              <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">0.2 SOL</div>
+              <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">{CONFIG.PRICING.FOUR_CHAR.full} SOL</div>
               <div className="text-sm md:text-base text-gray-400 space-y-1">
                 <div>
-                  <span className="text-solana-green font-semibold">0.12 SOL</span>
+                  <span className="text-solana-green font-semibold">{CONFIG.PRICING.FOUR_CHAR.discounted} SOL</span>
                   <span className="text-xs md:text-sm ml-2">(Tier 2: 1M+ tokens)</span>
                 </div>
                 <div>
@@ -247,10 +248,10 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
           
           <div className="bg-gray-700/50 p-4 md:p-6 rounded-lg space-y-2">
             <h4 className="font-semibold text-gray-200">Pricing</h4>
-            <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">0.4 SOL</div>
+            <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">{CONFIG.PRICING.VANITY_CONTRACT.full} SOL</div>
             <div className="text-sm md:text-base text-gray-400 space-y-1">
               <div>
-                <span className="text-solana-green font-semibold">0.24 SOL</span>
+                <span className="text-solana-green font-semibold">{CONFIG.PRICING.VANITY_CONTRACT.discounted} SOL</span>
                 <span className="text-xs md:text-sm ml-2">(Tier 2: 1M+ tokens)</span>
               </div>
               <div>

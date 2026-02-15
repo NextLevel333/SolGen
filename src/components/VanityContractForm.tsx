@@ -121,11 +121,11 @@ export const VanityContractForm: React.FC = () => {
 
   const calculatePrice = (): { basePrice: number; discountedPrice: number; devBuyFee: number; devBuyAmount: number; totalPrice: number; discount: number } => {
     // Base price for vanity CA service
-    const basePrice = 0.4; // 0.4 SOL base price for vanity contract
+    const basePrice = CONFIG.PRICING.VANITY_CONTRACT.full;
     
     // Check tier for discount
     const tier = getTier(tokenBalance);
-    let discountedPrice = basePrice;
+    let discountedPrice: number = basePrice;
     let discount = 0;
 
     if (tier === 1) {
@@ -134,7 +134,7 @@ export const VanityContractForm: React.FC = () => {
       discount = 100;
     } else if (tier === 2) {
       // Tier 2: 40% discount
-      discountedPrice = basePrice * 0.6;
+      discountedPrice = CONFIG.PRICING.VANITY_CONTRACT.discounted;
       discount = 40;
     }
 
