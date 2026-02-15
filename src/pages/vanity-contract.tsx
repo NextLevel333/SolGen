@@ -14,7 +14,7 @@ export default function VanityContract() {
       
       <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3" aria-label="Navigate to homepage">
             <Logo size={100} className="transform hover:scale-110 transition-transform" />
           </Link>
           <div className="flex items-center gap-4">

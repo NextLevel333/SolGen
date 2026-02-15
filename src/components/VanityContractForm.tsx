@@ -458,7 +458,7 @@ export const VanityContractForm: React.FC = () => {
 
           {pricing.discount > 0 && (
             <div className="bg-green-900/30 border border-green-600 p-3 rounded-lg text-sm text-green-200">
-              <p>🎉 You&apos;re saving {pricing.discount}% as a SolGen holder!</p>
+              <p><span role="img" aria-label="celebration">🎉</span> You&apos;re saving {pricing.discount}% as a SolGen holder!</p>
             </div>
           )}
         </div>
