@@ -46,7 +46,7 @@ function base58Encode(buffer: Uint8Array): string {
 }
 
 async function generateVanityAddress(characters: string, position: 'prefix' | 'suffix'): Promise<{ publicKey: string; secretKey: Uint8Array } | null> {
-  const targetChars = characters.toLowerCase();
+  const targetChars = characters;
   let attempts = 0;
   const startTime = Date.now();
   
@@ -59,13 +59,12 @@ async function generateVanityAddress(characters: string, position: 'prefix' | 's
     const keypair = nacl.sign.keyPair();
     const publicKeyBytes = keypair.publicKey;
     const publicKeyBase58 = base58Encode(publicKeyBytes);
-    const publicKeyLower = publicKeyBase58.toLowerCase();
     
     attempts++;
     
     const matches = position === 'prefix'
-      ? publicKeyLower.startsWith(targetChars)
-      : publicKeyLower.endsWith(targetChars);
+      ? publicKeyBase58.startsWith(targetChars)
+      : publicKeyBase58.endsWith(targetChars);
     
     if (matches) {
       self.postMessage({
