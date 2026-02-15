@@ -19,6 +19,218 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Modern Tech Background with Solana Colors */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: 
+    linear-gradient(135deg, 
+      #0a0e27 0%,
+      #0f1629 20%,
+      #151b3d 40%,
+      #1a1f4a 60%,
+      #0f1629 80%,
+      #0a0e27 100%
+    );
+  background-size: 200% 200%;
+  animation: gradientShift 20s ease infinite;
+}
+
+/* Subtle animated gradient overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: 
+    radial-gradient(ellipse at 50% 50%, 
+      rgba(153, 69, 255, 0.08) 0%, 
+      rgba(0, 212, 255, 0.05) 35%,
+      transparent 70%
+    ),
+    radial-gradient(ellipse at 20% 80%, 
+      rgba(20, 241, 149, 0.04) 0%, 
+      transparent 50%
+    ),
+    radial-gradient(ellipse at 80% 20%, 
+      rgba(153, 69, 255, 0.06) 0%, 
+      transparent 50%
+    );
+  opacity: 0.8;
+  animation: glowPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+/* Floating particles effect */
+.tech-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.tech-particles::before,
+.tech-particles::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(0, 212, 255, 0.3);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 10px rgba(0, 212, 255, 0.3),
+    200px 300px 0 rgba(153, 69, 255, 0.25),
+    400px 100px 0 rgba(20, 241, 149, 0.2),
+    600px 400px 0 rgba(0, 212, 255, 0.25),
+    800px 200px 0 rgba(153, 69, 255, 0.2),
+    1000px 500px 0 rgba(20, 241, 149, 0.25),
+    300px 600px 0 rgba(0, 212, 255, 0.2),
+    700px 50px 0 rgba(153, 69, 255, 0.25),
+    900px 350px 0 rgba(20, 241, 149, 0.2),
+    100px 450px 0 rgba(0, 212, 255, 0.3);
+  animation: particleFloat 60s linear infinite;
+}
+
+.tech-particles::after {
+  animation-delay: -30s;
+  opacity: 0.5;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-800px) translateX(200px);
+  }
+  100% {
+    transform: translateY(-1600px) translateX(0);
+  }
+}
+
+/* Animated light lines */
+.light-lines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.15;
+}
+
+.light-lines::before,
+.light-lines::after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(153, 69, 255, 0.4) 50%,
+    transparent 100%
+  );
+  animation: lightLineMove 15s ease-in-out infinite;
+}
+
+.light-lines::before {
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.light-lines::after {
+  left: 80%;
+  animation-delay: -7.5s;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 212, 255, 0.4) 50%,
+    transparent 100%
+  );
+}
+
+@keyframes lightLineMove {
+  0%, 100% {
+    transform: translateY(-100%) scaleY(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0%) scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* Central glow effect for main content */
+.central-glow {
+  position: relative;
+}
+
+.central-glow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(153, 69, 255, 0.15) 0%,
+    rgba(0, 212, 255, 0.08) 30%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: -1;
+  animation: centralGlowPulse 6s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes centralGlowPulse {
+  0% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
 }
 
 /* Smooth scroll behavior */
