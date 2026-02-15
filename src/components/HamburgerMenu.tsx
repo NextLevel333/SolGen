@@ -27,9 +27,22 @@ const menuLinks: MenuLink[] = [
     icon: '📧' 
   },
   { 
-    name: 'Resources', 
-    url: '/resources', 
-    icon: '🔗' 
+    name: 'Dexscreener', 
+    url: 'https://dexscreener.com/solana/ez28fssenkqu7slzlafez57q5iw1uv1htygufsvfpump', 
+    icon: '📊',
+    external: true
+  },
+  { 
+    name: 'Pumpfun', 
+    url: 'https://pump.fun/coin/Ez28fsseNKQu7sLzLAfEz57q5iw1Uv1HtYGUFSvFpump', 
+    icon: '🚀',
+    external: true
+  },
+  { 
+    name: 'Solscan', 
+    url: 'https://solscan.io/token/Ez28fsseNKQu7sLzLAfEz57q5iw1Uv1HtYGUFSvFpump', 
+    icon: '🔍',
+    external: true
   },
   { 
     name: 'GitHub', 
