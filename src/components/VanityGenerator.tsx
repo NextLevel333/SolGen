@@ -114,9 +114,12 @@ export const VanityGenerator: React.FC<VanityGeneratorProps> = ({
     if (workerRef.current) {
       workerRef.current.postMessage({ type: 'cancel' });
       workerRef.current.terminate();
-      workerRef.current = null;
     }
     setShowCancelDialog(true);
+    // Clear worker reference after state update
+    setTimeout(() => {
+      workerRef.current = null;
+    }, 0);
   };
 
   const handleCancelAction = (action: 'retry' | 'change') => {

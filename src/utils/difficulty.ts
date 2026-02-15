@@ -110,7 +110,7 @@ export function analyzeDifficulty(
   
   return {
     difficultyLevel,
-    estimatedAttempts: Math.floor(baseAttempts / 2), // Average case
+    estimatedAttempts: Math.min(Math.floor(baseAttempts / 2), 999999999999), // Cap at ~1 trillion for display
     tips,
     suggestions,
   };
