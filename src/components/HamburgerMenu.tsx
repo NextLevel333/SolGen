@@ -13,13 +13,13 @@ const ANIMATION_STAGGER_DELAY_MS = 50;
 const menuLinks: MenuLink[] = [
   { 
     name: 'Dexscreener', 
-    url: 'https://dexscreener.com/solana/ez28fssenkqu7slzlafez57q5iw1uv1htygufsvfpump', 
+    url: 'https://dexscreener.com', 
     icon: '📊',
     external: true
   },
   { 
     name: 'Pumpfun', 
-    url: 'https://pump.fun/coin/Ez28fsseNKQu7sLzLAfEz57q5iw1Uv1HtYGUFSvFpump', 
+    url: 'https://pump.fun', 
     icon: '🚀',
     external: true
   },
@@ -37,7 +37,7 @@ const menuLinks: MenuLink[] = [
   },
   { 
     name: 'Solscan', 
-    url: 'https://solscan.io/token/Ez28fsseNKQu7sLzLAfEz57q5iw1Uv1HtYGUFSvFpump', 
+    url: 'https://solscan.io', 
     icon: '🔍',
     external: true
   },
