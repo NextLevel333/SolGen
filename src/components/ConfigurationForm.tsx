@@ -73,7 +73,7 @@ export const ConfigurationForm: React.FC<ConfigurationFormProps> = ({
               }}
               placeholder={`Enter ${vanityLength} characters`}
               maxLength={vanityLength}
-              className="solana-input uppercase"
+              className="solana-input"
             />
             <p className="text-xs text-gray-500 mt-1">
               Use base58 characters: 1-9, A-Z (except O, I), a-z (except l)
