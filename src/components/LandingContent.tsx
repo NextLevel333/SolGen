@@ -3,7 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ScrollReveal } from './ScrollReveal';
 
-export const LandingContent: React.FC = () => {
+interface LandingContentProps {
+  onStartGeneration: () => void;
+}
+
+export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneration }) => {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 space-y-12">
       <ScrollReveal direction="fade" delay={0}>
@@ -14,11 +18,11 @@ export const LandingContent: React.FC = () => {
             </div>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300">
-            First Mobile Friendly Solana Vanity Wallet Generator
+            Custom Wallet & Contract Address Generator
           </p>
           <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
-            Generate custom Solana wallet addresses with your chosen prefix or suffix.
-            100% client-side. Zero server storage. Your keys never leave your browser.
+            SolGen offers mobile-friendly tools for generating custom Solana wallets and deploying custom contract addresses on pump.fun.
+            More tools and updates coming soon!
           </p>
         </div>
       </ScrollReveal>
@@ -63,7 +67,14 @@ export const LandingContent: React.FC = () => {
       
       <ScrollReveal direction="up" delay={150}>
         <div className="solana-card p-6 md:p-8 space-y-4">
-          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">How It Works</h2>
+          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">Custom Wallet Maker</h2>
+          
+          <p className="text-sm md:text-base text-gray-300">
+            Generate custom Solana wallet addresses with your chosen prefix or suffix.
+            100% client-side. Zero server storage. Your keys never leave your browser.
+          </p>
+          
+          <h3 className="text-lg md:text-xl font-semibold solana-gradient-text pt-4">How It Works</h3>
           <ol className="space-y-3 text-sm md:text-base text-gray-300">
             <li className="flex gap-3">
               <span className="solana-gradient-text font-bold">1.</span>
@@ -86,15 +97,25 @@ export const LandingContent: React.FC = () => {
               <span>Securely save your seed phrase and private key</span>
             </li>
           </ol>
-        </div>
-      </ScrollReveal>
-      
-      <ScrollReveal direction="up" delay={200}>
-        <div className="solana-card p-6 md:p-8 space-y-4">
-          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">Pricing</h2>
+          
+          <h3 className="text-lg md:text-xl font-semibold solana-gradient-text pt-4">Pricing</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <div className="bg-gray-700/50 p-4 md:p-6 rounded-lg">
-              <h3 className="text-lg md:text-xl font-semibold mb-2">3-Character Vanity</h3>
+              <h4 className="text-lg md:text-xl font-semibold mb-2">3-Character Vanity</h4>
+              <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">0.15 SOL</div>
+              <div className="text-sm md:text-base text-gray-400 space-y-1">
+                <div>
+                  <span className="text-solana-green font-semibold">0.09 SOL</span>
+                  <span className="text-xs md:text-sm ml-2">(Tier 2: 1M+ tokens)</span>
+                </div>
+                <div>
+                  <span className="text-solana-green font-semibold">FREE</span>
+                  <span className="text-xs md:text-sm ml-2">(Tier 1: 10M+ tokens)</span>
+                </div>
+              </div>
+            </div>
+            <div className="bg-gray-700/50 p-4 md:p-6 rounded-lg">
+              <h4 className="text-lg md:text-xl font-semibold mb-2">4-Character Vanity</h4>
               <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">0.2 SOL</div>
               <div className="text-sm md:text-base text-gray-400 space-y-1">
                 <div>
@@ -107,21 +128,14 @@ export const LandingContent: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-gray-700/50 p-4 md:p-6 rounded-lg">
-              <h3 className="text-lg md:text-xl font-semibold mb-2">4-Character Vanity</h3>
-              <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">0.4 SOL</div>
-              <div className="text-sm md:text-base text-gray-400 space-y-1">
-                <div>
-                  <span className="text-solana-green font-semibold">0.24 SOL</span>
-                  <span className="text-xs md:text-sm ml-2">(Tier 2: 1M+ tokens)</span>
-                </div>
-                <div>
-                  <span className="text-solana-green font-semibold">FREE</span>
-                  <span className="text-xs md:text-sm ml-2">(Tier 1: 10M+ tokens)</span>
-                </div>
-              </div>
-            </div>
           </div>
+          
+          <button
+            onClick={onStartGeneration}
+            className="solana-button-primary w-full text-lg md:text-xl py-4 pulse-glow mt-6"
+          >
+            Start Generator
+          </button>
         </div>
       </ScrollReveal>
       
@@ -195,10 +209,11 @@ export const LandingContent: React.FC = () => {
       
       <ScrollReveal direction="up" delay={350}>
         <div className="solana-card p-6 md:p-8 space-y-4 border-solana-purple/50">
-          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">🚀 Coming Soon in Development</h2>
-          <h3 className="text-lg md:text-xl font-semibold text-solana-purple">Pump.fun Vanity Contract Deployer</h3>
+          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">Custom Contract Address Maker</h2>
+          <h3 className="text-lg md:text-xl font-semibold text-solana-purple">Launch your custom CA on pump.fun!</h3>
           <p className="text-sm md:text-base text-gray-300">
-            We&apos;re developing an innovative feature that will allow you to create a custom contract address (CA) token on pump.fun with your desired vanity pattern.
+            Create a custom contract address (CA) token on pump.fun with your desired vanity pattern.
+            Launch with a memorable, brandable contract address that makes your token stand out.
           </p>
           <div className="bg-gray-700/50 p-4 md:p-5 rounded-lg space-y-3">
             <h4 className="font-semibold text-gray-200">Key Features:</h4>
@@ -223,32 +238,41 @@ export const LandingContent: React.FC = () => {
                 <span className="text-solana-green">✓</span>
                 <span>The only difference: your token gets a memorable, custom contract address</span>
               </li>
+              <li className="flex gap-2">
+                <span className="text-solana-green">✓</span>
+                <span>Perfect for creating a strong brand identity from day one</span>
+              </li>
             </ul>
           </div>
+          
+          <div className="bg-gray-700/50 p-4 md:p-6 rounded-lg space-y-2">
+            <h4 className="font-semibold text-gray-200">Pricing</h4>
+            <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">0.4 SOL</div>
+            <div className="text-sm md:text-base text-gray-400 space-y-1">
+              <div>
+                <span className="text-solana-green font-semibold">0.24 SOL</span>
+                <span className="text-xs md:text-sm ml-2">(Tier 2: 1M+ tokens)</span>
+              </div>
+              <div>
+                <span className="text-solana-green font-semibold">FREE</span>
+                <span className="text-xs md:text-sm ml-2">(Tier 1: 10M+ tokens)</span>
+              </div>
+            </div>
+            <p className="text-xs text-gray-400 mt-2">
+              Plus optional initial developer buy (0.02 SOL fee + buy amount)
+            </p>
+          </div>
+          
           <p className="text-xs md:text-sm text-gray-400">
             This is exactly the same as launching on pump.fun normally, but with the added benefit of a personalized contract address that makes your token more memorable and brandable.
           </p>
           <Link 
             href="/vanity-contract"
-            className="solana-button-primary inline-flex items-center gap-2 mt-4"
+            className="solana-button-primary w-full text-center inline-block py-4 mt-4"
           >
-            <span className="text-xl">✨</span>
-            <span>Generate custom contract</span>
+            <span className="text-xl mr-2">✨</span>
+            <span>Generate Custom Contract</span>
           </Link>
-        </div>
-      </ScrollReveal>
-      
-      <ScrollReveal direction="up" delay={400}>
-        <div className="solana-card p-6 md:p-8 space-y-4 border-solana-purple/50">
-          <h2 className="text-xl md:text-2xl font-bold text-red-400">⚠️ Security Notice</h2>
-          <p className="text-sm md:text-base text-gray-300">
-            This tool generates real Solana keypairs that can hold funds. 
-            Always verify you&apos;ve securely saved your seed phrase and private key before transferring any assets.
-          </p>
-          <p className="text-sm md:text-base text-gray-300">
-            <strong>Never share your private key or seed phrase with anyone.</strong> 
-            This tool does not and will never ask for your existing wallet&apos;s private keys.
-          </p>
         </div>
       </ScrollReveal>
     </div>

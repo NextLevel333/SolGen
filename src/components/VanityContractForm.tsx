@@ -120,8 +120,8 @@ export const VanityContractForm: React.FC = () => {
   };
 
   const calculatePrice = (): { basePrice: number; discountedPrice: number; devBuyFee: number; devBuyAmount: number; totalPrice: number; discount: number } => {
-    // Base price for vanity CA service (adjust as needed)
-    const basePrice = 0.5; // 0.5 SOL base price for vanity contract
+    // Base price for vanity CA service
+    const basePrice = 0.4; // 0.4 SOL base price for vanity contract
     
     // Check tier for discount
     const tier = getTier(tokenBalance);
@@ -206,7 +206,7 @@ export const VanityContractForm: React.FC = () => {
               id="tokenSymbol"
               type="text"
               value={formData.tokenSymbol}
-              onChange={(e) => handleInputChange('tokenSymbol', e.target.value.toUpperCase())}
+              onChange={(e) => handleInputChange('tokenSymbol', e.target.value)}
               className={`w-full px-4 py-2 bg-gray-700/50 border ${errors.tokenSymbol ? 'border-red-500' : 'border-gray-600'} rounded-lg text-white focus:outline-none focus:border-solana-purple transition-colors`}
               placeholder="e.g., MAT"
               maxLength={10}
@@ -302,6 +302,7 @@ export const VanityContractForm: React.FC = () => {
               onChange={(e) => handleFileUpload('logoFile', e.target.files?.[0])}
               className={`w-full px-4 py-2 bg-gray-700/50 border ${errors.logoFile ? 'border-red-500' : 'border-gray-600'} rounded-lg text-white focus:outline-none focus:border-solana-purple transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-solana-purple file:text-white hover:file:bg-solana-green file:cursor-pointer`}
             />
+            <p className="mt-1 text-xs text-gray-400">Recommended: 1000px by 1000px (png, jpg, etc.)</p>
             {formData.logoFile && (
               <p className="mt-1 text-sm text-solana-green">✓ {formData.logoFile.name}</p>
             )}
@@ -320,6 +321,7 @@ export const VanityContractForm: React.FC = () => {
               onChange={(e) => handleFileUpload('bannerFile', e.target.files?.[0])}
               className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-solana-purple transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-solana-purple file:text-white hover:file:bg-solana-green file:cursor-pointer"
             />
+            <p className="mt-1 text-xs text-gray-400">Recommended: 1500px by 500px (png, jpg, etc.)</p>
             {formData.bannerFile && (
               <p className="mt-1 text-sm text-solana-green">✓ {formData.bannerFile.name}</p>
             )}

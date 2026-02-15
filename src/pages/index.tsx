@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import Link from 'next/link';
 import { WalletConnect } from '../components/WalletConnect';
@@ -30,6 +30,11 @@ export default function Home() {
   const [generationResult, setGenerationResult] = useState<GenerationResult | null>(null);
   const [generatorKey, setGeneratorKey] = useState(0); // Used to force re-mount of generator
   const [isRestartingFromCancel, setIsRestartingFromCancel] = useState(false); // Track if restarting from cancel
+  
+  // Scroll to top when step changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [step]);
   
   const handleLengthSelect = (length: VanityLength) => {
     setSelectedLength(length);
@@ -100,15 +105,7 @@ export default function Home() {
       <main className="max-w-7xl mx-auto px-4 py-8 central-glow">
         {step === 'landing' && (
           <div className="fade-in-up">
-            <LandingContent />
-            <div className="max-w-4xl mx-auto px-4 mt-12">
-              <button
-                onClick={handleStartGeneration}
-                className="solana-button-primary w-full text-lg md:text-xl py-4 pulse-glow"
-              >
-                Start Generating
-              </button>
-            </div>
+            <LandingContent onStartGeneration={handleStartGeneration} />
           </div>
         )}
         
@@ -130,9 +127,9 @@ export default function Home() {
               >
                 <div className="text-4xl md:text-5xl mb-4">3️⃣</div>
                 <h3 className="text-xl md:text-2xl font-bold mb-2">3 Characters</h3>
-                <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">0.2 SOL</div>
+                <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">0.15 SOL</div>
                 <div className="text-sm text-gray-400 mb-1">
-                  <span className="text-solana-green">0.12 SOL</span> Tier 2 (1M+ tokens)
+                  <span className="text-solana-green">0.09 SOL</span> Tier 2 (1M+ tokens)
                 </div>
                 <div className="text-sm text-gray-400 mb-2">
                   <span className="text-solana-green">FREE</span> Tier 1 (10M+ tokens)
@@ -148,9 +145,9 @@ export default function Home() {
               >
                 <div className="text-4xl md:text-5xl mb-4">4️⃣</div>
                 <h3 className="text-xl md:text-2xl font-bold mb-2">4 Characters</h3>
-                <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">0.4 SOL</div>
+                <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">0.2 SOL</div>
                 <div className="text-sm text-gray-400 mb-1">
-                  <span className="text-solana-green">0.24 SOL</span> Tier 2 (1M+ tokens)
+                  <span className="text-solana-green">0.12 SOL</span> Tier 2 (1M+ tokens)
                 </div>
                 <div className="text-sm text-gray-400 mb-2">
                   <span className="text-solana-green">FREE</span> Tier 1 (10M+ tokens)
