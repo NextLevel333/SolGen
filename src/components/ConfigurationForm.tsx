@@ -128,7 +128,7 @@ export const ConfigurationForm: React.FC<ConfigurationFormProps> = ({
             <div className="flex items-start gap-2">
               <span className="text-solana-purple font-bold">2.</span>
               <p className="text-gray-300">
-                <strong>Pay with SOL</strong> - A one-time payment to access the generator service for 1 address
+                <strong>Pay with SOL</strong> - A one-time payment to access the generator service for one address
               </p>
             </div>
             <div className="flex items-start gap-2">

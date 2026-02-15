@@ -35,64 +35,64 @@ export const VanityGenerator: React.FC<VanityGeneratorProps> = ({
   
   useEffect(() => {
     // Auto-start generation when component mounts
-    startGeneration();
+    const initializeGeneration = () => {
+      setIsGenerating(true);
+      setIsPaused(false);
+      setProgress(null);
+      
+      // Create new worker
+      workerRef.current = new Worker(new URL('../workers/vanity.worker.ts', import.meta.url));
+      
+      workerRef.current.onmessage = (event) => {
+        const { type } = event.data;
+        
+        if (type === 'progress') {
+          setProgress({
+            attempts: event.data.attempts,
+            rate: event.data.rate,
+            elapsed: event.data.elapsed,
+          });
+        } else if (type === 'success') {
+          setIsGenerating(false);
+          onComplete({
+            publicKey: event.data.publicKey,
+            secretKey: event.data.secretKey,
+            attempts: event.data.attempts,
+            duration: event.data.duration,
+          });
+          if (workerRef.current) {
+            workerRef.current.terminate();
+            workerRef.current = null;
+          }
+        } else if (type === 'paused') {
+          setIsPaused(true);
+        } else if (type === 'resumed') {
+          setIsPaused(false);
+        } else if (type === 'cancelled') {
+          setIsGenerating(false);
+          setIsPaused(false);
+          if (workerRef.current) {
+            workerRef.current.terminate();
+            workerRef.current = null;
+          }
+        }
+      };
+      
+      workerRef.current.postMessage({
+        type: 'generate',
+        characters: vanityCharacters,
+        position: vanityPosition,
+      });
+    };
+    
+    initializeGeneration();
     
     return () => {
       if (workerRef.current) {
         workerRef.current.terminate();
       }
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  
-  const startGeneration = () => {
-    setIsGenerating(true);
-    setIsPaused(false);
-    setProgress(null);
-    
-    // Create new worker
-    workerRef.current = new Worker(new URL('../workers/vanity.worker.ts', import.meta.url));
-    
-    workerRef.current.onmessage = (event) => {
-      const { type } = event.data;
-      
-      if (type === 'progress') {
-        setProgress({
-          attempts: event.data.attempts,
-          rate: event.data.rate,
-          elapsed: event.data.elapsed,
-        });
-      } else if (type === 'success') {
-        setIsGenerating(false);
-        onComplete({
-          publicKey: event.data.publicKey,
-          secretKey: event.data.secretKey,
-          attempts: event.data.attempts,
-          duration: event.data.duration,
-        });
-        if (workerRef.current) {
-          workerRef.current.terminate();
-          workerRef.current = null;
-        }
-      } else if (type === 'paused') {
-        setIsPaused(true);
-      } else if (type === 'resumed') {
-        setIsPaused(false);
-      } else if (type === 'cancelled') {
-        setIsGenerating(false);
-        setIsPaused(false);
-        if (workerRef.current) {
-          workerRef.current.terminate();
-          workerRef.current = null;
-        }
-      }
-    };
-    
-    workerRef.current.postMessage({
-      type: 'generate',
-      characters: vanityCharacters,
-      position: vanityPosition,
-    });
-  };
+  }, [vanityCharacters, vanityPosition, onComplete]);
   
   const pauseGeneration = () => {
     if (workerRef.current) {
