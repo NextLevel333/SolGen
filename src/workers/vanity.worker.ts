@@ -54,7 +54,7 @@ async function generateVanityAddress(
   characters: string, 
   position: 'prefix' | 'suffix',
   workerId: number = 0,
-  progressInterval: number = 1000,
+  progressInterval: number = 200,
   yieldInterval: number = 10000
 ): Promise<{ publicKey: string; secretKey: Uint8Array } | null> {
   const targetChars = characters;
@@ -126,7 +126,7 @@ self.addEventListener('message', async (event: MessageEvent<WorkerMessage>) => {
       isPaused = false;
       pausedTime = 0;
       lastPauseStart = 0;
-      const { characters, position, workerId = 0, progressInterval = 1000, yieldInterval = 10000 } = event.data;
+      const { characters, position, workerId = 0, progressInterval = 200, yieldInterval = 10000 } = event.data;
       await generateVanityAddress(characters, position, workerId, progressInterval, yieldInterval);
       break;
       

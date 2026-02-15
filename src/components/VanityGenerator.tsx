@@ -130,6 +130,9 @@ export const VanityGenerator: React.FC<VanityGeneratorProps> = ({
         } else if (type === 'cancelled') {
           setIsGenerating(false);
           setIsPaused(false);
+          // Clean up all workers
+          workersRef.current.forEach(({ worker: w }) => w.terminate());
+          workersRef.current = [];
         }
       };
       
@@ -179,7 +182,7 @@ export const VanityGenerator: React.FC<VanityGeneratorProps> = ({
 
   const handleCancelAction = (action: 'retry' | 'change') => {
     setShowCancelDialog(false);
-    setShowModeSelector(action === 'retry'); // Show mode selector again if retrying
+    setShowModeSelector(true); // Show mode selector for both retry and change
     if (onCancel) {
       onCancel(action);
     }

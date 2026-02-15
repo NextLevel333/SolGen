@@ -68,7 +68,7 @@ export const PERFORMANCE_CONFIG = {
     description: 'Moderate speed with good device responsiveness. Recommended for most users.',
   },
   performance: {
-    workers: 4, // Will be capped by hardwareConcurrency-1
+    workers: 4, // Will be capped by Math.min(4, Math.max(1, hardwareConcurrency - 1))
     progressInterval: 100,
     yieldInterval: 15000,
     description: 'Maximum speed for fastest generation. May heat up your device.',
