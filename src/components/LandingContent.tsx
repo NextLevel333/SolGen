@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ScrollReveal } from './ScrollReveal';
 
 export const LandingContent: React.FC = () => {
@@ -229,6 +230,13 @@ export const LandingContent: React.FC = () => {
           <p className="text-xs md:text-sm text-gray-400">
             This is exactly the same as launching on pump.fun normally, but with the added benefit of a personalized contract address that makes your token more memorable and brandable.
           </p>
+          <Link 
+            href="/vanity-contract"
+            className="solana-button-primary inline-flex items-center gap-2 mt-4"
+          >
+            <span className="text-xl">✨</span>
+            <span>Generate custom contract</span>
+          </Link>
         </div>
       </ScrollReveal>
       
