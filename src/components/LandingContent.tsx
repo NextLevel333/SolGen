@@ -52,9 +52,9 @@ export const LandingContent: React.FC = () => {
             </div>
             <h3 className="text-lg md:text-xl font-semibold">Token Benefits</h3>
             <p className="text-sm md:text-base text-gray-400">
-              *2 Tier holder system from Discounted to VIP
-               membership for Free services. 
-              Launched on pump.fun/LP (contract TBA).
+              Tier holder system: Tier 2 holders (1M+ tokens) get 40% off all services. 
+              Tier 1 holders (10M+ tokens) get 100% free VIP access to everything. 
+              Launched on pump.fun/LP (contract: Ez28fsseNKQu7sLzLAfEz57q5iw1Uv1HtYGUFSvFpump).
             </p>
           </div>
         </div>
@@ -74,7 +74,7 @@ export const LandingContent: React.FC = () => {
             </li>
             <li className="flex gap-3">
               <span className="solana-gradient-text font-bold">3.</span>
-              <span>Pay the generation fee (50% off for tier 2 SolGen token holders)</span>
+              <span>Pay the generation fee (Tier 2: 40% off for 1M+ token holders, Tier 1: Free for 10M+ holders)</span>
             </li>
             <li className="flex gap-3">
               <span className="solana-gradient-text font-bold">4.</span>
@@ -94,20 +94,30 @@ export const LandingContent: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <div className="bg-gray-700/50 p-4 md:p-6 rounded-lg">
               <h3 className="text-lg md:text-xl font-semibold mb-2">3-Character Vanity</h3>
-              <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">0.15 SOL</div>
-              <div className="text-sm md:text-base text-gray-400">
-                <span className="line-through">0.15 SOL</span>
-                <span className="text-solana-green ml-2 font-semibold">0.075 SOL</span>
-                <span className="text-xs md:text-sm ml-2">(for SolGen holders)</span>
+              <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">0.2 SOL</div>
+              <div className="text-sm md:text-base text-gray-400 space-y-1">
+                <div>
+                  <span className="text-solana-green font-semibold">0.12 SOL</span>
+                  <span className="text-xs md:text-sm ml-2">(Tier 2: 1M+ tokens)</span>
+                </div>
+                <div>
+                  <span className="text-solana-green font-semibold">FREE</span>
+                  <span className="text-xs md:text-sm ml-2">(Tier 1: 10M+ tokens)</span>
+                </div>
               </div>
             </div>
             <div className="bg-gray-700/50 p-4 md:p-6 rounded-lg">
               <h3 className="text-lg md:text-xl font-semibold mb-2">4-Character Vanity</h3>
-              <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">0.40 SOL</div>
-              <div className="text-sm md:text-base text-gray-400">
-                <span className="line-through">0.40 SOL</span>
-                <span className="text-solana-green ml-2 font-semibold">0.20 SOL</span>
-                <span className="text-xs md:text-sm ml-2">(for SolGen holders)</span>
+              <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">0.4 SOL</div>
+              <div className="text-sm md:text-base text-gray-400 space-y-1">
+                <div>
+                  <span className="text-solana-green font-semibold">0.24 SOL</span>
+                  <span className="text-xs md:text-sm ml-2">(Tier 2: 1M+ tokens)</span>
+                </div>
+                <div>
+                  <span className="text-solana-green font-semibold">FREE</span>
+                  <span className="text-xs md:text-sm ml-2">(Tier 1: 10M+ tokens)</span>
+                </div>
               </div>
             </div>
           </div>
@@ -116,23 +126,102 @@ export const LandingContent: React.FC = () => {
       
       <ScrollReveal direction="up" delay={250}>
         <div className="solana-card p-6 md:p-8 space-y-4">
-          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">About SolGen Token</h2>
+          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">Tier Holder System</h2>
           <p className="text-sm md:text-base text-gray-300">
-            SolGen is the native utility token for this platform, offering holders a 50% discount on all vanity address generation fees.
+            SolGen offers a two-tier reward system for token holders, providing significant benefits and discounts:
           </p>
-          <p className="text-sm md:text-base text-gray-300">
-            <strong>Status:</strong> Launched on pump.fun with LP
-          </p>
-          <p className="text-sm md:text-base text-gray-300">
-            <strong>Contract Address:</strong> <span className="text-solana-green font-mono">To be updated</span>
-          </p>
-          <p className="text-xs md:text-sm text-gray-400">
-            Any wallet holding SolGen tokens automatically qualifies for the discount.
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4">
+            <div className="bg-gradient-to-br from-purple-900/30 to-gray-700/30 border border-purple-600/50 p-4 md:p-6 rounded-lg">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-3xl">🥈</span>
+                <h3 className="text-lg md:text-xl font-semibold text-purple-300">Tier 2</h3>
+              </div>
+              <p className="text-sm md:text-base text-gray-300 mb-2">
+                <strong>Requirement:</strong> Hold 1,000,000+ SolGen tokens
+              </p>
+              <p className="text-sm md:text-base text-solana-green font-semibold">
+                ✓ 40% discount on all services
+              </p>
+            </div>
+            
+            <div className="bg-gradient-to-br from-yellow-900/30 to-gray-700/30 border border-yellow-600/50 p-4 md:p-6 rounded-lg">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-3xl">🥇</span>
+                <h3 className="text-lg md:text-xl font-semibold text-yellow-300">Tier 1 - VIP</h3>
+              </div>
+              <p className="text-sm md:text-base text-gray-300 mb-2">
+                <strong>Requirement:</strong> Hold 10,000,000+ SolGen tokens
+              </p>
+              <p className="text-sm md:text-base text-solana-green font-semibold">
+                ✓ 100% FREE - Complete VIP access to all services
+              </p>
+            </div>
+          </div>
+          
+          <p className="text-xs md:text-sm text-gray-400 mt-4">
+            Your tier is automatically detected when you connect your wallet. Simply hold the required tokens in the same wallet you use to pay, and the discount or free access will be applied instantly.
           </p>
         </div>
       </ScrollReveal>
       
       <ScrollReveal direction="up" delay={300}>
+        <div className="solana-card p-6 md:p-8 space-y-4">
+          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">About SolGen Token</h2>
+          <p className="text-sm md:text-base text-gray-300">
+            SolGen is the native utility token for this platform. Token holders receive automatic discounts based on their tier level, ranging from 40% off (Tier 2) to completely free VIP access (Tier 1).
+          </p>
+          <p className="text-sm md:text-base text-gray-300">
+            <strong>Status:</strong> Launched on pump.fun with LP
+          </p>
+          <p className="text-sm md:text-base text-gray-300">
+            <strong>Contract Address:</strong> <span className="text-solana-green font-mono text-xs break-all">Ez28fsseNKQu7sLzLAfEz57q5iw1Uv1HtYGUFSvFpump</span>
+          </p>
+          <p className="text-xs md:text-sm text-gray-400">
+            Your wallet is automatically checked for SolGen tokens when you connect. The appropriate tier discount is applied based on your balance.
+          </p>
+        </div>
+      </ScrollReveal>
+      
+      <ScrollReveal direction="up" delay={350}>
+        <div className="solana-card p-6 md:p-8 space-y-4 border-solana-purple/50">
+          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">🚀 Coming Soon in Development</h2>
+          <h3 className="text-lg md:text-xl font-semibold text-solana-purple">Pump.fun Vanity Contract Deployer</h3>
+          <p className="text-sm md:text-base text-gray-300">
+            We&apos;re developing an innovative feature that will allow you to create a custom contract address (CA) token on pump.fun with your desired vanity pattern.
+          </p>
+          <div className="bg-gray-700/50 p-4 md:p-5 rounded-lg space-y-3">
+            <h4 className="font-semibold text-gray-200">Key Features:</h4>
+            <ul className="space-y-2 text-sm md:text-base text-gray-300">
+              <li className="flex gap-2">
+                <span className="text-solana-green">✓</span>
+                <span>Launch tokens with custom vanity contract addresses on pump.fun</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="text-solana-green">✓</span>
+                <span>Includes initial developer purchase capability</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="text-solana-green">✓</span>
+                <span>Acquire your custom CA before the token goes live</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="text-solana-green">✓</span>
+                <span>Same LP (liquidity pool), same safety, same protocol as standard pump.fun</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="text-solana-green">✓</span>
+                <span>The only difference: your token gets a memorable, custom contract address</span>
+              </li>
+            </ul>
+          </div>
+          <p className="text-xs md:text-sm text-gray-400">
+            This is exactly the same as launching on pump.fun normally, but with the added benefit of a personalized contract address that makes your token more memorable and brandable.
+          </p>
+        </div>
+      </ScrollReveal>
+      
+      <ScrollReveal direction="up" delay={400}>
         <div className="solana-card p-6 md:p-8 space-y-4 border-solana-purple/50">
           <h2 className="text-xl md:text-2xl font-bold text-red-400">⚠️ Security Notice</h2>
           <p className="text-sm md:text-base text-gray-300">
