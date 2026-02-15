@@ -128,7 +128,7 @@ export const VanityGenerator: React.FC<VanityGeneratorProps> = ({
           <div className="flex justify-between items-center">
             <span className="text-gray-400">Pattern:</span>
             <span className="font-mono font-semibold">
-              {vanityPosition === 'prefix' ? `${vanityCharacters.toUpperCase()}...` : `...${vanityCharacters.toUpperCase()}`}
+              {vanityPosition === 'prefix' ? `${vanityCharacters}...` : `...${vanityCharacters}`}
             </span>
           </div>
           
