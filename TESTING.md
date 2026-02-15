@@ -35,16 +35,32 @@
 - [ ] Generator unlocks after successful payment
 
 ### 5. Vanity Generator
+
+#### Performance Mode Selection
+- [ ] Performance mode selector displays before generation
+- [ ] Three modes available: Eco, Balanced, Performance
+- [ ] Each mode shows description and worker count
+- [ ] Balanced mode marked as recommended
+- [ ] Performance tip displayed about closing other apps
+- [ ] Start Generation button works
+
+#### Generation Process
 - [ ] Character input field works
 - [ ] Invalid characters (0, O, I, l) are filtered
 - [ ] Position selection (prefix/suffix) works
-- [ ] Start generation button enables when valid
-- [ ] Web Worker starts successfully
+- [ ] Multiple workers start based on selected mode
+- [ ] Worker count displayed in UI matches expected:
+  - Eco: 1 worker
+  - Balanced: 2 workers
+  - Performance: up to 4 workers (respects hardwareConcurrency-1)
 - [ ] Progress updates display (attempts, rate, elapsed)
+- [ ] Progress aggregates from all workers correctly
 - [ ] ETA calculation works
-- [ ] Pause/Resume functionality works
-- [ ] Cancel functionality works
+- [ ] Pause/Resume functionality works across all workers
+- [ ] Cancel functionality terminates all workers
 - [ ] Generation completes successfully
+- [ ] First worker to find match wins
+- [ ] All workers terminated after success
 
 ### 6. Result Display
 - [ ] Success message shown
@@ -84,6 +100,30 @@
 3. Update `src/components/LandingContent.tsx`:
    - Replace "To be updated" with actual contract address once available
 
+## Performance Notes
+
+### Safe Defaults
+- Worker count is automatically capped for device safety:
+  - Maximum 4 workers
+  - Never exceeds `navigator.hardwareConcurrency - 1`
+  - Falls back to 4 if hardware concurrency unavailable
+- Performance modes use different worker counts:
+  - Eco: 1 worker (battery-friendly)
+  - Balanced: 2 workers (recommended)
+  - Performance: 4 workers (device-dependent)
+
+### Generation Performance
+- Each worker generates 10,000-50,000 keys/second on modern hardware
+- Total rate scales with worker count
+- Time-based progress updates reduce main thread overhead
+- Adaptive yielding keeps UI responsive
+
+### Device Compatibility
+- Works on all modern browsers with Web Worker support
+- Mobile devices: Eco/Balanced modes recommended for better battery life
+- Desktop devices: Performance mode provides fastest generation
+- Tab must remain active for optimal performance
+
 ## Known Limitations
 
 1. **Wallet Adapter**: Requires browser extension (Phantom or Solflare) to be installed
@@ -92,6 +132,7 @@
    - 4-character: Can take several minutes to hours depending on pattern
 3. **Payment Verification**: Requires transaction to be confirmed on-chain (2-3 seconds)
 4. **Token Balance**: Assumes 9 decimal places (standard for SPL tokens)
+5. **Background Generation**: Generation slows down when tab is in background (browser limitation)
 
 ## Browser Compatibility
 

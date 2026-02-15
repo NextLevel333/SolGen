@@ -30,10 +30,15 @@ Successfully implemented a complete Solana vanity wallet generator with token-ga
 - ✅ 100% browser-based key generation using Web Workers
 - ✅ No server transmission or storage of private keys
 - ✅ 3 or 4 character prefix/suffix options
-- ✅ Web Worker implementation for UI responsiveness
+- ✅ Multi-worker implementation for parallel generation
+- ✅ Performance mode selection (Eco/Balanced/Performance)
+- ✅ Adaptive worker count based on device hardware
+- ✅ Safe defaults: max 4 workers, not exceeding hardwareConcurrency-1
 - ✅ Real-time progress tracking with ETA
-- ✅ Pause/Resume/Cancel functionality
+- ✅ Pause/Resume/Cancel functionality across all workers
+- ✅ Time-based progress updates for reduced overhead
 - ✅ Secure seed phrase/private key download
+- ✅ Device-friendly with performance tips
 
 ### 5. Public Landing Content
 - ✅ Privacy explanation ("no server, no storage")
@@ -108,25 +113,26 @@ src/
 ## 📊 Performance
 
 ### Generation Performance
-- Web Worker utilizes single CPU core
-- Expected rate: 10,000-50,000 keys/second
+- **Multi-Worker Support**: Uses adaptive worker pool for parallel generation
+- **Performance Modes**:
+  - **Eco Mode**: 1 worker, battery-friendly, minimal CPU usage
+  - **Balanced Mode**: 2 workers, moderate speed with good responsiveness (recommended)
+  - **Performance Mode**: Up to 4 workers, maximum speed (device-dependent)
+- **Safe Defaults**: Worker count capped at 4 and never exceeds `hardwareConcurrency - 1`
+- Expected rate per worker: 10,000-50,000 keys/second
+- Total rate scales with worker count (2x with 2 workers, 3-4x with 4 workers)
 - 3-character: ~100,000 attempts average (seconds to minutes)
 - 4-character: ~5,800,000 attempts average (minutes to hours)
 
-### Build Performance
-```
-Route (pages)                    Size     First Load JS
-┌ ○ /                            17 kB    212 kB
-├ ○ /404                          181 B    195 kB
-└   /_app                         0 B      195 kB
-```
-
-### Optimizations
+### Performance Optimizations
+- Time-based progress updates (100-250ms) instead of per-attempt frequency
+- Adaptive yielding per mode (5,000-15,000 attempts between yields)
+- Aggregated progress from all workers
+- Main thread remains responsive during generation
 - Static page generation
 - CSS optimization (5.03 kB)
 - Code splitting
 - Async worker loading
-- Responsive worker (yields every 10,000 iterations)
 
 ## 🎨 UI/UX Features
 
