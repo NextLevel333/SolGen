@@ -27,6 +27,7 @@ export default function Home() {
   const [vanityCharacters, setVanityCharacters] = useState<string>('');
   const [vanityPosition, setVanityPosition] = useState<'prefix' | 'suffix'>('prefix');
   const [generationResult, setGenerationResult] = useState<GenerationResult | null>(null);
+  const [generatorKey, setGeneratorKey] = useState(0); // Used to force re-mount of generator
   
   const handleLengthSelect = (length: VanityLength) => {
     setSelectedLength(length);
@@ -46,11 +47,22 @@ export default function Home() {
     setStep('result');
   };
   
+  const handleGenerationCancel = (action: 'retry' | 'change') => {
+    if (action === 'retry') {
+      // Restart generation with same parameters by forcing re-mount
+      setGeneratorKey(prev => prev + 1);
+      setStep('generate');
+    } else {
+      // Go back to configuration
+      setStep('configure');
+    }
+  };
+  
   const handleReset = () => {
     setGenerationResult(null);
     setStep('select-length');
   };
-  
+
   const handleStartGeneration = () => {
     // No wallet connection required to start
     setStep('select-length');
@@ -166,10 +178,12 @@ export default function Home() {
         {step === 'generate' && (
           <div className="max-w-2xl mx-auto fade-in-up">
             <VanityGenerator
+              key={generatorKey}
               vanityLength={selectedLength}
               vanityCharacters={vanityCharacters}
               vanityPosition={vanityPosition}
               onComplete={handleGenerationComplete}
+              onCancel={handleGenerationCancel}
             />
           </div>
         )}
