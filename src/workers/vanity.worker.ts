@@ -5,6 +5,9 @@ interface GenerateMessage {
   type: 'generate';
   characters: string;
   position: 'prefix' | 'suffix';
+  workerId?: number;
+  progressInterval?: number;
+  yieldInterval?: number;
 }
 
 interface PauseMessage {
@@ -47,10 +50,17 @@ function base58Encode(buffer: Uint8Array): string {
   return encoded;
 }
 
-async function generateVanityAddress(characters: string, position: 'prefix' | 'suffix'): Promise<{ publicKey: string; secretKey: Uint8Array } | null> {
+async function generateVanityAddress(
+  characters: string, 
+  position: 'prefix' | 'suffix',
+  workerId: number = 0,
+  progressInterval: number = 200,
+  yieldInterval: number = 10000
+): Promise<{ publicKey: string; secretKey: Uint8Array } | null> {
   const targetChars = characters;
   let attempts = 0;
   const startTime = Date.now();
+  let lastProgressUpdate = startTime;
   
   while (!isCancelled) {
     if (isPaused) {
@@ -75,6 +85,7 @@ async function generateVanityAddress(characters: string, position: 'prefix' | 's
         secretKey: Array.from(keypair.secretKey),
         attempts,
         duration: Date.now() - startTime - pausedTime,
+        workerId,
       });
       return {
         publicKey: publicKeyBase58,
@@ -82,19 +93,23 @@ async function generateVanityAddress(characters: string, position: 'prefix' | 's
       };
     }
     
-    if (attempts % 1000 === 0) {
-      const elapsed = Date.now() - startTime - pausedTime;
+    // Time-based progress updates instead of per-attempt frequency
+    const now = Date.now();
+    if (now - lastProgressUpdate >= progressInterval) {
+      const elapsed = now - startTime - pausedTime;
       const rate = attempts / (elapsed / 1000);
       self.postMessage({
         type: 'progress',
         attempts,
         rate: Math.round(rate),
         elapsed,
+        workerId,
       });
+      lastProgressUpdate = now;
     }
     
-    // Yield control every 10000 attempts to keep worker responsive
-    if (attempts % 10000 === 0) {
+    // Adaptive yielding based on performance mode
+    if (attempts % yieldInterval === 0) {
       await new Promise(resolve => setTimeout(resolve, 0));
     }
   }
@@ -111,8 +126,8 @@ self.addEventListener('message', async (event: MessageEvent<WorkerMessage>) => {
       isPaused = false;
       pausedTime = 0;
       lastPauseStart = 0;
-      const { characters, position } = event.data;
-      await generateVanityAddress(characters, position);
+      const { characters, position, workerId = 0, progressInterval = 200, yieldInterval = 10000 } = event.data;
+      await generateVanityAddress(characters, position, workerId, progressInterval, yieldInterval);
       break;
       
     case 'pause':

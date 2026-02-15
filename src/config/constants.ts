@@ -45,9 +45,32 @@ export const CONFIG = {
 
 export type VanityLength = 3 | 4;
 export type VanityPosition = 'prefix' | 'suffix';
+export type PerformanceMode = 'eco' | 'balanced' | 'performance';
 
 export interface VanityOptions {
   length: VanityLength;
   position: VanityPosition;
   characters: string;
 }
+
+// Performance mode configuration
+export const PERFORMANCE_CONFIG = {
+  eco: {
+    workers: 1,
+    progressInterval: 250, // ms between progress updates
+    yieldInterval: 5000,   // attempts between yielding
+    description: 'Battery-friendly, minimal CPU usage. Best for background generation.',
+  },
+  balanced: {
+    workers: 2,
+    progressInterval: 200,
+    yieldInterval: 10000,
+    description: 'Moderate speed with good device responsiveness. Recommended for most users.',
+  },
+  performance: {
+    workers: 4, // Will be capped by Math.min(4, Math.max(1, hardwareConcurrency - 1))
+    progressInterval: 100,
+    yieldInterval: 15000,
+    description: 'Maximum speed for fastest generation. May heat up your device.',
+  },
+} as const;
