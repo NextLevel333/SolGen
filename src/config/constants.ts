@@ -9,7 +9,7 @@ export const PAYMENT_DESTINATION_WALLET = '11111111111111111111111111111111';
 export const CONFIG = {
   // Treasury wallet address for receiving payments
   // IMPORTANT: Update PAYMENT_DESTINATION_WALLET above before deploying
-  TREASURY_ADDRESS: new PublicKey(g2kFrXkPHqoKwK4Q3RLemdHHPoYGFooHgFreZoH4DEV),
+  TREASURY_ADDRESS: new PublicKey('g2kFrXkPHqoKwK4Q3RLemdHHPoYGFooHgFreZoH4DEV'),
   
   // SolGen SPL token mint address - PLACEHOLDER - Update with actual mint address
   SOLGEN_MINT_ADDRESS: new PublicKey('Ez28fsseNKQu7sLzLAfEz57q5iw1Uv1HtYGUFSvFpump'),
