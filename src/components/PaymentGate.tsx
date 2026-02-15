@@ -8,10 +8,11 @@ import { CONFIG, VanityLength } from '../config/constants';
 interface PaymentGateProps {
   vanityLength: VanityLength;
   onPaymentSuccess: () => void;
+  onBack: () => void;
 }
 
-export const PaymentGate: React.FC<PaymentGateProps> = ({ vanityLength, onPaymentSuccess }) => {
-  const { publicKey, sendTransaction } = useWallet();
+export const PaymentGate: React.FC<PaymentGateProps> = ({ vanityLength, onPaymentSuccess, onBack }) => {
+  const { publicKey, sendTransaction, connect, wallet } = useWallet();
   const { connection } = useConnection();
   const [tokenBalance, setTokenBalance] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -44,6 +45,17 @@ export const PaymentGate: React.FC<PaymentGateProps> = ({ vanityLength, onPaymen
   
   const discount = hasDiscount(tokenBalance);
   const price = getPrice(vanityLength, discount);
+  
+  const handleConnectWallet = async () => {
+    if (wallet) {
+      try {
+        await connect();
+      } catch (err) {
+        console.error('Failed to connect wallet:', err);
+        setError('Failed to connect wallet. Please try again.');
+      }
+    }
+  };
   
   const handlePayment = async () => {
     if (!publicKey) {
@@ -85,16 +97,54 @@ export const PaymentGate: React.FC<PaymentGateProps> = ({ vanityLength, onPaymen
   
   if (!publicKey) {
     return (
-      <div className="solana-card p-8 text-center">
-        <h3 className="text-xl font-semibold mb-4">Connect Your Wallet</h3>
-        <p className="text-gray-400">
-          Please connect your wallet to proceed with payment.
-        </p>
+      <div className="max-w-2xl mx-auto space-y-6 fade-in-up">
+        <button
+          onClick={onBack}
+          className="solana-button-secondary"
+        >
+          ← Back
+        </button>
+        <div className="solana-card p-8 text-center space-y-6">
+          <h3 className="text-2xl font-semibold mb-4">Connect Your Wallet</h3>
+          <p className="text-gray-400 mb-6">
+            Connect your Solana wallet to proceed with payment.
+          </p>
+          
+          <div className="bg-gray-700/50 p-6 rounded-lg space-y-3 text-left">
+            <div className="flex justify-between items-center">
+              <span className="text-gray-400">Vanity Length:</span>
+              <span className="font-semibold">{vanityLength} characters</span>
+            </div>
+            <div className="flex justify-between items-center text-xl">
+              <span className="font-semibold">Payment Required:</span>
+              <span className="solana-gradient-text font-bold">
+                {formatSolAmount(getPrice(vanityLength, false))}
+              </span>
+            </div>
+            <p className="text-xs text-gray-500 mt-2">
+              * 50% discount available for SolGen token holders
+            </p>
+          </div>
+
+          <button
+            onClick={handleConnectWallet}
+            className="solana-button-primary w-full"
+          >
+            Connect Wallet
+          </button>
+        </div>
       </div>
     );
   }
   
   return (
+    <div className="max-w-2xl mx-auto space-y-6 fade-in-up">
+      <button
+        onClick={onBack}
+        className="solana-button-secondary"
+      >
+        ← Back
+      </button>
     <div className="solana-card p-8 space-y-6">
       <div className="text-center">
         <h3 className="text-2xl font-semibold mb-2">Payment Required</h3>
@@ -165,6 +215,7 @@ export const PaymentGate: React.FC<PaymentGateProps> = ({ vanityLength, onPaymen
           </p>
         </>
       )}
+    </div>
     </div>
   );
 };
