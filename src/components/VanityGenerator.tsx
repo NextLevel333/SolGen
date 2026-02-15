@@ -105,6 +105,8 @@ export const VanityGenerator: React.FC<VanityGeneratorProps> = ({
         workerRef.current.terminate();
       }
     };
+    // publicKey is intentionally omitted from deps - we only use it for ticket cleanup on success,
+    // and we don't want to restart generation when the wallet changes during an active generation
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vanityCharacters, vanityPosition, onComplete]);
   
