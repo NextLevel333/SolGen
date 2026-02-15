@@ -78,11 +78,17 @@ export default function Home() {
   };
   
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-900 to-purple-900/20 scroll-smooth">
+    <div className="min-h-screen scroll-smooth">
+      {/* Background Effects */}
+      <div className="tech-particles" aria-hidden="true"></div>
+      <div className="light-lines" aria-hidden="true"></div>
+      
       <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <Logo size={100} className="transform hover:scale-110 transition-transform" />
+            <Link href="/" aria-label="Navigate to homepage">
+              <Logo size={100} className="transform hover:scale-110 transition-transform" />
+            </Link>
           </div>
           <div className="flex items-center gap-4">
             <WalletConnect />
@@ -91,7 +97,7 @@ export default function Home() {
         </div>
       </header>
       
-      <main className="max-w-7xl mx-auto px-4 py-8">
+      <main className="max-w-7xl mx-auto px-4 py-8 central-glow">
         {step === 'landing' && (
           <div className="fade-in-up">
             <LandingContent />

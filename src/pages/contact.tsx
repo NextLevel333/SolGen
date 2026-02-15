@@ -4,7 +4,11 @@ import { Logo } from '../components/Logo';
 
 export default function Contact() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-900 to-purple-900/20">
+    <div className="min-h-screen">
+      {/* Background Effects */}
+      <div className="tech-particles" aria-hidden="true"></div>
+      <div className="light-lines" aria-hidden="true"></div>
+      
       <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3">
