@@ -176,7 +176,7 @@ export const LandingContent: React.FC = () => {
             <strong>Status:</strong> Launched on pump.fun with LP
           </p>
           <p className="text-sm md:text-base text-gray-300">
-            <strong>Contract Address:</strong> <span className="text-solana-green font-mono text-xs break-all">Ez28fsseNKQu7sLzLAfEz57q5iw1Uv1HtYGUFSvFpump</span>
+            <strong>Contract Address:</strong> <span className="text-solana-green font-mono text-xs break-all">TBA</span>
           </p>
           <p className="text-xs md:text-sm text-gray-400">
             Your wallet is automatically checked for SolGen tokens when you connect. The appropriate tier discount is applied based on your balance.
