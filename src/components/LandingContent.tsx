@@ -42,7 +42,7 @@ export const LandingContent: React.FC = () => {
             <h3 className="text-lg md:text-xl font-semibold">High Performance</h3>
             <p className="text-sm md:text-base text-gray-400">
               Leverages Web Workers for parallel processing. 
-              Real-time progress tracking with ETA. Pause and resume anytime.
+              Real-time progress tracking with ETA.
             </p>
           </div>
           
