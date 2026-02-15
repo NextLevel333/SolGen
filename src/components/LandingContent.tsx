@@ -182,7 +182,7 @@ export const LandingContent: React.FC = () => {
             Your wallet is automatically checked for SolGen tokens when you connect. The appropriate tier discount is applied based on your balance.
           </p>
           <a
-            href="https://pump.fun/coin/Ez28fsseNKQu7sLzLAfEz57q5iw1Uv1HtYGUFSvFpump"
+            href="https://pump.fun"
             target="_blank"
             rel="noopener noreferrer"
             className="solana-button-primary inline-flex items-center gap-2 mt-4"
