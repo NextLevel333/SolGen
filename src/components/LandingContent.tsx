@@ -27,7 +27,7 @@ export const LandingContent: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           <div className="solana-card p-4 md:p-6 space-y-3">
             <div className="flex justify-center">
-              <Image src="/lock.png" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]" />
+              <Image src="/lock.svg" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]" />
             </div>
             <h3 className="text-lg md:text-xl font-semibold">Fully Private</h3>
             <p className="text-sm md:text-base text-gray-400">
@@ -38,7 +38,7 @@ export const LandingContent: React.FC = () => {
           
           <div className="solana-card p-4 md:p-6 space-y-3">
             <div className="flex justify-center">
-              <Image src="/power.png" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]" />
+              <Image src="/power.svg" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]" />
             </div>
             <h3 className="text-lg md:text-xl font-semibold">High Performance</h3>
             <p className="text-sm md:text-base text-gray-400">
@@ -49,7 +49,7 @@ export const LandingContent: React.FC = () => {
           
           <div className="solana-card p-4 md:p-6 space-y-3">
             <div className="flex justify-center">
-              <Image src="/tokens.png" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]" />
+              <Image src="/tokens.svg" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]" />
             </div>
             <h3 className="text-lg md:text-xl font-semibold">Token Benefits</h3>
             <p className="text-sm md:text-base text-gray-400">
