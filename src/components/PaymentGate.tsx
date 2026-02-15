@@ -121,7 +121,7 @@ export const PaymentGate: React.FC<PaymentGateProps> = ({ vanityLength, onPaymen
               <span className="font-semibold">{vanityLength} characters</span>
             </div>
             <div className="flex justify-between items-center text-xl">
-              <span className="font-semibold">Payment Required:</span>
+              <span className="font-semibold">Starting Price:</span>
               <span className="solana-gradient-text font-bold">
                 {formatSolAmount(getPrice(vanityLength, 0))}
               </span>
@@ -131,6 +131,9 @@ export const PaymentGate: React.FC<PaymentGateProps> = ({ vanityLength, onPaymen
             </p>
             <p className="text-xs text-gray-500">
               * Tier 1 holders (10M+ tokens): 100% free VIP access
+            </p>
+            <p className="text-xs text-gray-500 mt-1">
+              Your tier will be automatically detected after connecting
             </p>
           </div>
 
