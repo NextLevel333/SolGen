@@ -37,7 +37,7 @@ export const CONFIG = {
   VIP_WALLET: 'g2kFrXkPHqoKwK4Q3RLemdHHPoYGFooHgFreZoH4DEV',
   
   // Solana RPC endpoint
-  RPC_ENDPOINT: 'https://api.mainnet-beta.solana.com',
+  RPC_ENDPOINT: 'https://mainnet.helius-rpc.com/?api-key=0ceb03f8-5460-442d-96b8-ce479057917a',
   
   // Network
   NETWORK: 'mainnet-beta' as const,
