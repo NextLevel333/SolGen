@@ -42,7 +42,7 @@ export const LandingContent: React.FC = () => {
             <h3 className="text-lg md:text-xl font-semibold">High Performance</h3>
             <p className="text-sm md:text-base text-gray-400">
               Leverages Web Workers for parallel processing. 
-              Real-time progress tracking with ETA. Pause and resume anytime.
+              Real-time progress tracking with ETA.
             </p>
           </div>
           
@@ -182,6 +182,15 @@ export const LandingContent: React.FC = () => {
           <p className="text-xs md:text-sm text-gray-400">
             Your wallet is automatically checked for SolGen tokens when you connect. The appropriate tier discount is applied based on your balance.
           </p>
+          <a
+            href="https://pump.fun/coin/Ez28fsseNKQu7sLzLAfEz57q5iw1Uv1HtYGUFSvFpump"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="solana-button-primary inline-flex items-center gap-2 mt-4"
+          >
+            <span className="text-xl">🚀</span>
+            <span>Buy $SOLGEN</span>
+          </a>
         </div>
       </ScrollReveal>
       

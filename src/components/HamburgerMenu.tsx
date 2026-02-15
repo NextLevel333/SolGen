@@ -12,6 +12,36 @@ const ANIMATION_STAGGER_DELAY_MS = 50;
 
 const menuLinks: MenuLink[] = [
   { 
+    name: 'Dexscreener', 
+    url: 'https://dexscreener.com/solana/ez28fssenkqu7slzlafez57q5iw1uv1htygufsvfpump', 
+    icon: '📊',
+    external: true
+  },
+  { 
+    name: 'Pumpfun', 
+    url: 'https://pump.fun/coin/Ez28fsseNKQu7sLzLAfEz57q5iw1Uv1HtYGUFSvFpump', 
+    icon: '🚀',
+    external: true
+  },
+  { 
+    name: 'X.com', 
+    url: 'https://x.com/SolGenToken', 
+    icon: '𝕏',
+    external: true
+  },
+  { 
+    name: 'Telegram', 
+    url: 'https://t.me/SolGenToken', 
+    icon: '✈️',
+    external: true
+  },
+  { 
+    name: 'Solscan', 
+    url: 'https://solscan.io/token/Ez28fsseNKQu7sLzLAfEz57q5iw1Uv1HtYGUFSvFpump', 
+    icon: '🔍',
+    external: true
+  },
+  { 
     name: 'Privacy Policy', 
     url: '/privacy', 
     icon: '🔒' 
@@ -25,11 +55,6 @@ const menuLinks: MenuLink[] = [
     name: 'Contact', 
     url: '/contact', 
     icon: '📧' 
-  },
-  { 
-    name: 'Resources', 
-    url: '/resources', 
-    icon: '🔗' 
   },
   { 
     name: 'GitHub', 

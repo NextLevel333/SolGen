@@ -106,27 +106,27 @@ body::after {
 .tech-particles::after {
   content: '';
   position: absolute;
-  width: 2px;
-  height: 2px;
-  background: rgba(0, 212, 255, 0.3);
+  width: 3px;
+  height: 3px;
+  background: rgba(0, 212, 255, 0.7);
   border-radius: 50%;
   box-shadow: 
-    0 0 10px rgba(0, 212, 255, 0.3),
-    200px 300px 0 rgba(153, 69, 255, 0.25),
-    400px 100px 0 rgba(20, 241, 149, 0.2),
-    600px 400px 0 rgba(0, 212, 255, 0.25),
-    800px 200px 0 rgba(153, 69, 255, 0.2),
-    1000px 500px 0 rgba(20, 241, 149, 0.25),
-    300px 600px 0 rgba(0, 212, 255, 0.2),
-    700px 50px 0 rgba(153, 69, 255, 0.25),
-    900px 350px 0 rgba(20, 241, 149, 0.2),
-    100px 450px 0 rgba(0, 212, 255, 0.3);
+    0 0 15px rgba(0, 212, 255, 0.7),
+    200px 300px 0 rgba(153, 69, 255, 0.6),
+    400px 100px 0 rgba(20, 241, 149, 0.55),
+    600px 400px 0 rgba(0, 212, 255, 0.6),
+    800px 200px 0 rgba(153, 69, 255, 0.55),
+    1000px 500px 0 rgba(20, 241, 149, 0.6),
+    300px 600px 0 rgba(0, 212, 255, 0.55),
+    700px 50px 0 rgba(153, 69, 255, 0.6),
+    900px 350px 0 rgba(20, 241, 149, 0.55),
+    100px 450px 0 rgba(0, 212, 255, 0.7);
   animation: particleFloat 60s linear infinite;
 }
 
 .tech-particles::after {
   animation-delay: -30s;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 @keyframes particleFloat {
@@ -151,19 +151,19 @@ body::after {
   z-index: -1;
   pointer-events: none;
   overflow: hidden;
-  opacity: 0.15;
+  opacity: 0.4;
 }
 
 .light-lines::before,
 .light-lines::after {
   content: '';
   position: absolute;
-  width: 1px;
+  width: 2px;
   height: 100%;
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(153, 69, 255, 0.4) 50%,
+    rgba(153, 69, 255, 0.8) 50%,
     transparent 100%
   );
   animation: lightLineMove 15s ease-in-out infinite;
@@ -180,7 +180,7 @@ body::after {
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(0, 212, 255, 0.4) 50%,
+    rgba(0, 212, 255, 0.8) 50%,
     transparent 100%
   );
 }

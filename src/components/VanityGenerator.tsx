@@ -40,7 +40,6 @@ export const VanityGenerator: React.FC<VanityGeneratorProps> = ({
 }) => {
   const { publicKey } = useWallet();
   const [isGenerating, setIsGenerating] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState<ProgressData | null>(null);
   const [showCancelDialog, setShowCancelDialog] = useState(false);
   const [performanceMode, setPerformanceMode] = useState<PerformanceMode>('balanced');
@@ -82,7 +81,6 @@ export const VanityGenerator: React.FC<VanityGeneratorProps> = ({
 
   const startGeneration = () => {
     setIsGenerating(true);
-    setIsPaused(false);
     setProgress(null);
     setShowModeSelector(false);
     workerProgressRef.current.clear();
@@ -123,13 +121,8 @@ export const VanityGenerator: React.FC<VanityGeneratorProps> = ({
             attempts: event.data.attempts,
             duration: event.data.duration,
           });
-        } else if (type === 'paused') {
-          setIsPaused(true);
-        } else if (type === 'resumed') {
-          setIsPaused(false);
         } else if (type === 'cancelled') {
           setIsGenerating(false);
-          setIsPaused(false);
           // Clean up all workers
           workersRef.current.forEach(({ worker: w }) => w.terminate());
           workersRef.current = [];
@@ -158,18 +151,6 @@ export const VanityGenerator: React.FC<VanityGeneratorProps> = ({
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
-  const pauseGeneration = () => {
-    workersRef.current.forEach(({ worker }) => {
-      worker.postMessage({ type: 'pause' });
-    });
-  };
-  
-  const resumeGeneration = () => {
-    workersRef.current.forEach(({ worker }) => {
-      worker.postMessage({ type: 'resume' });
-    });
-  };
   
   const cancelGeneration = () => {
     workersRef.current.forEach(({ worker }) => {
@@ -371,25 +352,9 @@ export const VanityGenerator: React.FC<VanityGeneratorProps> = ({
         </div>
         
         <div className="flex gap-3">
-          {!isPaused ? (
-            <button
-              onClick={pauseGeneration}
-              className="solana-button-secondary flex-1"
-            >
-              Pause
-            </button>
-          ) : (
-            <button
-              onClick={resumeGeneration}
-              className="solana-button-primary flex-1"
-            >
-              Resume
-            </button>
-          )}
-          
           <button
             onClick={cancelGeneration}
-            className="solana-button-secondary flex-1 !bg-red-900/30 !border-red-700 !text-red-300 hover:!bg-red-900/50"
+            className="solana-button-secondary w-full !bg-red-900/30 !border-red-700 !text-red-300 hover:!bg-red-900/50"
           >
             Cancel
           </button>
@@ -397,7 +362,7 @@ export const VanityGenerator: React.FC<VanityGeneratorProps> = ({
         
         <div className="flex items-center justify-center gap-2 text-solana-green">
           <div className="animate-spin h-5 w-5 border-2 border-solana-green border-t-transparent rounded-full" />
-          <span>{isPaused ? 'Paused' : 'Generating...'}</span>
+          <span>Generating...</span>
         </div>
       </div>
       
