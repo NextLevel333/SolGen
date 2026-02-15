@@ -119,7 +119,7 @@ export const VanityContractForm: React.FC = () => {
     }
   };
 
-  const calculatePrice = (): { basePrice: number; discountedPrice: number; devBuyFee: number; totalPrice: number; discount: number } => {
+  const calculatePrice = (): { basePrice: number; discountedPrice: number; devBuyFee: number; devBuyAmount: number; totalPrice: number; discount: number } => {
     // Base price for vanity CA service (adjust as needed)
     const basePrice = 0.5; // 0.5 SOL base price for vanity contract
     
@@ -141,10 +141,11 @@ export const VanityContractForm: React.FC = () => {
     // Dev buy fee: 0.02 SOL only if initial dev buy is entered
     const hasDevBuy = formData.initialDevBuy && formData.initialDevBuy.trim() && parseFloat(formData.initialDevBuy) > 0;
     const devBuyFee = hasDevBuy ? 0.02 : 0;
+    const devBuyAmount = hasDevBuy ? parseFloat(formData.initialDevBuy) : 0;
 
-    const totalPrice = discountedPrice + devBuyFee;
+    const totalPrice = discountedPrice + devBuyFee + devBuyAmount;
 
-    return { basePrice, discountedPrice, devBuyFee, totalPrice, discount };
+    return { basePrice, discountedPrice, devBuyFee, devBuyAmount, totalPrice, discount };
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -430,14 +431,14 @@ export const VanityContractForm: React.FC = () => {
             {pricing.devBuyFee > 0 && (
               <div className="flex justify-between">
                 <span className="text-gray-300">Initial Dev Buy Fee:</span>
-                <span className="text-white font-semibold">{pricing.devBuyFee} SOL</span>
+                <span className="text-white font-semibold">{pricing.devBuyFee.toFixed(2)} SOL</span>
               </div>
             )}
 
-            {formData.initialDevBuy && parseFloat(formData.initialDevBuy) > 0 && (
+            {pricing.devBuyAmount > 0 && (
               <div className="flex justify-between">
                 <span className="text-gray-300">Dev Buy Amount:</span>
-                <span className="text-white font-semibold">{parseFloat(formData.initialDevBuy).toFixed(2)} SOL</span>
+                <span className="text-white font-semibold">{pricing.devBuyAmount.toFixed(2)} SOL</span>
               </div>
             )}
 
