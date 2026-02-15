@@ -52,9 +52,11 @@ export const LandingContent: React.FC = () => {
             </div>
             <h3 className="text-lg md:text-xl font-semibold">Token Benefits</h3>
             <p className="text-sm md:text-base text-gray-400">
-              Tier holder system: Tier 2 holders (1M+ tokens) get 40% off all services. 
-              Tier 1 holders (10M+ tokens) get 100% free VIP access to everything. 
-              Launched on pump.fun/LP (contract: Ez28fsseNKQu7sLzLAfEz57q5iw1Uv1HtYGUFSvFpump).
+              Yes, There are benefits to holding SolGen!
+              A two tier system which grants holders 40-100%
+              discounts off all current and future services.
+              *Currently Live on pump.fun*
+              
             </p>
           </div>
         </div>
