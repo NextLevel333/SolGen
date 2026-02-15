@@ -13,7 +13,7 @@ export const LandingContent: React.FC = () => {
             </div>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300">
-            First Solana Vanity Wallet Generator
+            First 'Mobile-Friendly' Solana Vanity Wallet Generator
           </p>
           <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
             Generate custom Solana wallet addresses with your chosen prefix or suffix.
