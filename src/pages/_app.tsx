@@ -3,10 +3,24 @@ import type { AppProps } from 'next/app';
 import { WalletContextProvider } from '@/components/WalletContextProvider';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const basePath = router.basePath || '';
+  
+  // Scroll to top on route change
+  useEffect(() => {
+    const handleRouteChange = () => {
+      window.scrollTo(0, 0);
+    };
+    
+    router.events.on('routeChangeComplete', handleRouteChange);
+    
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
   
   return (
     <>
