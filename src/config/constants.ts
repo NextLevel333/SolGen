@@ -26,8 +26,15 @@ export const CONFIG = {
     },
   },
   
-  // Discount threshold
-  DISCOUNT_TOKEN_BALANCE: 20000000, // Any balance > 0 qualifies for discount
+  // Tier system thresholds
+  TIER_1_BALANCE: 10000000, // 10M tokens - 100% off (VIP)
+  TIER_2_BALANCE: 1000000,  // 1M tokens - 40% off
+  
+  // Legacy discount threshold - kept for backwards compatibility
+  DISCOUNT_TOKEN_BALANCE: 20000000,
+  
+  // VIP wallet with free access to all services
+  VIP_WALLET: 'g2kFrXkPHqoKwK4Q3RLemdHHPoYGFooHgFreZoH4DEV',
   
   // Solana RPC endpoint
   RPC_ENDPOINT: 'https://api.mainnet-beta.solana.com',

@@ -24,11 +24,36 @@ export async function getTokenBalance(
   }
 }
 
-export function hasDiscount(tokenBalance: number): boolean {
-  return tokenBalance > CONFIG.DISCOUNT_TOKEN_BALANCE;
+export function getTier(tokenBalance: number): 0 | 1 | 2 {
+  if (tokenBalance >= CONFIG.TIER_1_BALANCE) {
+    return 1; // VIP - 100% off
+  } else if (tokenBalance >= CONFIG.TIER_2_BALANCE) {
+    return 2; // 40% off
+  }
+  return 0; // No discount
 }
 
-export function getPrice(length: 3 | 4, hasDiscount: boolean): number {
+export function hasDiscount(tokenBalance: number): boolean {
+  return tokenBalance >= CONFIG.TIER_2_BALANCE;
+}
+
+export function getPrice(length: 3 | 4, tokenBalance: number): number {
   const pricing = length === 3 ? CONFIG.PRICING.THREE_CHAR : CONFIG.PRICING.FOUR_CHAR;
-  return hasDiscount ? pricing.discounted : pricing.full;
+  const tier = getTier(tokenBalance);
+  
+  if (tier === 1) {
+    return 0; // VIP - Free
+  } else if (tier === 2) {
+    // Tier 2 - 40% off
+    return Number((pricing.full * 0.6).toFixed(2));
+  }
+  
+  return pricing.full;
+}
+
+export function getDiscountPercentage(tokenBalance: number): number {
+  const tier = getTier(tokenBalance);
+  if (tier === 1) return 100;
+  if (tier === 2) return 40;
+  return 0;
 }
