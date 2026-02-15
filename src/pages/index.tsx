@@ -10,6 +10,7 @@ import { ResultDisplay } from '../components/ResultDisplay';
 import { HamburgerMenu } from '../components/HamburgerMenu';
 import { Logo } from '../components/Logo';
 import { VanityLength, VanityPosition } from '../config/constants';
+import { hasValidTicket } from '../utils/ticket';
 
 type Step = 'landing' | 'select-length' | 'configure' | 'payment' | 'generate' | 'result';
 
@@ -21,13 +22,14 @@ interface GenerationResult {
 }
 
 export default function Home() {
-  const { connected } = useWallet();
+  const { connected, publicKey } = useWallet();
   const [step, setStep] = useState<Step>('landing');
   const [selectedLength, setSelectedLength] = useState<VanityLength>(3);
   const [vanityCharacters, setVanityCharacters] = useState<string>('');
   const [vanityPosition, setVanityPosition] = useState<'prefix' | 'suffix'>('prefix');
   const [generationResult, setGenerationResult] = useState<GenerationResult | null>(null);
   const [generatorKey, setGeneratorKey] = useState(0); // Used to force re-mount of generator
+  const [isRestartingFromCancel, setIsRestartingFromCancel] = useState(false); // Track if restarting from cancel
   
   const handleLengthSelect = (length: VanityLength) => {
     setSelectedLength(length);
@@ -35,7 +37,13 @@ export default function Home() {
   };
   
   const handleConfigurationComplete = () => {
-    setStep('payment');
+    // If restarting from cancel with valid ticket, skip payment
+    if (isRestartingFromCancel && publicKey && hasValidTicket(publicKey.toBase58())) {
+      setIsRestartingFromCancel(false);
+      setStep('generate');
+    } else {
+      setStep('payment');
+    }
   };
   
   const handlePaymentSuccess = () => {
@@ -53,7 +61,8 @@ export default function Home() {
       setGeneratorKey(prev => prev + 1);
       setStep('generate');
     } else {
-      // Go back to configuration
+      // Go back to configuration - mark as restarting to skip payment if ticket exists
+      setIsRestartingFromCancel(true);
       setStep('configure');
     }
   };
@@ -158,6 +167,7 @@ export default function Home() {
         {step === 'configure' && (
           <ConfigurationForm
             vanityLength={selectedLength}
+            isRestartingFromCancel={isRestartingFromCancel}
             onComplete={(chars, pos) => {
               setVanityCharacters(chars);
               setVanityPosition(pos);
@@ -170,6 +180,8 @@ export default function Home() {
         {step === 'payment' && (
           <PaymentGate
             vanityLength={selectedLength}
+            vanityCharacters={vanityCharacters}
+            vanityPosition={vanityPosition}
             onPaymentSuccess={handlePaymentSuccess}
             onBack={() => setStep('configure')}
           />
