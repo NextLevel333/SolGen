@@ -3,14 +3,15 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import Link from 'next/link';
 import { WalletConnect } from '../components/WalletConnect';
 import { LandingContent } from '../components/LandingContent';
+import { ConfigurationForm } from '../components/ConfigurationForm';
 import { PaymentGate } from '../components/PaymentGate';
 import { VanityGenerator } from '../components/VanityGenerator';
 import { ResultDisplay } from '../components/ResultDisplay';
 import { HamburgerMenu } from '../components/HamburgerMenu';
 import { Logo } from '../components/Logo';
-import { VanityLength } from '../config/constants';
+import { VanityLength, VanityPosition } from '../config/constants';
 
-type Step = 'landing' | 'select-length' | 'payment' | 'generate' | 'result';
+type Step = 'landing' | 'select-length' | 'configure' | 'payment' | 'generate' | 'result';
 
 interface GenerationResult {
   publicKey: string;
@@ -23,10 +24,16 @@ export default function Home() {
   const { connected } = useWallet();
   const [step, setStep] = useState<Step>('landing');
   const [selectedLength, setSelectedLength] = useState<VanityLength>(3);
+  const [vanityCharacters, setVanityCharacters] = useState<string>('');
+  const [vanityPosition, setVanityPosition] = useState<'prefix' | 'suffix'>('prefix');
   const [generationResult, setGenerationResult] = useState<GenerationResult | null>(null);
   
   const handleLengthSelect = (length: VanityLength) => {
     setSelectedLength(length);
+    setStep('configure');
+  };
+  
+  const handleConfigurationComplete = () => {
     setStep('payment');
   };
   
@@ -45,10 +52,7 @@ export default function Home() {
   };
   
   const handleStartGeneration = () => {
-    if (!connected) {
-      alert('Please connect your wallet first');
-      return;
-    }
+    // No wallet connection required to start
     setStep('select-length');
   };
   
@@ -75,7 +79,7 @@ export default function Home() {
                 onClick={handleStartGeneration}
                 className="solana-button-primary w-full text-lg md:text-xl py-4 pulse-glow"
               >
-                {connected ? 'Start Generating' : 'Connect Wallet to Start'}
+                Start Generating
               </button>
             </div>
           </div>
@@ -133,25 +137,32 @@ export default function Home() {
           </div>
         )}
         
+        {step === 'configure' && (
+          <ConfigurationForm
+            vanityLength={selectedLength}
+            onComplete={(chars, pos) => {
+              setVanityCharacters(chars);
+              setVanityPosition(pos);
+              handleConfigurationComplete();
+            }}
+            onBack={() => setStep('select-length')}
+          />
+        )}
+        
         {step === 'payment' && (
-          <div className="max-w-2xl mx-auto space-y-6 fade-in-up">
-            <button
-              onClick={() => setStep('select-length')}
-              className="solana-button-secondary"
-            >
-              ← Back
-            </button>
-            <PaymentGate
-              vanityLength={selectedLength}
-              onPaymentSuccess={handlePaymentSuccess}
-            />
-          </div>
+          <PaymentGate
+            vanityLength={selectedLength}
+            onPaymentSuccess={handlePaymentSuccess}
+            onBack={() => setStep('configure')}
+          />
         )}
         
         {step === 'generate' && (
           <div className="max-w-2xl mx-auto fade-in-up">
             <VanityGenerator
               vanityLength={selectedLength}
+              vanityCharacters={vanityCharacters}
+              vanityPosition={vanityPosition}
               onComplete={handleGenerationComplete}
             />
           </div>

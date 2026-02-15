@@ -1,8 +1,15 @@
 import { PublicKey } from '@solana/web3.js';
 
+// =========================================
+// PAYMENT CONFIGURATION
+// =========================================
+// Update this address with your actual wallet address to receive payments
+export const PAYMENT_DESTINATION_WALLET = '11111111111111111111111111111111';
+
 export const CONFIG = {
-  // Treasury wallet address - PLACEHOLDER - Update with actual address
-  TREASURY_ADDRESS: new PublicKey('11111111111111111111111111111111'),
+  // Treasury wallet address for receiving payments
+  // IMPORTANT: Update PAYMENT_DESTINATION_WALLET above before deploying
+  TREASURY_ADDRESS: new PublicKey(PAYMENT_DESTINATION_WALLET),
   
   // SolGen SPL token mint address - PLACEHOLDER - Update with actual mint address
   SOLGEN_MINT_ADDRESS: new PublicKey('11111111111111111111111111111111'),
