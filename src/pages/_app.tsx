@@ -1,6 +1,7 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { WalletContextProvider } from '@/components/WalletContextProvider';
+import { ToastProvider } from '@/components/Toast';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -30,9 +31,11 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/png" href={`${basePath}/favicon.svg`} />
       </Head>
-      <WalletContextProvider>
-        <Component {...pageProps} />
-      </WalletContextProvider>
+      <ToastProvider>
+        <WalletContextProvider>
+          <Component {...pageProps} />
+        </WalletContextProvider>
+      </ToastProvider>
     </>
   );
 }

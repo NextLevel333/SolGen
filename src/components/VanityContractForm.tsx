@@ -8,6 +8,8 @@ import { createPaymentTransaction, verifyPayment, waitForConfirmation } from '..
 import { createTicket, consumeTicket } from '../utils/ticket';
 import { Keypair } from '@solana/web3.js';
 import { deployToPumpFun, uploadMetadata, getPumpFunUrl } from '../utils/pumpfun';
+import { ConfirmModal } from './Modal';
+import { useToast } from './Toast';
 
 interface VanityContractFormData {
   tokenName: string;
@@ -33,6 +35,7 @@ interface GeneratedCA {
 export const VanityContractForm: React.FC = () => {
   const { publicKey, sendTransaction } = useWallet();
   const { connection } = useConnection();
+  const { showToast } = useToast();
   const [formData, setFormData] = useState<VanityContractFormData>({
     tokenName: '',
     tokenSymbol: '',
@@ -50,6 +53,27 @@ export const VanityContractForm: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<FlowStep>('form');
   const [generatedCA, setGeneratedCA] = useState<GeneratedCA | null>(null);
   const [deployedCA, setDeployedCA] = useState<string>('');
+  const [showResumeModal, setShowResumeModal] = useState(false);
+  const [pendingState, setPendingState] = useState<any>(null);
+
+  const checkForPendingDeployment = React.useCallback(() => {
+    if (!publicKey) return;
+
+    try {
+      const savedStateStr = localStorage.getItem('solgen_pending_deployment');
+      if (savedStateStr) {
+        const savedState = JSON.parse(savedStateStr);
+        
+        // Verify it's for this wallet
+        if (savedState.walletAddress === publicKey.toBase58() && savedState.generatedCA) {
+          setPendingState(savedState);
+          setShowResumeModal(true);
+        }
+      }
+    } catch (err) {
+      console.error('Failed to load saved state:', err);
+    }
+  }, [publicKey]);
 
   // Load token balance when wallet connects
   React.useEffect(() => {
@@ -59,33 +83,24 @@ export const VanityContractForm: React.FC = () => {
         .catch(console.error);
 
       // Check for pending deployment state
-      try {
-        const savedStateStr = localStorage.getItem('solgen_pending_deployment');
-        if (savedStateStr) {
-          const savedState = JSON.parse(savedStateStr);
-          
-          // Verify it's for this wallet
-          if (savedState.walletAddress === publicKey.toBase58() && savedState.generatedCA) {
-            // Offer to resume
-            const shouldResume = window.confirm(
-              'You have a pending deployment. Would you like to resume where you left off?'
-            );
-            
-            if (shouldResume) {
-              setFormData(savedState.formData);
-              setGeneratedCA(savedState.generatedCA);
-              setCurrentStep('confirmation');
-            } else {
-              localStorage.removeItem('solgen_pending_deployment');
-            }
-          }
-        }
-      } catch (err) {
-        console.error('Failed to load saved state:', err);
-      }
+      checkForPendingDeployment();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [publicKey, connection]);
+  }, [publicKey, connection, checkForPendingDeployment]);
+
+  const handleResumeDeployment = () => {
+    if (pendingState) {
+      setFormData(pendingState.formData);
+      setGeneratedCA(pendingState.generatedCA);
+      setCurrentStep('confirmation');
+      setShowResumeModal(false);
+    }
+  };
+
+  const handleDiscardPendingDeployment = () => {
+    localStorage.removeItem('solgen_pending_deployment');
+    setPendingState(null);
+    setShowResumeModal(false);
+  };
 
   const handleInputChange = (field: keyof VanityContractFormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -367,10 +382,10 @@ export const VanityContractForm: React.FC = () => {
           walletAddress: publicKey.toBase58(),
         };
         localStorage.setItem('solgen_pending_deployment', JSON.stringify(savedState));
-        alert('Contract address saved! You can return to deploy it later from this same wallet.');
+        showToast('Contract address saved! You can return to deploy it later from this same wallet.', 'success');
       } catch (err) {
         console.error('Failed to save state:', err);
-        alert('Warning: Could not save state. Please note your contract address.');
+        showToast('Warning: Could not save state. Please note your contract address.', 'warning');
       }
     }
   };
@@ -381,6 +396,29 @@ export const VanityContractForm: React.FC = () => {
   };
 
   const pricing = calculatePrice();
+
+  // Resume deployment modal
+  if (showResumeModal && pendingState) {
+    return (
+      <>
+        <ConfirmModal
+          isOpen={showResumeModal}
+          onClose={handleDiscardPendingDeployment}
+          onConfirm={handleResumeDeployment}
+          title="Resume Pending Deployment"
+          message="You have a pending deployment. Would you like to resume where you left off?"
+          confirmText="Resume Deployment"
+          cancelText="Start Fresh"
+        />
+        <div className="solana-card p-6 md:p-8 space-y-6">
+          <div className="text-center">
+            <div className="animate-pulse text-solana-purple text-4xl mb-4">⏳</div>
+            <p className="text-gray-400">Checking for pending deployments...</p>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   // Render payment step
   if (currentStep === 'payment') {
