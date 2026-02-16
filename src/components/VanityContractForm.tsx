@@ -179,18 +179,25 @@ export const VanityContractForm: React.FC = () => {
     // Base price for vanity CA service
     const basePrice = CONFIG.PRICING.VANITY_CONTRACT.full;
     
+    // Check for VIP wallet
+    const isVipWallet = publicKey && publicKey.toBase58() === CONFIG.VIP_WALLET;
+    
     // Check tier for discount
     const tier = getTier(tokenBalance);
     let discountedPrice: number = basePrice;
     let discount = 0;
 
-    if (tier === 1) {
-      // Tier 1: 100% discount (free)
+    if (isVipWallet || tier === 1) {
+      // VIP Wallet or Tier 1: 100% discount (free)
       discountedPrice = 0;
       discount = 100;
     } else if (tier === 2) {
-      // Tier 2: 40% discount
-      discountedPrice = CONFIG.PRICING.VANITY_CONTRACT.discounted;
+      // Tier 2: 80% discount (5M+)
+      discountedPrice = Number((basePrice * 0.2).toFixed(2));
+      discount = 80;
+    } else if (tier === 3) {
+      // Tier 3: 40% discount (1M+)
+      discountedPrice = Number((basePrice * 0.6).toFixed(2));
       discount = 40;
     }
 
@@ -325,7 +332,7 @@ export const VanityContractForm: React.FC = () => {
       const metadata = {
         name: formData.tokenName,
         symbol: formData.tokenSymbol,
-        description: `${formData.tokenName} (${formData.tokenSymbol}) - Deployed via SolGen`,
+        description: `${formData.tokenName} (${formData.tokenSymbol}) - Deployed via AlienTek`,
         twitter: formData.twitter,
         telegram: formData.telegram,
         discord: formData.discord,
@@ -911,7 +918,7 @@ export const VanityContractForm: React.FC = () => {
             {pricing.discount > 0 && (
               <div className="flex justify-between">
                 <span className="text-solana-green">
-                  SolGen Holder Discount ({pricing.discount}%):
+                  AlienTek Holder Discount ({pricing.discount}%):
                 </span>
                 <span className="text-solana-green font-semibold">
                   -{(pricing.basePrice - pricing.discountedPrice).toFixed(2)} SOL
@@ -943,13 +950,13 @@ export const VanityContractForm: React.FC = () => {
 
           {!publicKey && (
             <div className="bg-yellow-900/30 border border-yellow-600 p-3 rounded-lg text-sm text-yellow-200">
-              <p>💡 Connect your wallet to see personalized pricing based on your SolGen holdings.</p>
+              <p>💡 Connect your wallet to see personalized pricing based on your AlienTek holdings.</p>
             </div>
           )}
 
           {pricing.discount > 0 && (
             <div className="bg-green-900/30 border border-green-600 p-3 rounded-lg text-sm text-green-200">
-              <p><span role="img" aria-label="celebration">🎉</span> You&apos;re saving {pricing.discount}% as a SolGen holder!</p>
+              <p><span role="img" aria-label="celebration">🎉</span> You&apos;re saving {pricing.discount}% as a AlienTek holder!</p>
             </div>
           )}
         </div>

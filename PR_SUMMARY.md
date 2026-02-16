@@ -10,7 +10,7 @@ This PR implements comprehensive changes to reduce security and reputation block
 ![Homepage with enhanced footer](https://github.com/user-attachments/assets/7678ea1c-5545-4217-95e2-f7f033aab1ac)
 
 **Key Changes:**
-- Added "About SolGen" section explaining client-side operation
+- Added "About AlienTek" section explaining client-side operation
 - Clear transparency statements (No data collection, No analytics, No tracking)
 - Footer links to Privacy Policy, Terms of Service, Contact, Resources, and GitHub
 
@@ -67,7 +67,7 @@ Added three comprehensive pages:
 **Impact:** Shows legitimate business practices, required for professional web applications
 
 ### 3. Enhanced Footer ✅
-- Added "About SolGen" transparency section
+- Added "About AlienTek" transparency section
 - Links to all trust-signal pages
 - GitHub repository prominently linked
 - Professional disclaimer language

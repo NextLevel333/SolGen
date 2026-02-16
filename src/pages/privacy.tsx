@@ -34,7 +34,7 @@ export default function Privacy() {
             <section>
               <h2 className="text-2xl font-bold text-gray-100 mb-3">Overview</h2>
               <p>
-                SolGen is a fully client-side Solana vanity wallet generator. Your privacy is our top priority. 
+                AlienTek is a fully client-side Solana vanity wallet generator. Your privacy is our top priority. 
                 This Privacy Policy explains how we handle your data - or rather, how we don&apos;t handle it, because 
                 everything happens in your browser.
               </p>
@@ -96,9 +96,9 @@ export default function Privacy() {
             <section>
               <h2 className="text-2xl font-bold text-gray-100 mb-3">Open Source</h2>
               <p>
-                SolGen is open source. You can review the entire codebase on{' '}
+                AlienTek is open source. You can review the entire codebase on{' '}
                 <a 
-                  href="https://github.com/NextLevel333/SolGen" 
+                  href="https://github.com/NextLevel333/AlienTek" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-solana-purple hover:text-solana-green transition-colors underline"

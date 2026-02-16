@@ -26,9 +26,12 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>SolGen - First Solana Vanity Wallet Generator</title>
-        <meta name="description" content="Generate custom Solana wallet addresses with your chosen prefix or suffix. 100% client-side, zero server storage." />
+        <title>AlienTek - Solana Vanity Wallet & Contract Address Generator</title>
+        <meta name="description" content="Generate custom Solana wallet addresses and contract addresses with your chosen prefix or suffix. 100% client-side, zero server storage." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="application-name" content="AlienTek" />
+        <meta name="apple-mobile-web-app-title" content="AlienTek" />
+        <meta name="theme-color" content="#9945FF" />
         <link rel="icon" type="image/png" href={`${basePath}/favicon.svg`} />
       </Head>
       <ToastProvider>

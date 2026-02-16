@@ -25,13 +25,13 @@ const menuLinks: MenuLink[] = [
   },
   { 
     name: 'X.com', 
-    url: 'https://x.com/SolGenToken', 
+    url: 'https://x.com/AlienTekToken', 
     icon: '𝕏',
     external: true
   },
   { 
     name: 'Telegram', 
-    url: 'https://t.me/SolGenToken', 
+    url: 'https://t.me/AlienTekToken', 
     icon: '✈️',
     external: true
   },
@@ -58,7 +58,7 @@ const menuLinks: MenuLink[] = [
   },
   { 
     name: 'GitHub', 
-    url: 'https://github.com/NextLevel333/SolGen', 
+    url: 'https://github.com/NextLevel333/AlienTek', 
     icon: '💻',
     external: true
   },

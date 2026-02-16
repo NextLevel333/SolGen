@@ -15,7 +15,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
         <div className="text-center space-y-6">
           <h1 className="text-4xl md:text-6xl font-bold">
             <div className="flex justify-center">
-              <Image src="/alienlogo.svg" alt="SolGen Logo" width={260} height={103} priority className="h-auto drop-shadow-[0_0_20px_rgba(255,255,255,0.9)] animate-pulse"/>
+              <Image src="/alienlogo.svg" alt="AlienTek Logo" width={260} height={103} priority className="h-auto drop-shadow-[0_0_20px_rgba(255,255,255,0.9)] animate-pulse"/>
             </div>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300">
@@ -69,6 +69,10 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
       <ScrollReveal direction="up" delay={250}>
         <div className="solana-card p-6 md:p-8 space-y-4">
           <h2 className="text-xl md:text-2xl font-bold solana-gradient-text text-center">Tier Holder System</h2>
+          {/* Image placeholder - replace with custom image */}
+          <div className="w-full h-48 bg-gray-700/30 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600">
+            <p className="text-gray-500 text-sm">Tier System Image Placeholder</p>
+          </div>
           <p className="text-sm md:text-base text-gray-300 text-center">
             AlienTek offers a 3-tier reward system for token holders, providing significant benefits and discounts:
           </p>
@@ -122,9 +126,13 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
       
       <ScrollReveal direction="up" delay={300}>
         <div className="solana-card p-6 md:p-8 space-y-4">
-          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text text-center">About ALienTek Token</h2>
+          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text text-center">About AlienTek Token</h2>
+          {/* Image placeholder - replace with custom image */}
+          <div className="w-full h-48 bg-gray-700/30 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600">
+            <p className="text-gray-500 text-sm">AlienTek Token Image Placeholder</p>
+          </div>
           <p className="text-sm md:text-base text-gray-300 text-center">
-            AlienTek is the native utility token for this platform. Token holders receive automatic discounts based on their tier level, ranging from 40% off (Tier 2) to completely free VIP access (Tier 1).
+            AlienTek is the native utility token for this platform. Token holders receive automatic discounts based on their tier level, ranging from 40% off (Tier 3) to 80% off (Tier 2) to completely free VIP access (Tier 1).
           </p>
           <p className="text-sm md:text-base text-gray-300">
             <strong>Status:</strong> Launched on pump.fun with LP
@@ -133,7 +141,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             <strong>Contract Address:</strong> <span className="text-solana-green font-mono text-xs break-all">TBA</span>
           </p>
           <p className="text-xs md:text-sm text-gray-400 text-center">
-            Your wallet is automatically checked for SolGen tokens when you connect. The appropriate tier discount is applied based on your balance.
+            Your wallet is automatically checked for AlienTek tokens when you connect. The appropriate tier discount is applied based on your balance.
           </p>
           <a
             href="https://pump.fun"
@@ -149,6 +157,10 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
       <ScrollReveal direction="up" delay={325}>
         <div className="solana-card p-6 md:p-8 space-y-4">
           <h2 className="text-xl md:text-2xl font-bold solana-gradient-text text-center">Custom Wallet Maker</h2>
+          {/* Image placeholder - replace with custom image */}
+          <div className="w-full h-48 bg-gray-700/30 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600">
+            <p className="text-gray-500 text-sm">Custom Wallet Maker Image Placeholder</p>
+          </div>
           
           <p className="text-sm md:text-base text-gray-300 text-center">
             Generate custom Solana wallet addresses with your chosen prefix or suffix.
@@ -167,7 +179,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             </li>
             <li className="flex gap-3">
               <span className="solana-gradient-text font-bold">3.</span>
-              <span>Pay the generation fee (Tier 3: 40% off - 1M+ token holders, Tier 2: 80% off - 5M+ token holders, Tier 1: Free - 10M+ holders)</span>
+              <span className="text-lg md:text-xl font-semibold">Tier 3: 1M+ token holders, Tier 2: 5M+ token holders, Tier 1: Free - 10M+ holders</span>
             </li>
             <li className="flex gap-3">
               <span className="solana-gradient-text font-bold">4.</span>
@@ -186,8 +198,12 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
               <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">{CONFIG.PRICING.THREE_CHAR.full} SOL</div>
               <div className="text-sm md:text-base text-gray-400 space-y-1">
                 <div>
-                  <span className="text-solana-green font-semibold">{CONFIG.PRICING.THREE_CHAR.discounted} SOL</span>
-                  <span className="text-xs md:text-sm ml-2">(Tier 2: 5M+ tokens)</span>
+                  <span className="text-solana-green font-semibold">{(CONFIG.PRICING.THREE_CHAR.full * 0.6).toFixed(2)} SOL</span>
+                  <span className="text-xs md:text-sm ml-2">(Tier 3: 1M+ tokens, 40% off)</span>
+                </div>
+                <div>
+                  <span className="text-solana-green font-semibold">{(CONFIG.PRICING.THREE_CHAR.full * 0.2).toFixed(2)} SOL</span>
+                  <span className="text-xs md:text-sm ml-2">(Tier 2: 5M+ tokens, 80% off)</span>
                 </div>
                 <div>
                   <span className="text-solana-green font-semibold">FREE</span>
@@ -200,8 +216,12 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
               <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">{CONFIG.PRICING.FOUR_CHAR.full} SOL</div>
               <div className="text-sm md:text-base text-gray-400 space-y-1">
                 <div>
-                  <span className="text-solana-green font-semibold">{CONFIG.PRICING.FOUR_CHAR.discounted} SOL</span>
-                  <span className="text-xs md:text-sm ml-2">(Tier 2: 5M+ tokens)</span>
+                  <span className="text-solana-green font-semibold">{(CONFIG.PRICING.FOUR_CHAR.full * 0.6).toFixed(2)} SOL</span>
+                  <span className="text-xs md:text-sm ml-2">(Tier 3: 1M+ tokens, 40% off)</span>
+                </div>
+                <div>
+                  <span className="text-solana-green font-semibold">{(CONFIG.PRICING.FOUR_CHAR.full * 0.2).toFixed(2)} SOL</span>
+                  <span className="text-xs md:text-sm ml-2">(Tier 2: 5M+ tokens, 80% off)</span>
                 </div>
                 <div>
                   <span className="text-solana-green font-semibold">FREE</span>
@@ -223,6 +243,10 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
       <ScrollReveal direction="up" delay={350}>
         <div className="solana-card p-6 md:p-8 space-y-4 border-solana-purple/50">
           <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">Custom Contract Address Maker</h2>
+          {/* Image placeholder - replace with custom image */}
+          <div className="w-full h-48 bg-gray-700/30 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600">
+            <p className="text-gray-500 text-sm">Custom CA Generator Image Placeholder</p>
+          </div>
           <h3 className="text-lg md:text-xl font-semibold text-solana-purple">Launch your custom CA on pump.fun!</h3>
           <p className="text-sm md:text-base text-gray-300">
             Create a custom contract address (CA) token on pump.fun with your desired vanity pattern.
@@ -263,8 +287,12 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">{CONFIG.PRICING.VANITY_CONTRACT.full} SOL</div>
             <div className="text-sm md:text-base text-gray-400 space-y-1">
               <div>
-                <span className="text-solana-green font-semibold">{CONFIG.PRICING.VANITY_CONTRACT.discounted} SOL</span>
-                <span className="text-xs md:text-sm ml-2">(Tier 2: 1M+ tokens)</span>
+                <span className="text-solana-green font-semibold">{(CONFIG.PRICING.VANITY_CONTRACT.full * 0.6).toFixed(2)} SOL</span>
+                <span className="text-xs md:text-sm ml-2">(Tier 3: 1M+ tokens, 40% off)</span>
+              </div>
+              <div>
+                <span className="text-solana-green font-semibold">{(CONFIG.PRICING.VANITY_CONTRACT.full * 0.2).toFixed(2)} SOL</span>
+                <span className="text-xs md:text-sm ml-2">(Tier 2: 5M+ tokens, 80% off)</span>
               </div>
               <div>
                 <span className="text-solana-green font-semibold">FREE</span>

@@ -11,13 +11,13 @@ export const CONFIG = {
   // IMPORTANT: Update PAYMENT_DESTINATION_WALLET above before deploying
   TREASURY_ADDRESS: new PublicKey('g2kFrXkPHqoKwK4Q3RLemdHHPoYGFooHgFreZoH4DEV'),
   
-  // SolGen SPL token mint address - PLACEHOLDER - Update with actual mint address
+  // AlienTek SPL token mint address
   SOLGEN_MINT_ADDRESS: new PublicKey('Ez28fsseNKQu7sLzLAfEz57q5iw1Uv1HtYGUFSvFpump'),
   
   // Pricing in SOL
   PRICING: {
     THREE_CHAR: {
-      full: 0.15,
+      full: 1.5,
       discounted: 0.09,
     },
     FOUR_CHAR: {
@@ -32,7 +32,8 @@ export const CONFIG = {
   
   // Tier system thresholds
   TIER_1_BALANCE: 10000000, // 10M tokens - 100% off (VIP)
-  TIER_2_BALANCE: 1000000,  // 1M tokens - 40% off
+  TIER_2_BALANCE: 5000000,  // 5M tokens - 80% off
+  TIER_3_BALANCE: 1000000,  // 1M tokens - 40% off
   
   // Legacy discount threshold - kept for backwards compatibility
   DISCOUNT_TOKEN_BALANCE: 20000000,

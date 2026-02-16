@@ -5,7 +5,7 @@
 1. Node.js 18 or higher
 2. npm or yarn package manager
 3. Solana wallet for treasury
-4. SolGen SPL token mint address (optional, for discount feature)
+4. AlienTek SPL token mint address (optional, for discount feature)
 
 ## Configuration
 
@@ -17,7 +17,7 @@ Edit `src/config/constants.ts` and update the treasury address:
 TREASURY_ADDRESS: new PublicKey('YOUR_ACTUAL_TREASURY_WALLET_ADDRESS'),
 ```
 
-### Step 2: Update SolGen Token Mint Address
+### Step 2: Update AlienTek Token Mint Address
 
 Edit `src/config/constants.ts` and update the token mint address:
 
@@ -60,14 +60,14 @@ The application will be available at `http://localhost:3000`
 
 **Current Setup**: This repository is configured to deploy to GitHub Pages automatically.
 
-The site is available at: **https://nextlevel333.github.io/SolGen/**
+The site is available at: **https://nextlevel333.github.io/AlienTek/**
 
 #### How it works:
 
 1. Every push to the `main` branch triggers the GitHub Actions workflow
 2. The workflow builds the Next.js app as a static export
 3. Static files are deployed to GitHub Pages
-4. The site is served at `https://nextlevel333.github.io/SolGen/`
+4. The site is served at `https://nextlevel333.github.io/AlienTek/`
 
 #### Key Configuration:
 
@@ -76,8 +76,8 @@ The following settings in `next.config.js` are required for GitHub Pages:
 ```javascript
 {
   output: 'export',           // Static export
-  basePath: '/SolGen',        // Project path on GitHub Pages
-  assetPrefix: '/SolGen',     // Asset path prefix
+  basePath: '/AlienTek',        // Project path on GitHub Pages
+  assetPrefix: '/AlienTek',     // Asset path prefix
   trailingSlash: true,        // Required for GitHub Pages routing
 }
 ```

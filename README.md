@@ -1,4 +1,4 @@
-# SolGen - Solana Vanity Wallet Generator
+# AlienTek - Solana Vanity Wallet Generator
 
 A privacy-first, client-side Solana vanity wallet generator with token-gated pricing.
 
@@ -9,14 +9,14 @@ A privacy-first, client-side Solana vanity wallet generator with token-gated pri
 - **🔒 100% Client-Side**: All key generation happens in your browser using Web Workers
 - **🚫 Zero Server Storage**: Your private keys never leave your browser
 - **👛 Wallet Support**: Connect with Phantom or Solflare
-- **💎 Token-Gated Discount**: 50% off for SolGen token holders
+- **💎 Token-Gated Discount**: 50% off for AlienTek token holders
 - **⚡ High Performance**: Multi-threaded generation with real-time progress tracking
 - **🎯 Secure**: Generate vanity addresses with 3 or 4 custom characters (prefix or suffix)
 - **📊 Progress Tracking**: Real-time attempts, rate, and ETA with pause/resume controls
 
 ## 💰 Pricing
 
-| Length | Standard Price | Discounted Price (SolGen Holders) |
+| Length | Standard Price | Discounted Price (AlienTek Holders) |
 |--------|---------------|-----------------------------------|
 | 3 Characters | 0.15 SOL | 0.075 SOL (50% off) |
 | 4 Characters | 0.40 SOL | 0.20 SOL (50% off) |
@@ -33,8 +33,8 @@ A privacy-first, client-side Solana vanity wallet generator with token-gated pri
 
 ```bash
 # Clone the repository
-git clone https://github.com/NextLevel333/SolGen.git
-cd SolGen
+git clone https://github.com/NextLevel333/AlienTek.git
+cd AlienTek
 
 # Install dependencies
 npm install
@@ -77,7 +77,7 @@ export const CONFIG = {
 ### Configuration Options
 
 - **TREASURY_ADDRESS**: Your Solana wallet address for receiving payments
-- **SOLGEN_MINT_ADDRESS**: Your SolGen SPL token mint address  
+- **SOLGEN_MINT_ADDRESS**: Your AlienTek SPL token mint address  
 - **RPC_ENDPOINT**: Solana RPC endpoint (default: mainnet-beta)
 - **PRICING**: Pricing structure for 3 and 4 character vanity addresses
 
@@ -86,7 +86,7 @@ export const CONFIG = {
 1. **Connect Wallet**: Connect your Phantom or Solflare wallet
 2. **Choose Length**: Select 3 or 4 character vanity pattern
 3. **Configure Pattern**: Choose prefix or suffix and enter desired characters
-4. **Pay Fee**: Submit payment (automatically discounted for SolGen token holders)
+4. **Pay Fee**: Submit payment (automatically discounted for AlienTek token holders)
 5. **Generate**: Wait for client-side generation to complete
 6. **Save Keys**: Securely download and backup your new wallet keys
 
@@ -120,13 +120,13 @@ For detailed security information, see [SECURITY.md](SECURITY.md).
 - **[IMPLEMENTATION.md](IMPLEMENTATION.md)** - Technical implementation details
 - **[SECURITY.md](SECURITY.md)** - Security audit and compliance
 
-## 💎 About SolGen Token
+## 💎 About AlienTek Token
 
-SolGen is the native utility token offering 50% discount on all vanity address generation fees.
+AlienTek is the native utility token offering 50% discount on all vanity address generation fees.
 
 - **Status**: Launched on pump.fun with LP
 - **Contract Address**: To be updated
-- **Discount**: Any wallet holding SolGen tokens automatically qualifies
+- **Discount**: Any wallet holding AlienTek tokens automatically qualifies
 
 ## 🎨 UI/UX
 
@@ -187,7 +187,7 @@ This tool is provided as-is without warranty. Always verify you've securely save
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/NextLevel333/SolGen/issues)
+- **Issues**: [GitHub Issues](https://github.com/NextLevel333/AlienTek/issues)
 - **Documentation**: See docs folder
 - **Security**: See [SECURITY.md](SECURITY.md) for security policies
 

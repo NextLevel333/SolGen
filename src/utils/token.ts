@@ -24,17 +24,19 @@ export async function getTokenBalance(
   }
 }
 
-export function getTier(tokenBalance: number): 0 | 1 | 2 {
+export function getTier(tokenBalance: number): 0 | 1 | 2 | 3 {
   if (tokenBalance >= CONFIG.TIER_1_BALANCE) {
-    return 1; // VIP - 100% off
+    return 1; // Tier 1 VIP - 100% off (10M+)
   } else if (tokenBalance >= CONFIG.TIER_2_BALANCE) {
-    return 2; // 40% off
+    return 2; // Tier 2 - 80% off (5M+)
+  } else if (tokenBalance >= CONFIG.TIER_3_BALANCE) {
+    return 3; // Tier 3 - 40% off (1M+)
   }
   return 0; // No discount
 }
 
 export function hasDiscount(tokenBalance: number): boolean {
-  return tokenBalance >= CONFIG.TIER_2_BALANCE;
+  return tokenBalance >= CONFIG.TIER_3_BALANCE;
 }
 
 export function getPrice(length: 3 | 4, tokenBalance: number): number {
@@ -42,9 +44,12 @@ export function getPrice(length: 3 | 4, tokenBalance: number): number {
   const tier = getTier(tokenBalance);
   
   if (tier === 1) {
-    return 0; // VIP - Free
+    return 0; // Tier 1 VIP - Free (10M+)
   } else if (tier === 2) {
-    // Tier 2 - 40% off
+    // Tier 2 - 80% off (5M+)
+    return Number((pricing.full * 0.2).toFixed(2));
+  } else if (tier === 3) {
+    // Tier 3 - 40% off (1M+)
     return Number((pricing.full * 0.6).toFixed(2));
   }
   
@@ -53,7 +58,25 @@ export function getPrice(length: 3 | 4, tokenBalance: number): number {
 
 export function getDiscountPercentage(tokenBalance: number): number {
   const tier = getTier(tokenBalance);
-  if (tier === 1) return 100;
-  if (tier === 2) return 40;
+  if (tier === 1) return 100; // Tier 1: 10M+ tokens
+  if (tier === 2) return 80;  // Tier 2: 5M+ tokens
+  if (tier === 3) return 40;  // Tier 3: 1M+ tokens
   return 0;
+}
+
+export function getContractPrice(tokenBalance: number): number {
+  const pricing = CONFIG.PRICING.VANITY_CONTRACT;
+  const tier = getTier(tokenBalance);
+  
+  if (tier === 1) {
+    return 0; // Tier 1 VIP - Free (10M+)
+  } else if (tier === 2) {
+    // Tier 2 - 80% off (5M+)
+    return Number((pricing.full * 0.2).toFixed(2));
+  } else if (tier === 3) {
+    // Tier 3 - 40% off (1M+)
+    return Number((pricing.full * 0.6).toFixed(2));
+  }
+  
+  return pricing.full;
 }

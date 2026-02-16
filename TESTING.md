@@ -1,4 +1,4 @@
-# SolGen - Testing Guide
+# AlienTek - Testing Guide
 
 ## Manual Testing Checklist
 
@@ -21,7 +21,7 @@
 ### 3. Length Selection Screen
 - [ ] 3-character option card displayed with correct price
 - [ ] 4-character option card displayed with correct price
-- [ ] Discount pricing shown (with SolGen tokens)
+- [ ] Discount pricing shown (with AlienTek tokens)
 - [ ] Back button to landing page works
 - [ ] Clicking option proceeds to payment
 
@@ -95,7 +95,7 @@
    - Replace `SOLGEN_MINT_ADDRESS` placeholder with actual token mint address
 
 2. Update `README.md`:
-   - Add actual SolGen token contract address once available
+   - Add actual AlienTek token contract address once available
 
 3. Update `src/components/LandingContent.tsx`:
    - Replace "To be updated" with actual contract address once available
