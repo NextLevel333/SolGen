@@ -122,7 +122,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             AlienTek offers a 3-tier reward system for token holders, providing significant benefits and discounts:
           </p>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mt-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-4">
             <div className="bg-gradient-to-br from-purple-900/30 to-gray-700/30 border border-purple-600/50 p-4 md:p-6 rounded-lg">
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-3xl">🥉</span>

@@ -27,7 +27,7 @@ interface VanityContractFormData {
   initialDevBuy: string;
 }
 
-type FlowStep = 'form' | 'payment' | 'mode-select' | 'generating' | 'cancel-dialog' | 'confirmation' | 'deploying' | 'success';
+type FlowStep = 'form' | 'payment' | 'mode-select' | 'generating' | 'cancelled' | 'confirmation' | 'deploying' | 'success';
 
 interface GeneratedCA {
   publicKey: string;
@@ -412,7 +412,7 @@ export const VanityContractForm: React.FC = () => {
     });
     workersRef.current = [];
     setIsLoading(false);
-    setCurrentStep('cancel-dialog');
+    setCurrentStep('cancelled');
   };
 
   const handleCancelAction = (action: 'retry' | 'change') => {
@@ -657,7 +657,8 @@ export const VanityContractForm: React.FC = () => {
 
   // Render generating step
   if (currentStep === 'generating') {
-    const estimatedTime = progress ? estimateTime(formData.vanityCharacters.length as 3 | 4, progress.rate) : 0;
+    const vanityLength = Math.min(Math.max(formData.vanityCharacters.length, 2), 4) as 3 | 4;
+    const estimatedTime = progress ? estimateTime(vanityLength, progress.rate) : 0;
     
     return (
       <div className="solana-card p-8 space-y-6">
@@ -732,9 +733,10 @@ export const VanityContractForm: React.FC = () => {
     );
   }
 
-  // Render cancel dialog step
-  if (currentStep === 'cancel-dialog') {
-    const difficultyAnalysis = analyzeDifficulty(formData.vanityCharacters, formData.vanityPosition, formData.vanityCharacters.length as 3 | 4);
+  // Render cancelled step
+  if (currentStep === 'cancelled') {
+    const vanityLength = Math.min(Math.max(formData.vanityCharacters.length, 2), 4) as 3 | 4;
+    const difficultyAnalysis = analyzeDifficulty(formData.vanityCharacters, formData.vanityPosition, vanityLength);
     
     return (
       <div className="solana-card p-8 space-y-6">
