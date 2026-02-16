@@ -13,17 +13,23 @@ export default function App({ Component, pageProps }: AppProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [showContent, setShowContent] = useState(false);
   
-  // Handle loading screen on first visit
+  // Handle loading screen on first visit only (not on refresh or navigation)
   useEffect(() => {
-    const hasVisited = sessionStorage.getItem('hasVisited');
-    if (hasVisited) {
+    // Use a timestamp-based approach: only skip loading if visited in last 5 seconds (navigation case)
+    const lastVisitTimestamp = sessionStorage.getItem('lastVisit');
+    const now = Date.now();
+    
+    // If visited within last 5 seconds, skip loading (this covers refresh and navigation)
+    if (lastVisitTimestamp && now - parseInt(lastVisitTimestamp) < 5000) {
       setIsLoading(false);
       setShowContent(true);
     }
+    
+    // Update timestamp on every page load
+    sessionStorage.setItem('lastVisit', now.toString());
   }, []);
 
   const handleLoadingComplete = () => {
-    sessionStorage.setItem('hasVisited', 'true');
     setShowContent(true);
   };
   
@@ -45,7 +51,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>AlienTek - Solana Vanity Wallet & Contract Address Generator</title>
         <meta name="description" content="Generate custom Solana wallet addresses and contract addresses with your chosen prefix or suffix. 100% client-side, zero server storage." />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, minimum-scale=1" />
         <meta name="application-name" content="AlienTek" />
         <meta name="apple-mobile-web-app-title" content="AlienTek" />
         <meta name="theme-color" content="#9945FF" />

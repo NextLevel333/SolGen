@@ -10,55 +10,55 @@ const FADE_OUT_DURATION = 500; // Must match CSS transition-opacity duration
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
+  const [showEnterButton, setShowEnterButton] = useState(false);
 
   useEffect(() => {
-    // Simulate loading progress
+    // Simulate loading progress with extended duration
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
-        const newProgress = prev + 2;
+        const newProgress = prev + 1.5; // Slower progress for extended duration
         if (newProgress >= 100) {
           clearInterval(progressInterval);
+          setShowEnterButton(true); // Show enter button when progress is complete
           return 100;
         }
         return newProgress;
       });
-    }, 30);
-
-    // Complete loading after progress reaches 100%
-    const timeout = setTimeout(() => {
-      setIsVisible(false);
-      setTimeout(onLoadingComplete, FADE_OUT_DURATION); // Wait for fade out animation
-    }, 1800);
+    }, 40); // Increased interval for slower, extended loading
 
     return () => {
       clearInterval(progressInterval);
-      clearTimeout(timeout);
     };
-  }, [onLoadingComplete]);
+  }, []);
+
+  const handleEnter = () => {
+    setIsVisible(false);
+    setTimeout(onLoadingComplete, FADE_OUT_DURATION);
+  };
 
   if (!isVisible) return null;
 
   return (
-    <div className={`fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-500 ${!isVisible ? 'opacity-0' : 'opacity-100'}`}>
+    <div className={`fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-500 ${!isVisible ? 'opacity-0' : 'opacity-100'} px-4`}>
       {/* Particle Background */}
       <div className="loading-particles" />
       
       {/* Main Content */}
-      <div className="flex flex-col items-center space-y-8">
+      <div className="flex flex-col items-center space-y-8 w-full max-w-md">
         {/* Logo with Pulsating Glow */}
-        <div className="relative">
+        <div className="relative w-full flex justify-center">
           <Image 
             src="/alienlogo.svg" 
             alt="AlienTek Logo" 
             width={300} 
             height={119} 
             priority 
-            className="h-auto loading-logo-glow"
+            className="h-auto max-w-full loading-logo-glow"
           />
         </div>
 
         {/* Loading Bar Container */}
-        <div className="w-80 max-w-sm">
+        <div className="w-full">
           <div className="h-2 bg-gray-800 rounded-full overflow-hidden border border-gray-700">
             <div 
               className="h-full bg-gradient-to-r from-solana-purple via-solana-blue to-solana-green transition-all duration-300 ease-out loading-bar-glow"
@@ -66,6 +66,16 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete 
             />
           </div>
         </div>
+
+        {/* Enter Button - Shows when progress reaches 100% */}
+        {showEnterButton && (
+          <button
+            onClick={handleEnter}
+            className="solana-button-primary text-lg px-8 py-4 animate-fadeIn"
+          >
+            Enter
+          </button>
+        )}
       </div>
     </div>
   );
