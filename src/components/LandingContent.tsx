@@ -66,8 +66,89 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
         </div>
       </ScrollReveal>
       
-      <ScrollReveal direction="up" delay={150}>
+      <ScrollReveal direction="up" delay={250}>
         <div className="solana-card p-6 md:p-8 space-y-4">
+          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">Tier Holder System</h2>
+          <p className="text-sm md:text-base text-gray-300">
+            AlienTek offers a 3-tier reward system for token holders, providing significant benefits and discounts:
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4">
+            <div className="bg-gradient-to-br from-purple-900/30 to-gray-700/30 border border-purple-600/50 p-4 md:p-6 rounded-lg">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-3xl">🥈</span>
+                <h3 className="text-lg md:text-xl font-semibold text-purple-300">Tier 3</h3>
+              </div>
+              <p className="text-sm md:text-base text-gray-300 mb-2">
+                <strong>Requirement:</strong> Hold 1,000,000+ $ALIENT tokens
+              </p>
+              <p className="text-sm md:text-base text-solana-green font-semibold">
+                ✓ 40% discount on all services
+              </p>
+            </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4">
+            <div className="bg-gradient-to-br from-purple-900/30 to-gray-700/30 border border-purple-600/50 p-4 md:p-6 rounded-lg">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-3xl">🥈</span>
+                <h3 className="text-lg md:text-xl font-semibold text-purple-300">Tier 2</h3>
+              </div>
+              <p className="text-sm md:text-base text-gray-300 mb-2">
+                <strong>Requirement:</strong> Hold 5,000,000+ $ALIENT tokens
+              </p>
+              <p className="text-sm md:text-base text-solana-green font-semibold">
+                ✓ 80% discount on all services
+              </p>
+            </div>
+            
+            <div className="bg-gradient-to-br from-yellow-900/30 to-gray-700/30 border border-yellow-600/50 p-4 md:p-6 rounded-lg">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-3xl">🥇</span>
+                <h3 className="text-lg md:text-xl font-semibold text-yellow-300">Tier 1 - VIP</h3>
+              </div>
+              <p className="text-sm md:text-base text-gray-300 mb-2">
+                <strong>Requirement:</strong> Hold 10,000,000+ $ALIENT tokens
+              </p>
+              <p className="text-sm md:text-base text-solana-green font-semibold">
+                ✓ 100% FREE - Complete VIP access to all services
+              </p>
+            </div>
+          </div>
+          
+          <p className="text-xs md:text-sm text-gray-400 mt-4">
+            Your tier is automatically detected when you connect your wallet. Simply hold the required tokens in the same wallet you use to pay, and the discount or free access will be applied instantly.
+          </p>
+        </div>
+      </ScrollReveal>
+      
+      <ScrollReveal direction="up" delay={300}>
+        <div className="solana-card p-6 md:p-8 space-y-4">
+          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">About ALienTek Token</h2>
+          <p className="text-sm md:text-base text-gray-300">
+            AlienTek is the native utility token for this platform. Token holders receive automatic discounts based on their tier level, ranging from 40% off (Tier 2) to completely free VIP access (Tier 1).
+          </p>
+          <p className="text-sm md:text-base text-gray-300">
+            <strong>Status:</strong> Launched on pump.fun with LP
+          </p>
+          <p className="text-sm md:text-base text-gray-300">
+            <strong>Contract Address:</strong> <span className="text-solana-green font-mono text-xs break-all">TBA</span>
+          </p>
+          <p className="text-xs md:text-sm text-gray-400">
+            Your wallet is automatically checked for SolGen tokens when you connect. The appropriate tier discount is applied based on your balance.
+          </p>
+          <a
+            href="https://pump.fun"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="solana-button-primary inline-flex items-center gap-2 mt-4"
+          >
+            <span className="text-xl">🚀</span>
+            <span>Buy $ALIENT</span>
+          </a>
+        </div>
+      </ScrollReveal>
+      <ScrollReveal direction="up" delay={325}>
+      <div className="solana-card p-6 md:p-8 space-y-4">
           <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">Custom Wallet Maker</h2>
           
           <p className="text-sm md:text-base text-gray-300">
@@ -87,7 +168,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             </li>
             <li className="flex gap-3">
               <span className="solana-gradient-text font-bold">3.</span>
-              <span>Pay the generation fee (Tier 2: 40% off for 1M+ token holders, Tier 1: Free for 10M+ holders)</span>
+              <span>Pay the generation fee (Tier 3: 40% off - 1M+ token holders, Tier 2: 80% off - 5M+ token holders, Tier 1: Free - 10M+ holders)</span>
             </li>
             <li className="flex gap-3">
               <span className="solana-gradient-text font-bold">4.</span>
@@ -107,7 +188,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
               <div className="text-sm md:text-base text-gray-400 space-y-1">
                 <div>
                   <span className="text-solana-green font-semibold">{CONFIG.PRICING.THREE_CHAR.discounted} SOL</span>
-                  <span className="text-xs md:text-sm ml-2">(Tier 2: 1M+ tokens)</span>
+                  <span className="text-xs md:text-sm ml-2">(Tier 2: 5M+ tokens)</span>
                 </div>
                 <div>
                   <span className="text-solana-green font-semibold">FREE</span>
@@ -121,7 +202,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
               <div className="text-sm md:text-base text-gray-400 space-y-1">
                 <div>
                   <span className="text-solana-green font-semibold">{CONFIG.PRICING.FOUR_CHAR.discounted} SOL</span>
-                  <span className="text-xs md:text-sm ml-2">(Tier 2: 1M+ tokens)</span>
+                  <span className="text-xs md:text-sm ml-2">(Tier 2: 5M+ tokens)</span>
                 </div>
                 <div>
                   <span className="text-solana-green font-semibold">FREE</span>
@@ -131,80 +212,12 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             </div>
           </div>
           
-          <button
+          <button>
             onClick={onStartGeneration}
             className="solana-button-primary w-full text-lg md:text-xl py-4 pulse-glow mt-6"
-          >
+          
             Start Generator
           </button>
-        </div>
-      </ScrollReveal>
-      
-      <ScrollReveal direction="up" delay={250}>
-        <div className="solana-card p-6 md:p-8 space-y-4">
-          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">Tier Holder System</h2>
-          <p className="text-sm md:text-base text-gray-300">
-            SolGen offers a two-tier reward system for token holders, providing significant benefits and discounts:
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4">
-            <div className="bg-gradient-to-br from-purple-900/30 to-gray-700/30 border border-purple-600/50 p-4 md:p-6 rounded-lg">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-3xl">🥈</span>
-                <h3 className="text-lg md:text-xl font-semibold text-purple-300">Tier 2</h3>
-              </div>
-              <p className="text-sm md:text-base text-gray-300 mb-2">
-                <strong>Requirement:</strong> Hold 1,000,000+ SolGen tokens
-              </p>
-              <p className="text-sm md:text-base text-solana-green font-semibold">
-                ✓ 40% discount on all services
-              </p>
-            </div>
-            
-            <div className="bg-gradient-to-br from-yellow-900/30 to-gray-700/30 border border-yellow-600/50 p-4 md:p-6 rounded-lg">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-3xl">🥇</span>
-                <h3 className="text-lg md:text-xl font-semibold text-yellow-300">Tier 1 - VIP</h3>
-              </div>
-              <p className="text-sm md:text-base text-gray-300 mb-2">
-                <strong>Requirement:</strong> Hold 10,000,000+ SolGen tokens
-              </p>
-              <p className="text-sm md:text-base text-solana-green font-semibold">
-                ✓ 100% FREE - Complete VIP access to all services
-              </p>
-            </div>
-          </div>
-          
-          <p className="text-xs md:text-sm text-gray-400 mt-4">
-            Your tier is automatically detected when you connect your wallet. Simply hold the required tokens in the same wallet you use to pay, and the discount or free access will be applied instantly.
-          </p>
-        </div>
-      </ScrollReveal>
-      
-      <ScrollReveal direction="up" delay={300}>
-        <div className="solana-card p-6 md:p-8 space-y-4">
-          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">About SolGen Token</h2>
-          <p className="text-sm md:text-base text-gray-300">
-            SolGen is the native utility token for this platform. Token holders receive automatic discounts based on their tier level, ranging from 40% off (Tier 2) to completely free VIP access (Tier 1).
-          </p>
-          <p className="text-sm md:text-base text-gray-300">
-            <strong>Status:</strong> Launched on pump.fun with LP
-          </p>
-          <p className="text-sm md:text-base text-gray-300">
-            <strong>Contract Address:</strong> <span className="text-solana-green font-mono text-xs break-all">TBA</span>
-          </p>
-          <p className="text-xs md:text-sm text-gray-400">
-            Your wallet is automatically checked for SolGen tokens when you connect. The appropriate tier discount is applied based on your balance.
-          </p>
-          <a
-            href="https://pump.fun"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="solana-button-primary inline-flex items-center gap-2 mt-4"
-          >
-            <span className="text-xl">🚀</span>
-            <span>Buy $SOLGEN</span>
-          </a>
         </div>
       </ScrollReveal>
       
