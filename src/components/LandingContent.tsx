@@ -86,8 +86,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
                 ✓ 40% discount on all services
               </p>
             </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4">
+
             <div className="bg-gradient-to-br from-purple-900/30 to-gray-700/30 border border-purple-600/50 p-4 md:p-6 rounded-lg">
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-3xl">🥈</span>
@@ -148,7 +147,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
         </div>
       </ScrollReveal>
       <ScrollReveal direction="up" delay={325}>
-      <div className="solana-card p-6 md:p-8 space-y-4">
+        <div className="solana-card p-6 md:p-8 space-y-4">
           <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">Custom Wallet Maker</h2>
           
           <p className="text-sm md:text-base text-gray-300">
@@ -212,10 +211,10 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             </div>
           </div>
           
-          <button>
+          <button
             onClick={onStartGeneration}
             className="solana-button-primary w-full text-lg md:text-xl py-4 pulse-glow mt-6"
-          
+          >
             Start Generator
           </button>
         </div>
