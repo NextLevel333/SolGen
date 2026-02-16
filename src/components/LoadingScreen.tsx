@@ -5,6 +5,8 @@ interface LoadingScreenProps {
   onLoadingComplete: () => void;
 }
 
+const FADE_OUT_DURATION = 500; // Must match CSS transition-opacity duration
+
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
@@ -13,18 +15,19 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete 
     // Simulate loading progress
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
-        if (prev >= 100) {
+        const newProgress = prev + 2;
+        if (newProgress >= 100) {
           clearInterval(progressInterval);
           return 100;
         }
-        return prev + 2;
+        return newProgress;
       });
     }, 30);
 
     // Complete loading after progress reaches 100%
     const timeout = setTimeout(() => {
       setIsVisible(false);
-      setTimeout(onLoadingComplete, 500); // Wait for fade out animation
+      setTimeout(onLoadingComplete, FADE_OUT_DURATION); // Wait for fade out animation
     }, 1800);
 
     return () => {

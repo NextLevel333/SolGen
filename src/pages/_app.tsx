@@ -52,7 +52,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" type="image/png" href={`${basePath}/favicon.svg`} />
       </Head>
       {isLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
-      <div className={`transition-opacity duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`transition-opacity duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}`} aria-hidden={!showContent}>
         <ToastProvider>
           <WalletContextProvider>
             <Component {...pageProps} />
