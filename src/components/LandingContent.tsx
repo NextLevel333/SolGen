@@ -19,7 +19,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             </div>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300">
-            Custom Solana Blockchain Tools
+            Solana Blockchain Tools
           </p>
           <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
             AlienTek offers mobile-friendly tools for generating custom Solana wallets and deploying custom contract addresses on pump.fun.
@@ -68,8 +68,8 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
       
       <ScrollReveal direction="up" delay={250}>
         <div className="solana-card p-6 md:p-8 space-y-4">
-          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">Tier Holder System</h2>
-          <p className="text-sm md:text-base text-gray-300">
+          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text text-center">Tier Holder System</h2>
+          <p className="text-sm md:text-base text-gray-300 text-center">
             AlienTek offers a 3-tier reward system for token holders, providing significant benefits and discounts:
           </p>
 
@@ -114,7 +114,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             </div>
           </div>
           
-          <p className="text-xs md:text-sm text-gray-400 mt-4">
+          <p className="text-xs md:text-sm text-gray-400 mt-4 text-center">
             Your tier is automatically detected when you connect your wallet. Simply hold the required tokens in the same wallet you use to pay, and the discount or free access will be applied instantly.
           </p>
         </div>
@@ -122,8 +122,8 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
       
       <ScrollReveal direction="up" delay={300}>
         <div className="solana-card p-6 md:p-8 space-y-4">
-          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">About ALienTek Token</h2>
-          <p className="text-sm md:text-base text-gray-300">
+          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text text-center">About ALienTek Token</h2>
+          <p className="text-sm md:text-base text-gray-300 text-center">
             AlienTek is the native utility token for this platform. Token holders receive automatic discounts based on their tier level, ranging from 40% off (Tier 2) to completely free VIP access (Tier 1).
           </p>
           <p className="text-sm md:text-base text-gray-300">
@@ -132,7 +132,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
           <p className="text-sm md:text-base text-gray-300">
             <strong>Contract Address:</strong> <span className="text-solana-green font-mono text-xs break-all">TBA</span>
           </p>
-          <p className="text-xs md:text-sm text-gray-400">
+          <p className="text-xs md:text-sm text-gray-400 text-center">
             Your wallet is automatically checked for SolGen tokens when you connect. The appropriate tier discount is applied based on your balance.
           </p>
           <a
@@ -148,14 +148,14 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
       </ScrollReveal>
       <ScrollReveal direction="up" delay={325}>
         <div className="solana-card p-6 md:p-8 space-y-4">
-          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text">Custom Wallet Maker</h2>
+          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text text-center">Custom Wallet Maker</h2>
           
-          <p className="text-sm md:text-base text-gray-300">
+          <p className="text-sm md:text-base text-gray-300 text-center">
             Generate custom Solana wallet addresses with your chosen prefix or suffix.
             100% client-side. Zero server storage. Your keys never leave your browser.
           </p>
           
-          <h3 className="text-lg md:text-xl font-semibold solana-gradient-text pt-4">How It Works</h3>
+          <h3 className="text-lg md:text-xl font-semibold solana-gradient-text pt-4 text-center">How It Works</h3>
           <ol className="space-y-3 text-sm md:text-base text-gray-300">
             <li className="flex gap-3">
               <span className="solana-gradient-text font-bold">1.</span>
@@ -179,7 +179,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             </li>
           </ol>
           
-          <h3 className="text-lg md:text-xl font-semibold solana-gradient-text pt-4">Pricing</h3>
+          <h3 className="text-lg md:text-xl font-semibold solana-gradient-text pt-4 text-center">Pricing</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <div className="bg-gray-700/50 p-4 md:p-6 rounded-lg">
               <h4 className="text-lg md:text-xl font-semibold mb-2">3-Character Vanity</h4>
@@ -213,7 +213,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
           
           <button
             onClick={onStartGeneration}
-            className="solana-button-primary w-full text-lg md:text-xl py-4 pulse-glow mt-6"
+            className="solana-button-primary w-full text-lg md:text-xl py-4 pulse-glow mt-6 text-center"
           >
             Generate Custom Wallet
           </button>
@@ -276,7 +276,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             </p>
           </div>
           
-          <p className="text-xs md:text-sm text-gray-400">
+          <p className="text-xs md:text-sm text-gray-400 text-center">
             This is exactly the same as launching on pump.fun normally, but with the added benefit of a personalized contract address that makes your token more memorable and brandable.
           </p>
           <Link 
