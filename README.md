@@ -9,17 +9,17 @@ A privacy-first, client-side Solana vanity wallet generator with token-gated pri
 - **🔒 100% Client-Side**: All key generation happens in your browser using Web Workers
 - **🚫 Zero Server Storage**: Your private keys never leave your browser
 - **👛 Wallet Support**: Connect with Phantom or Solflare
-- **💎 Token-Gated Discount**: 50% off for AlienTek token holders
+- **💎 Token-Gated Tiers**: 3-tier holder system with 40-100% discounts off all services
 - **⚡ High Performance**: Multi-threaded generation with real-time progress tracking
 - **🎯 Secure**: Generate vanity addresses with 3 or 4 custom characters (prefix or suffix)
 - **📊 Progress Tracking**: Real-time attempts, rate, and ETA with pause/resume controls
 
 ## 💰 Pricing
 
-| Length | Standard Price | Discounted Price (AlienTek Holders) |
-|--------|---------------|-----------------------------------|
-| 3 Characters | 0.15 SOL | 0.075 SOL (50% off) |
-| 4 Characters | 0.40 SOL | 0.20 SOL (50% off) |
+| Length | Standard Price | Tier 3 (1M+ tokens, 40% off) | Tier 2 (5M+ tokens, 80% off) | Tier 1 (10M+ tokens) |
+|--------|---------------|------------------------------|------------------------------|---------------------|
+| 3 Characters | 0.15 SOL | 0.09 SOL | 0.03 SOL | FREE |
+| 4 Characters | 0.20 SOL | 0.12 SOL | 0.04 SOL | FREE |
 
 ## 🚀 Getting Started
 
