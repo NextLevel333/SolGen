@@ -129,7 +129,7 @@ export default function Home() {
                 <h3 className="text-xl md:text-2xl font-bold mb-2">3 Characters</h3>
                 <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">{CONFIG.PRICING.THREE_CHAR.full} SOL</div>
                 <div className="text-sm text-gray-400 mb-1">
-                  <span className="text-solana-green">{CONFIG.PRICING.THREE_CHAR.discounted} SOL</span> Tier 2 (1M+ tokens)
+                  <span className="text-solana-green">{CONFIG.PRICING.THREE_CHAR.discounted} SOL</span> Tier 3 (1M+ tokens, 40% off)
                 </div>
                 <div className="text-sm text-gray-400 mb-2">
                   <span className="text-solana-green">FREE</span> Tier 1 (10M+ tokens)
@@ -147,7 +147,7 @@ export default function Home() {
                 <h3 className="text-xl md:text-2xl font-bold mb-2">4 Characters</h3>
                 <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">{CONFIG.PRICING.FOUR_CHAR.full} SOL</div>
                 <div className="text-sm text-gray-400 mb-1">
-                  <span className="text-solana-green">{CONFIG.PRICING.FOUR_CHAR.discounted} SOL</span> Tier 2 (1M+ tokens)
+                  <span className="text-solana-green">{CONFIG.PRICING.FOUR_CHAR.discounted} SOL</span> Tier 3 (1M+ tokens, 40% off)
                 </div>
                 <div className="text-sm text-gray-400 mb-2">
                   <span className="text-solana-green">FREE</span> Tier 1 (10M+ tokens)
