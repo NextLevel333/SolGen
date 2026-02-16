@@ -68,6 +68,36 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
       
       <ScrollReveal direction="up" delay={250}>
         <div className="solana-card p-6 md:p-8 space-y-4">
+          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text text-center">About AlienTek Token</h2>
+          {/* Image placeholder - replace with custom image */}
+          <div className="w-full h-34 bg-gray-700/30 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600">
+            <Image src="/img1.svg" alt="AlienTek Logo" width={300} height={103} priority className="h-auto"/>          </div>
+          <p className="text-sm md:text-base text-gray-300 text-center">
+            AlienTek is the native utility token for this platform. Token holders receive automatic discounts based on their tier level, ranging from 40% off (Tier 3) to 80% off (Tier 2) to completely free VIP access (Tier 1).
+          </p>
+          <p className="text-sm md:text-base text-gray-300">
+            <strong>Status:</strong> Launched on pump.fun with LP
+          </p>
+          <p className="text-sm md:text-base text-gray-300">
+            <strong>Contract Address:</strong> <span className="text-solana-green font-mono text-xs break-all">TBA</span>
+          </p>
+          <p className="text-xs md:text-sm text-gray-400 text-center">
+            Your wallet is automatically checked for AlienTek tokens when you connect. The appropriate tier discount is applied based on your balance.
+          </p>
+          <a
+            href="https://pump.fun"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="solana-button-primary inline-flex items-center gap-2 mt-4"
+          >
+            <span className="text-xl">🚀</span>
+            <span>Buy $ALIENT</span>
+          </a>
+        </div>
+      </ScrollReveal>
+      
+      <ScrollReveal direction="up" delay={300}>
+        <div className="solana-card p-6 md:p-8 space-y-4">
           <h2 className="text-xl md:text-2xl font-bold solana-gradient-text text-center">Tier Holder System</h2>
           {/* Image placeholder - replace with custom image */}
           <div className="w-full h-48 bg-gray-700/30 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600">
@@ -121,36 +151,6 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
           <p className="text-xs md:text-sm text-gray-400 mt-4 text-center">
             Your tier is automatically detected when you connect your wallet. Simply hold the required tokens in the same wallet you use to pay, and the discount or free access will be applied instantly.
           </p>
-        </div>
-      </ScrollReveal>
-      
-      <ScrollReveal direction="up" delay={300}>
-        <div className="solana-card p-6 md:p-8 space-y-4">
-          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text text-center">About AlienTek Token</h2>
-          {/* Image placeholder - replace with custom image */}
-          <div className="w-full h-48 bg-gray-700/30 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600">
-            <Image src="/img1.svg" alt="AlienTek Logo" width={300} height={103} priority className="h-auto"/>          </div>
-          <p className="text-sm md:text-base text-gray-300 text-center">
-            AlienTek is the native utility token for this platform. Token holders receive automatic discounts based on their tier level, ranging from 40% off (Tier 3) to 80% off (Tier 2) to completely free VIP access (Tier 1).
-          </p>
-          <p className="text-sm md:text-base text-gray-300">
-            <strong>Status:</strong> Launched on pump.fun with LP
-          </p>
-          <p className="text-sm md:text-base text-gray-300">
-            <strong>Contract Address:</strong> <span className="text-solana-green font-mono text-xs break-all">TBA</span>
-          </p>
-          <p className="text-xs md:text-sm text-gray-400 text-center">
-            Your wallet is automatically checked for AlienTek tokens when you connect. The appropriate tier discount is applied based on your balance.
-          </p>
-          <a
-            href="https://pump.fun"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="solana-button-primary inline-flex items-center gap-2 mt-4"
-          >
-            <span className="text-xl">🚀</span>
-            <span>Buy $ALIENT</span>
-          </a>
         </div>
       </ScrollReveal>
       <ScrollReveal direction="up" delay={325}>
