@@ -284,7 +284,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             className="solana-button-primary w-full text-center inline-block py-4 mt-4"
           >
             <span className="text-xl mr-2"></span>
-            <span>Generate & Deploy Custom CA</span>
+            <span>Generate Custom CA</span>
           </Link>
         </div>
       </ScrollReveal>
