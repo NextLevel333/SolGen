@@ -17,7 +17,7 @@ export const CONFIG = {
   // Pricing in SOL
   PRICING: {
     THREE_CHAR: {
-      full: 1.5,
+      full: 0.15,
       discounted: 0.09,
     },
     FOUR_CHAR: {

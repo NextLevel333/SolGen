@@ -18,7 +18,7 @@ February 16, 2026
 #### Updated Pricing (SOL)
 | Service | Full Price | Tier 3 (1M+) | Tier 2 (5M+) | Tier 1 (10M+) |
 |---------|-----------|--------------|--------------|---------------|
-| 3-Char Vanity | 1.5 | 0.9 (40% off) | 0.3 (80% off) | FREE |
+| 3-Char Vanity | 0.15 | 0.09 (40% off) | 0.03 (80% off) | FREE |
 | 4-Char Vanity | 0.2 | 0.12 (40% off) | 0.04 (80% off) | FREE |
 | Custom CA | 0.4 | 0.24 (40% off) | 0.08 (80% off) | FREE |
 
@@ -230,7 +230,7 @@ Created `WALLET_CONFIGURATION.md`:
 ### User-Facing Changes
 - Brand name change (SolGen → AlienTek)
 - New token mint address (users need new tokens)
-- Pricing increases for 3-char vanity (0.15 → 1.5 SOL)
+- 3-char vanity pricing set to 0.15 SOL (standard base price)
 - New Tier 2 discount available (5M+ tokens, 80% off)
 
 ### Developer Notes
