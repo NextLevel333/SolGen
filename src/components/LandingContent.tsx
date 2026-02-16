@@ -23,7 +23,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
           </p>
           <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
             SolGen offers mobile-friendly tools for generating custom Solana wallets and deploying custom contract addresses on pump.fun.
-            More tools and updates coming soon!
+            Solana Blockchain tools built for everyone!
           </p>
         </div>
       </ScrollReveal>
@@ -58,9 +58,9 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             </div>
             <h3 className="text-lg md:text-xl font-semibold">Token Benefits</h3>
             <p className="text-sm md:text-base text-gray-400">
-              Yes, There are benefits to holding SolGen!
-              A two tier system which grants holders 40-100%
-              discounts off all current and future services.          
+              3-Tier holder system which grants holders 40-100%
+              discounts off all current and future services. 
+              Holders will benefit with us!
             </p>
           </div>
         </div>
