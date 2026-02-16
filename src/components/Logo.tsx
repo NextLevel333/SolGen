@@ -9,9 +9,9 @@ interface LogoProps {
 export const Logo: React.FC<LogoProps> = ({ className = '', size = 40 }) => {
   return (
     <Image
-      src="/SolGenLogo.svg"
+      src="/alienlogo1.svg"
       alt="SolGen Logo"
-      width={size * 1}
+      width={size * 1.2}
       height={size}
       className={`object-contain drop-shadow-[0_0_5px_rgba(255,255,255,0.9)] ${className}`}
       priority
