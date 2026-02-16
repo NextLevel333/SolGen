@@ -38,7 +38,7 @@ export default function Contact() {
                   For bug reports, feature requests, or technical questions:
                 </p>
                 <a 
-                  href="https://github.com/NextLevel333/SolGen/issues" 
+                  href="https://github.com/NextLevel333/AlienTek/issues" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 solana-button-primary"
@@ -56,7 +56,7 @@ export default function Contact() {
                   Review our code, contribute, or fork the project:
                 </p>
                 <a 
-                  href="https://github.com/NextLevel333/SolGen" 
+                  href="https://github.com/NextLevel333/AlienTek" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 solana-button-primary"
@@ -77,7 +77,7 @@ export default function Contact() {
                   Please report security issues responsibly through GitHub&apos;s security advisory feature:
                 </p>
                 <a 
-                  href="https://github.com/NextLevel333/SolGen/security/advisories/new" 
+                  href="https://github.com/NextLevel333/AlienTek/security/advisories/new" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 solana-button-primary bg-yellow-600 hover:bg-yellow-700"
@@ -101,7 +101,7 @@ export default function Contact() {
                     <p className="text-sm">
                       Check our{' '}
                       <a 
-                        href="https://github.com/NextLevel333/SolGen#readme" 
+                        href="https://github.com/NextLevel333/AlienTek#readme" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="text-solana-purple hover:text-solana-green transition-colors underline"
@@ -120,7 +120,7 @@ export default function Contact() {
                     <p className="text-sm">
                       Join community discussions on{' '}
                       <a 
-                        href="https://github.com/NextLevel333/SolGen/discussions" 
+                        href="https://github.com/NextLevel333/AlienTek/discussions" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="text-solana-purple hover:text-solana-green transition-colors underline"

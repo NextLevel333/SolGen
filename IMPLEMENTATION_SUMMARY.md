@@ -1,7 +1,7 @@
 # Implementation Summary: Pause/Resume, Cancel Flow, and Ticket System
 
 ## Overview
-This implementation addresses three key features for the SolGen vanity wallet generator:
+This implementation addresses three key features for the AlienTek vanity wallet generator:
 1. Fixed pause/resume functionality with accurate time tracking
 2. Cancel → Change Characters flow with smart payment handling
 3. Ticket/order system for payment persistence across sessions

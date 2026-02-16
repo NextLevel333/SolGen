@@ -217,9 +217,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 py-12">
           {/* About Section */}
           <div className="max-w-3xl mx-auto mb-8 text-center">
-            <h2 className="text-xl font-bold solana-gradient-text mb-3">About SolGen</h2>
+            <h2 className="text-xl font-bold solana-gradient-text mb-3">About AlienTek</h2>
             <p className="text-gray-400 text-sm mb-4">
-              SolGen is a <strong className="text-gray-300">100% client-side</strong> Solana vanity wallet generator. 
+              AlienTek is a <strong className="text-gray-300">100% client-side</strong> Solana vanity wallet generator. 
               All cryptographic operations happen in your browser using Web Workers. We <strong className="text-gray-300">never store, transmit, or have access</strong> to your private keys. 
               The entire application is <strong className="text-gray-300">open-source</strong> and available on GitHub for full transparency.
             </p>
@@ -254,7 +254,7 @@ export default function Home() {
               Resources
             </Link>
             <a 
-              href="https://github.com/NextLevel333/SolGen" 
+              href="https://github.com/NextLevel333/AlienTek" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-solana-purple transition-colors inline-flex items-center gap-1"
@@ -267,7 +267,7 @@ export default function Home() {
           {/* Copyright & Disclaimer */}
           <div className="text-center text-gray-500 text-xs space-y-2">
             <p>
-              <strong className="solana-gradient-text">SolGen</strong> - Privacy-First Solana Vanity Generator
+              <strong className="solana-gradient-text">AlienTek</strong> - Privacy-First Solana Vanity Generator
             </p>
             <p>
               100% Client-Side • No Server Storage • Your Keys Never Leave Your Browser

@@ -11,7 +11,7 @@ This document explains the changes made to reduce security and reputation blocks
 **Solution:**
 - Removed external crypto links from the hamburger menu
 - Created a dedicated `/resources` page with prominent disclaimer
-- Added warning notices that these are third-party sites not affiliated with SolGen
+- Added warning notices that these are third-party sites not affiliated with AlienTek
 - Clear messaging that visiting external sites is at user's own risk
 
 **Why this helps:**
@@ -59,7 +59,7 @@ Created three comprehensive pages:
 **Problem:** Footer lacked credibility signals and transparency information.
 
 **Solution:**
-- Added "About SolGen" section explaining client-side operation
+- Added "About AlienTek" section explaining client-side operation
 - Clear statements: "No data collection, No analytics, No tracking, No external scripts"
 - Links to all trust-signal pages
 - GitHub repository link prominently displayed

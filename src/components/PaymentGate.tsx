@@ -163,7 +163,10 @@ export const PaymentGate: React.FC<PaymentGateProps> = ({
               </span>
             </div>
             <p className="text-xs text-gray-500 mt-2">
-              * Tier 2 holders (1M+ tokens): 40% discount
+              * Tier 3 holders (1M+ tokens): 40% discount
+            </p>
+            <p className="text-xs text-gray-500">
+              * Tier 2 holders (5M+ tokens): 80% discount
             </p>
             <p className="text-xs text-gray-500">
               * Tier 1 holders (10M+ tokens): 100% free VIP access
@@ -282,21 +285,28 @@ export const PaymentGate: React.FC<PaymentGateProps> = ({
             
             {!isVipWallet && tier === 2 && (
               <div className="flex justify-between items-center">
-                <span className="text-gray-400">Tier 2 Holder (1M+ tokens):</span>
+                <span className="text-gray-400">Tier 2 Holder (5M+ tokens):</span>
+                <span className="text-solana-green font-semibold">✓ 80% Discount</span>
+              </div>
+            )}
+            
+            {!isVipWallet && tier === 3 && (
+              <div className="flex justify-between items-center">
+                <span className="text-gray-400">Tier 3 Holder (1M+ tokens):</span>
                 <span className="text-solana-green font-semibold">✓ 40% Discount</span>
               </div>
             )}
             
             {!isVipWallet && tier === 0 && tokenBalance > 0 && (
               <div className="flex justify-between items-center">
-                <span className="text-gray-400">SolGen Tokens:</span>
+                <span className="text-gray-400">AlienTek Tokens:</span>
                 <span className="text-gray-400">{tokenBalance.toLocaleString()} (need 1M+ for discount)</span>
               </div>
             )}
             
             {!isVipWallet && tier === 0 && tokenBalance === 0 && (
               <div className="flex justify-between items-center">
-                <span className="text-gray-400">SolGen Tokens:</span>
+                <span className="text-gray-400">AlienTek Tokens:</span>
                 <span className="text-gray-500">None (no discount)</span>
               </div>
             )}

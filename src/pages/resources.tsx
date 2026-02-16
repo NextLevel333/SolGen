@@ -61,7 +61,7 @@ export default function Resources() {
                 <div>
                   <h2 className="text-xl font-bold text-yellow-400 mb-2">Important Notice</h2>
                   <p className="text-gray-300 mb-3">
-                    The links below are to external, third-party websites that are <strong>not affiliated with or controlled by SolGen</strong>. 
+                    The links below are to external, third-party websites that are <strong>not affiliated with or controlled by AlienTek</strong>. 
                     These resources are provided for informational purposes only.
                   </p>
                   <ul className="list-disc list-inside space-y-1 text-sm text-gray-400 ml-4">

@@ -24,7 +24,7 @@ export default function VanityContract() {
         </div>
       </header>
       
-      <main className="max-w-4xl mx-auto px-4 py-12">
+      <main className="max-w-4xl mx-auto px-4 py-12 mb-0">
         <div className="fade-in-up space-y-6">
           <div className="text-center space-y-3">
             <h1 className="text-3xl md:text-4xl font-bold solana-gradient-text">
@@ -42,11 +42,11 @@ export default function VanityContract() {
         </div>
       </main>
       
-      <footer className="border-t border-gray-800 mt-20 bg-gray-900/80 backdrop-blur-sm">
+      <footer className="border-t border-gray-800 mt-12 bg-gray-900/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 py-8 text-center">
           <div className="text-sm text-gray-500 space-y-2">
             <p>
-              <strong className="solana-gradient-text">SolGen</strong> - Vanity Contract Address Generator
+              <strong className="solana-gradient-text">AlienTek</strong> - Vanity Contract Address Generator
             </p>
             <div className="flex justify-center gap-6 text-xs">
               <Link href="/privacy" className="text-gray-400 hover:text-solana-purple transition-colors">

@@ -1,7 +1,7 @@
 # Vanity Contract Flow Documentation
 
 ## Overview
-This document describes the complete flow for creating and deploying a custom vanity contract address token on pump.fun through the SolGen application.
+This document describes the complete flow for creating and deploying a custom vanity contract address token on pump.fun through the AlienTek application.
 
 ## Flow Steps
 

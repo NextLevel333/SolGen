@@ -34,7 +34,7 @@ export default function Terms() {
             <section>
               <h2 className="text-2xl font-bold text-gray-100 mb-3">Agreement to Terms</h2>
               <p>
-                By accessing and using SolGen, you agree to be bound by these Terms of Service. 
+                By accessing and using AlienTek, you agree to be bound by these Terms of Service. 
                 If you do not agree with any part of these terms, you must not use our service.
               </p>
             </section>
@@ -42,13 +42,13 @@ export default function Terms() {
             <section>
               <h2 className="text-2xl font-bold text-gray-100 mb-3">Service Description</h2>
               <p className="mb-2">
-                SolGen provides a client-side tool for generating custom Solana wallet addresses 
+                AlienTek provides a client-side tool for generating custom Solana wallet addresses 
                 (vanity addresses). The service:
               </p>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>Operates entirely in your browser</li>
                 <li>Requires payment in SOL to use</li>
-                <li>Offers discounts to SolGen token holders</li>
+                <li>Offers discounts to AlienTek token holders</li>
                 <li>Is provided on an &quot;as-is&quot; basis</li>
               </ul>
             </section>
@@ -72,7 +72,7 @@ export default function Terms() {
                 <li>All payments are in SOL cryptocurrency</li>
                 <li>Payments are non-refundable</li>
                 <li>Generation may take variable time depending on pattern complexity</li>
-                <li>Token holder discounts apply automatically if you hold SolGen tokens</li>
+                <li>Token holder discounts apply automatically if you hold AlienTek tokens</li>
                 <li>Prices are subject to change without notice</li>
               </ul>
             </section>
@@ -95,7 +95,7 @@ export default function Terms() {
             <section>
               <h2 className="text-2xl font-bold text-gray-100 mb-3">Limitation of Liability</h2>
               <p>
-                To the maximum extent permitted by law, SolGen and its developers shall not be liable 
+                To the maximum extent permitted by law, AlienTek and its developers shall not be liable 
                 for any indirect, incidental, special, consequential, or punitive damages, including 
                 without limitation, loss of profits, data, use, goodwill, or other intangible losses, 
                 resulting from:
@@ -124,7 +124,7 @@ export default function Terms() {
             
             <section>
               <h2 className="text-2xl font-bold text-gray-100 mb-3">Prohibited Uses</h2>
-              <p className="mb-2">You may not use SolGen to:</p>
+              <p className="mb-2">You may not use AlienTek to:</p>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>Violate any laws or regulations</li>
                 <li>Infringe on intellectual property rights</li>
@@ -137,10 +137,10 @@ export default function Terms() {
             <section>
               <h2 className="text-2xl font-bold text-gray-100 mb-3">Open Source License</h2>
               <p>
-                SolGen is open source software licensed under the MIT License. 
+                AlienTek is open source software licensed under the MIT License. 
                 See our{' '}
                 <a 
-                  href="https://github.com/NextLevel333/SolGen" 
+                  href="https://github.com/NextLevel333/AlienTek" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-solana-purple hover:text-solana-green transition-colors underline"

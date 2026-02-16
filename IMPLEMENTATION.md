@@ -13,7 +13,7 @@ Successfully implemented a complete Solana vanity wallet generator with token-ga
 - ✅ WalletMultiButton component for easy connection
 
 ### 2. Token-Gated Pricing
-- ✅ Automatic SolGen SPL token balance checking
+- ✅ Automatic AlienTek SPL token balance checking
 - ✅ 50% discount applied when balance > 0
 - ✅ Pricing structure:
   - 3-character: 0.15 SOL (0.075 SOL discounted)
@@ -43,7 +43,7 @@ Successfully implemented a complete Solana vanity wallet generator with token-ga
 ### 5. Public Landing Content
 - ✅ Privacy explanation ("no server, no storage")
 - ✅ Technology explanation
-- ✅ SolGen token information
+- ✅ AlienTek token information
 - ✅ pump.fun/LP launch mention
 - ✅ Contract address placeholder for future update
 - ✅ Dark Solana-themed design
