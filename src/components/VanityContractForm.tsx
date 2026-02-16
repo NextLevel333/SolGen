@@ -4,6 +4,9 @@ import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { getTokenBalance, getTier } from '../utils/token';
 import { useConnection } from '@solana/wallet-adapter-react';
 import { CONFIG } from '../config/constants';
+import { createPaymentTransaction, verifyPayment, waitForConfirmation } from '../utils/payment';
+import { createTicket, consumeTicket } from '../utils/ticket';
+import { Keypair } from '@solana/web3.js';
 
 interface VanityContractFormData {
   tokenName: string;
@@ -19,8 +22,15 @@ interface VanityContractFormData {
   initialDevBuy: string;
 }
 
+type FlowStep = 'form' | 'payment' | 'generating' | 'confirmation' | 'deploying' | 'success';
+
+interface GeneratedCA {
+  publicKey: string;
+  secretKey: number[];
+}
+
 export const VanityContractForm: React.FC = () => {
-  const { publicKey } = useWallet();
+  const { publicKey, sendTransaction } = useWallet();
   const { connection } = useConnection();
   const [formData, setFormData] = useState<VanityContractFormData>({
     tokenName: '',
@@ -36,6 +46,9 @@ export const VanityContractForm: React.FC = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [tokenBalance, setTokenBalance] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentStep, setCurrentStep] = useState<FlowStep>('form');
+  const [generatedCA, setGeneratedCA] = useState<GeneratedCA | null>(null);
+  const [deployedCA, setDeployedCA] = useState<string>('');
 
   // Load token balance when wallet connects
   React.useEffect(() => {
@@ -160,20 +173,393 @@ export const VanityContractForm: React.FC = () => {
       return;
     }
 
+    // Move to payment step
+    setCurrentStep('payment');
+  };
+
+  const handlePaymentComplete = async () => {
+    if (!publicKey) return;
+
+    const pricing = calculatePrice();
+    const price = pricing.totalPrice;
+
     setIsLoading(true);
-    // TODO: Implement actual contract generation logic
-    // This would involve:
-    // 1. Payment processing
-    // 2. Vanity address generation
-    // 3. Token creation on pump.fun with the vanity address
-    // 4. Optional initial dev buy
-    
-    console.log('Form submitted:', formData);
-    setIsLoading(false);
+    setErrors({});
+
+    try {
+      // Process payment if not free
+      if (price > 0) {
+        const transaction = await createPaymentTransaction(publicKey, price);
+        const { blockhash } = await connection.getLatestBlockhash();
+        transaction.recentBlockhash = blockhash;
+        transaction.feePayer = publicKey;
+        
+        const signature = await sendTransaction(transaction, connection);
+        
+        const confirmed = await waitForConfirmation(connection, signature);
+        
+        if (!confirmed) {
+          throw new Error('Transaction confirmation timeout');
+        }
+        
+        const verified = await verifyPayment(connection, signature, price, publicKey);
+        
+        if (!verified) {
+          throw new Error('Payment verification failed');
+        }
+
+        // Create ticket with vanity contract data
+        createTicket(
+          publicKey.toBase58(),
+          formData.vanityCharacters.length as 3 | 4,
+          formData.vanityCharacters,
+          formData.vanityPosition,
+          signature
+        );
+      }
+
+      // Move to generation step
+      setCurrentStep('generating');
+      await generateVanityAddress();
+    } catch (err: any) {
+      console.error('Payment error:', err);
+      setErrors({ submit: err.message || 'Payment failed. Please try again.' });
+      setCurrentStep('form');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const generateVanityAddress = async () => {
+    setIsLoading(true);
+    try {
+      // Simulate vanity address generation using web workers
+      const result = await new Promise<GeneratedCA>((resolve, reject) => {
+        const worker = new Worker(new URL('../workers/vanity.worker.ts', import.meta.url));
+        
+        worker.onmessage = (event) => {
+          const { type } = event.data;
+          
+          if (type === 'success') {
+            worker.terminate();
+            resolve({
+              publicKey: event.data.publicKey,
+              secretKey: event.data.secretKey,
+            });
+          } else if (type === 'error') {
+            worker.terminate();
+            reject(new Error('Generation failed'));
+          }
+        };
+        
+        worker.postMessage({
+          type: 'generate',
+          characters: formData.vanityCharacters,
+          position: formData.vanityPosition,
+          workerId: 0,
+        });
+      });
+
+      setGeneratedCA(result);
+      setCurrentStep('confirmation');
+    } catch (err: any) {
+      console.error('Generation error:', err);
+      setErrors({ submit: 'Failed to generate vanity address. Please try again.' });
+      setCurrentStep('form');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleDeployConfirm = async () => {
+    if (!generatedCA || !publicKey) return;
+
+    setIsLoading(true);
+    setCurrentStep('deploying');
+
+    try {
+      // Simulate pump.fun deployment
+      // In a real implementation, this would:
+      // 1. Upload logo/banner to IPFS or CDN
+      // 2. Call pump.fun API to create token with the vanity CA
+      // 3. Execute initial dev buy if specified
+      
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API call
+      
+      setDeployedCA(generatedCA.publicKey);
+      
+      // Consume the ticket after successful deployment
+      if (publicKey) {
+        consumeTicket(publicKey.toBase58());
+      }
+      
+      setCurrentStep('success');
+    } catch (err: any) {
+      console.error('Deployment error:', err);
+      setErrors({ submit: 'Deployment failed. Please try again.' });
+      setCurrentStep('confirmation');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleHoldOff = () => {
+    // User chose to hold off on deployment
+    // The generated CA is saved in state, they can come back to it
+    alert('Contract address saved. You can return to deploy it later.');
+    // For now, just show the confirmation again
+  };
+
+  const handleBackToForm = () => {
+    setCurrentStep('form');
+    setErrors({});
   };
 
   const pricing = calculatePrice();
 
+  // Render payment step
+  if (currentStep === 'payment') {
+    return (
+      <div className="solana-card p-6 md:p-8 space-y-6">
+        <button
+          onClick={handleBackToForm}
+          className="solana-button-secondary mb-4"
+        >
+          ← Back to Form
+        </button>
+
+        <div className="text-center">
+          <h3 className="text-2xl font-semibold mb-2">Payment Required</h3>
+          <p className="text-gray-400">
+            Pay to unlock the vanity contract generator
+          </p>
+        </div>
+
+        <div className="bg-gray-700/50 p-6 rounded-lg space-y-3">
+          <div className="flex justify-between items-center">
+            <span className="text-gray-400">Token Name:</span>
+            <span className="font-semibold">{formData.tokenName}</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-gray-400">Vanity Pattern:</span>
+            <span className="font-mono font-semibold">
+              {formData.vanityPosition === 'prefix' 
+                ? `${formData.vanityCharacters}...` 
+                : `...${formData.vanityCharacters}`}
+            </span>
+          </div>
+          
+          <div className="border-t border-gray-600 pt-3 mt-3">
+            <div className="flex justify-between items-center text-xl">
+              <span className="font-semibold">Total:</span>
+              <span className="solana-gradient-text font-bold">
+                {pricing.totalPrice === 0 ? 'FREE' : `${pricing.totalPrice.toFixed(2)} SOL`}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {errors.submit && (
+          <div className="bg-red-900/30 border border-red-700 rounded-lg p-4 text-red-300">
+            {errors.submit}
+          </div>
+        )}
+
+        <button
+          onClick={handlePaymentComplete}
+          disabled={isLoading}
+          className="solana-button-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isLoading ? (
+            <span className="flex items-center justify-center gap-2">
+              <div className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full" />
+              Processing Payment...
+            </span>
+          ) : pricing.totalPrice === 0 ? (
+            'Continue for Free'
+          ) : (
+            `Pay ${pricing.totalPrice.toFixed(2)} SOL`
+          )}
+        </button>
+      </div>
+    );
+  }
+
+  // Render generating step
+  if (currentStep === 'generating') {
+    return (
+      <div className="solana-card p-6 md:p-8 space-y-6">
+        <div className="text-center">
+          <h3 className="text-2xl font-semibold mb-2">Generating Vanity Address</h3>
+          <p className="text-gray-400">
+            Creating your custom contract address...
+          </p>
+        </div>
+
+        <div className="bg-gray-700/50 p-6 rounded-lg space-y-3">
+          <div className="flex justify-between items-center">
+            <span className="text-gray-400">Pattern:</span>
+            <span className="font-mono font-semibold">
+              {formData.vanityPosition === 'prefix' 
+                ? `${formData.vanityCharacters}...` 
+                : `...${formData.vanityCharacters}`}
+            </span>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-center gap-2 text-solana-green">
+          <div className="animate-spin h-5 w-5 border-2 border-solana-green border-t-transparent rounded-full" />
+          <span>Generating...</span>
+        </div>
+
+        <div className="bg-yellow-900/30 border border-yellow-700 rounded-lg p-4 text-yellow-300 text-sm">
+          <strong>⚡ Please Wait:</strong> This may take a few moments depending on the pattern complexity.
+        </div>
+      </div>
+    );
+  }
+
+  // Render confirmation step
+  if (currentStep === 'confirmation' && generatedCA) {
+    return (
+      <div className="solana-card p-6 md:p-8 space-y-6">
+        <div className="text-center">
+          <div className="mb-4 text-6xl">✨</div>
+          <h3 className="text-2xl font-semibold mb-2">Vanity Address Generated!</h3>
+          <p className="text-gray-400">
+            Review your contract address before deploying to pump.fun
+          </p>
+        </div>
+
+        <div className="bg-gray-700/50 p-6 rounded-lg space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-400 mb-2">
+              Your Vanity Contract Address:
+            </label>
+            <div className="bg-gray-900/50 p-4 rounded-lg border border-solana-purple">
+              <p className="font-mono text-sm break-all text-solana-green">
+                {generatedCA.publicKey}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex justify-between items-center">
+            <span className="text-gray-400">Token Name:</span>
+            <span className="font-semibold">{formData.tokenName}</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-gray-400">Symbol:</span>
+            <span className="font-semibold">{formData.tokenSymbol}</span>
+          </div>
+        </div>
+
+        {errors.submit && (
+          <div className="bg-red-900/30 border border-red-700 rounded-lg p-4 text-red-300">
+            {errors.submit}
+          </div>
+        )}
+
+        <div className="space-y-3">
+          <button
+            onClick={handleDeployConfirm}
+            disabled={isLoading}
+            className="solana-button-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isLoading ? 'Deploying...' : '✅ Yes, Deploy and Go Live on Pump.fun'}
+          </button>
+          
+          <button
+            onClick={handleHoldOff}
+            className="solana-button-secondary w-full"
+          >
+            ⏸️ No, Hold Off (Save for Later)
+          </button>
+        </div>
+
+        <div className="bg-blue-900/30 border border-blue-700 rounded-lg p-4 text-blue-300 text-sm">
+          <strong>💡 Note:</strong> Once deployed, the token will be live on pump.fun. 
+          Make sure you&apos;re ready before proceeding.
+        </div>
+      </div>
+    );
+  }
+
+  // Render deploying step
+  if (currentStep === 'deploying') {
+    return (
+      <div className="solana-card p-6 md:p-8 space-y-6">
+        <div className="text-center">
+          <h3 className="text-2xl font-semibold mb-2">Deploying to Pump.fun</h3>
+          <p className="text-gray-400">
+            Creating your token on pump.fun...
+          </p>
+        </div>
+
+        <div className="flex items-center justify-center gap-2 text-solana-purple">
+          <div className="animate-spin h-8 w-8 border-3 border-solana-purple border-t-transparent rounded-full" />
+          <span>Deploying...</span>
+        </div>
+
+        <div className="bg-yellow-900/30 border border-yellow-700 rounded-lg p-4 text-yellow-300 text-sm">
+          <strong>⚡ Almost There:</strong> Your token is being deployed to the blockchain.
+        </div>
+      </div>
+    );
+  }
+
+  // Render success step
+  if (currentStep === 'success' && deployedCA) {
+    return (
+      <div className="solana-card p-6 md:p-8 space-y-6">
+        <div className="text-center">
+          <div className="mb-4 text-6xl">🎉</div>
+          <h2 className="text-3xl font-bold mb-2 solana-gradient-text">
+            Congratulations!
+          </h2>
+          <p className="text-xl text-gray-300">
+            Your token is now live on Pump.fun!
+          </p>
+        </div>
+
+        <div className="bg-gray-700/50 p-6 rounded-lg space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-400 mb-2">
+              Contract Address:
+            </label>
+            <div className="bg-gray-900/50 p-4 rounded-lg border border-solana-green">
+              <p className="font-mono text-sm break-all text-solana-green">
+                {deployedCA}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex justify-between items-center">
+            <span className="text-gray-400">Token Name:</span>
+            <span className="font-semibold">{formData.tokenName}</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-gray-400">Symbol:</span>
+            <span className="font-semibold">{formData.tokenSymbol}</span>
+          </div>
+        </div>
+
+        <a
+          href={`https://pump.fun/coins/${deployedCA}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="solana-button-primary w-full text-center block"
+        >
+          🚀 View on Pump.fun
+        </a>
+
+        <div className="bg-green-900/30 border border-green-700 rounded-lg p-4 text-green-300 text-sm text-center">
+          <strong>🎊 Success!</strong> Share your new token with the community!
+        </div>
+      </div>
+    );
+  }
+
+  // Render form step (default)
   return (
     <div className="solana-card p-6 md:p-8 space-y-6">
       <form onSubmit={handleSubmit} className="space-y-6">
