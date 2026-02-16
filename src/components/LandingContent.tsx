@@ -22,7 +22,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             Custom Solana Blockchain Tools
           </p>
           <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
-            SolGen offers mobile-friendly tools for generating custom Solana wallets and deploying custom contract addresses on pump.fun.
+            AlienTek offers mobile-friendly tools for generating custom Solana wallets and deploying custom contract addresses on pump.fun.
             Solana Blockchain tools built for everyone!
           </p>
         </div>
@@ -34,8 +34,8 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             <div className="flex justify-center">
               <Image src="/lock.svg" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]" />
             </div>
-            <h3 className="text-lg md:text-xl font-semibold">Fully Private</h3>
-            <p className="text-sm md:text-base text-gray-400">
+            <h3 className="text-lg md:text-xl font-semibold text-center">Fully Private</h3>
+            <p className="text-sm md:text-base text-gray-400 text-center">
               All key generation happens in your browser using Web Workers. 
               No server communication. No data storage. Complete privacy.
             </p>
@@ -45,8 +45,8 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             <div className="flex justify-center">
               <Image src="/power.svg" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]" />
             </div>
-            <h3 className="text-lg md:text-xl font-semibold">High Performance</h3>
-            <p className="text-sm md:text-base text-gray-400">
+            <h3 className="text-lg md:text-xl font-semibold text-center">High Performance</h3>
+            <p className="text-sm md:text-base text-gray-400 text-center">
               Leverages Web Workers for parallel processing. 
               Real-time progress tracking with ETA.
             </p>
@@ -56,11 +56,11 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             <div className="flex justify-center">
               <Image src="/tokens.svg" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]" />
             </div>
-            <h3 className="text-lg md:text-xl font-semibold">Token Benefits</h3>
-            <p className="text-sm md:text-base text-gray-400">
+            <h3 className="text-lg md:text-xl font-semibold text-center">Token Benefits</h3>
+            <p className="text-sm md:text-base text-gray-400 text-center">
               3-Tier holder system which grants holders 40-100%
               discounts off all current and future services. 
-              Holders will benefit with us!
+              Holders benefit with AlienTek!
             </p>
           </div>
         </div>
