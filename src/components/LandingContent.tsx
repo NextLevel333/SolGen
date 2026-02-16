@@ -179,7 +179,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             </li>
             <li className="flex gap-3">
               <span className="solana-gradient-text font-bold">3.</span>
-              <span className="text-lg md:text-xl font-semibold">Tier 3: 1M+ token holders, Tier 2: 5M+ token holders, Tier 1: Free - 10M+ holders</span>
+              <span>Pay the generation fee (discounts apply: Tier 3 at 1M+ tokens gets 40% off, Tier 2 at 5M+ tokens gets 80% off, Tier 1 at 10M+ tokens is free)</span>
             </li>
             <li className="flex gap-3">
               <span className="solana-gradient-text font-bold">4.</span>
