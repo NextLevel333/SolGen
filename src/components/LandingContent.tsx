@@ -129,8 +129,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
           <h2 className="text-xl md:text-2xl font-bold solana-gradient-text text-center">About AlienTek Token</h2>
           {/* Image placeholder - replace with custom image */}
           <div className="w-full h-48 bg-gray-700/30 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600">
-            <p className="text-gray-500 text-sm">AlienTek Token Image Placeholder</p>
-          </div>
+            <Image src="/img1.svg" alt="AlienTek Logo" width={300} height={103} priority className="h-auto"/>          </div>
           <p className="text-sm md:text-base text-gray-300 text-center">
             AlienTek is the native utility token for this platform. Token holders receive automatic discounts based on their tier level, ranging from 40% off (Tier 3) to 80% off (Tier 2) to completely free VIP access (Tier 1).
           </p>
