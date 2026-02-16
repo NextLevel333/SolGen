@@ -36,7 +36,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
           <p className="text-xl md:text-2xl text-gray-300">
             Solana Blockchain Tools
           </p>
-          <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-gray-200 max-w-2xl mx-auto">
             AlienTek offers mobile-friendly tools for generating custom Solana wallets and deploying custom contract addresses on pump.fun.
             Solana Blockchain tools built for everyone!
           </p>
@@ -44,40 +44,30 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
       </ScrollReveal>
       
       <ScrollReveal direction="up" delay={100}>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-          <div className="solana-card p-4 md:p-6 space-y-3">
-            <div className="flex justify-center">
-              <Image src="/lock.svg" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]" />
-            </div>
-            <h3 className="text-lg md:text-xl font-semibold text-center">Fully Private</h3>
-            <p className="text-sm md:text-base text-gray-400 text-center">
-              All key generation happens in your browser using Web Workers. 
-              No server communication. No data storage. Complete privacy.
-            </p>
-          </div>
+        <div className="solana-card p-6 md:p-8 space-y-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-400">
+            Fully Private | High Performance | Holder Benefits
+          </h2>
           
-          <div className="solana-card p-4 md:p-6 space-y-3">
+          {/* Three images in a row */}
+          <div className="flex justify-center items-center gap-6 md:gap-8">
             <div className="flex justify-center">
-              <Image src="/power.svg" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]" />
+              <Image src="/lock.svg" alt="Private" width={50} height={50} className="object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.8)]" />
             </div>
-            <h3 className="text-lg md:text-xl font-semibold text-center">High Performance</h3>
-            <p className="text-sm md:text-base text-gray-400 text-center">
-              Leverages Web Workers for parallel processing. 
-              Real-time progress tracking with ETA.
-            </p>
-          </div>
-          
-          <div className="solana-card p-4 md:p-6 space-y-3">
             <div className="flex justify-center">
-              <Image src="/tokens.svg" alt="" width={60} height={60} className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]" />
+              <Image src="/power.svg" alt="Performance" width={50} height={50} className="object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.8)]" />
             </div>
-            <h3 className="text-lg md:text-xl font-semibold text-center">Token Benefits</h3>
-            <p className="text-sm md:text-base text-gray-400 text-center">
-              3-Tier holder system which grants holders 40-100%
-              discounts off all current and future services. 
-              Holders benefit with AlienTek!
-            </p>
+            <div className="flex justify-center">
+              <Image src="/tokens.svg" alt="Benefits" width={50} height={50} className="object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.8)]" />
+            </div>
           </div>
+
+          {/* Combined description */}
+          <p className="text-sm md:text-base text-gray-200 text-center max-w-3xl mx-auto">
+            All key generation happens in your browser using Web Workers—no server communication, no data storage, complete privacy. 
+            Leveraging parallel processing with real-time progress tracking and ETA for high performance. 
+            Our 3-tier holder system grants holders 40-100% discounts off all current and future services—holders benefit with AlienTek!
+          </p>
         </div>
       </ScrollReveal>
       
@@ -96,7 +86,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
           <p className="text-sm md:text-base text-gray-300">
             <strong>Contract Address:</strong> <span className="text-solana-green font-mono text-xs break-all">TBA</span>
           </p>
-          <p className="text-xs md:text-sm text-gray-400 text-center">
+          <p className="text-xs md:text-sm text-gray-200 text-center">
             Your wallet is automatically checked for AlienTek tokens when you connect. The appropriate tier discount is applied based on your balance.
           </p>
           <a
@@ -163,7 +153,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             </div>
           </div>
           
-          <p className="text-xs md:text-sm text-gray-400 mt-4 text-center">
+          <p className="text-xs md:text-sm text-gray-200 mt-4 text-center">
             Your tier is automatically detected when you connect your wallet. Simply hold the required tokens in the same wallet you use to pay, and the discount or free access will be applied instantly.
           </p>
         </div>
@@ -180,7 +170,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">
               <span className="solana-gradient-text">⚡ AlienTek Tools ⚡</span>
             </h2>
-            <p className="text-center text-gray-400 text-sm md:text-base mb-6">
+            <p className="text-center text-gray-200 text-sm md:text-base mb-6">
               Advanced Solana generation technology at your command
             </p>
 
@@ -219,7 +209,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
                       }`}
                     >
                       <div className="font-semibold">🌟 Custom Wallet Maker</div>
-                      <div className="text-xs text-gray-400 mt-1">Generate custom Solana wallet addresses</div>
+                      <div className="text-xs text-gray-200 mt-1">Generate custom Solana wallet addresses</div>
                     </button>
                     <button
                       onClick={() => {
@@ -231,7 +221,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
                       }`}
                     >
                       <div className="font-semibold">🚀 Custom CA Maker</div>
-                      <div className="text-xs text-gray-400 mt-1">Deploy custom contract addresses on pump.fun</div>
+                      <div className="text-xs text-gray-200 mt-1">Deploy custom contract addresses on pump.fun</div>
                     </button>
                   </div>
                 )}
@@ -279,7 +269,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
                   <div className="bg-gray-700/50 p-4 md:p-6 rounded-lg border border-gray-600">
                     <h4 className="text-lg md:text-xl font-semibold mb-2">3-Character Vanity</h4>
                     <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">{CONFIG.PRICING.THREE_CHAR.full} SOL</div>
-                    <div className="text-sm md:text-base text-gray-400 space-y-1">
+                    <div className="text-sm md:text-base text-gray-200 space-y-1">
                       <div>
                         <span className="text-solana-green font-semibold">{(CONFIG.PRICING.THREE_CHAR.full * 0.6).toFixed(2)} SOL</span>
                         <span className="text-xs md:text-sm ml-2">(Tier 3: 1M+ tokens, 40% off)</span>
@@ -297,7 +287,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
                   <div className="bg-gray-700/50 p-4 md:p-6 rounded-lg border border-gray-600">
                     <h4 className="text-lg md:text-xl font-semibold mb-2">4-Character Vanity</h4>
                     <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">{CONFIG.PRICING.FOUR_CHAR.full} SOL</div>
-                    <div className="text-sm md:text-base text-gray-400 space-y-1">
+                    <div className="text-sm md:text-base text-gray-200 space-y-1">
                       <div>
                         <span className="text-solana-green font-semibold">{(CONFIG.PRICING.FOUR_CHAR.full * 0.6).toFixed(2)} SOL</span>
                         <span className="text-xs md:text-sm ml-2">(Tier 3: 1M+ tokens, 40% off)</span>
@@ -360,7 +350,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
                 <div className="bg-gray-700/50 p-4 md:p-6 rounded-lg space-y-2 border border-gray-600">
                   <h4 className="font-semibold text-gray-200">Pricing</h4>
                   <div className="text-2xl md:text-3xl font-bold text-solana-purple mb-2">{CONFIG.PRICING.VANITY_CONTRACT.full} SOL</div>
-                  <div className="text-sm md:text-base text-gray-400 space-y-1">
+                  <div className="text-sm md:text-base text-gray-200 space-y-1">
                     <div>
                       <span className="text-solana-green font-semibold">{(CONFIG.PRICING.VANITY_CONTRACT.full * 0.6).toFixed(2)} SOL</span>
                       <span className="text-xs md:text-sm ml-2">(Tier 3: 1M+ tokens, 40% off)</span>
@@ -374,12 +364,12 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
                       <span className="text-xs md:text-sm ml-2">(Tier 1: 10M+ tokens)</span>
                     </div>
                   </div>
-                  <p className="text-xs text-gray-400 mt-2">
+                  <p className="text-xs text-gray-200 mt-2">
                     Plus optional initial developer buy (0.02 SOL fee + buy amount)
                   </p>
                 </div>
                 
-                <p className="text-xs md:text-sm text-gray-400 text-center">
+                <p className="text-xs md:text-sm text-gray-200 text-center">
                   This is exactly the same as launching on pump.fun normally, but with the added benefit of a personalized contract address that makes your token more memorable and brandable.
                 </p>
               </div>

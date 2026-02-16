@@ -465,3 +465,111 @@ button, a, input, select, textarea, .solana-card {
   }
 }
 
+/* ======================================
+   LOADING SCREEN STYLES
+   ====================================== */
+
+/* Loading Screen Particles */
+.loading-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.loading-particles::before,
+.loading-particles::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.9),
+    150px 200px 0 rgba(255, 255, 255, 0.8),
+    300px 80px 0 rgba(153, 69, 255, 0.9),
+    450px 300px 0 rgba(255, 255, 255, 0.7),
+    600px 150px 0 rgba(0, 212, 255, 0.9),
+    750px 350px 0 rgba(255, 255, 255, 0.8),
+    200px 450px 0 rgba(20, 241, 149, 0.9),
+    500px 50px 0 rgba(255, 255, 255, 0.7),
+    700px 250px 0 rgba(153, 69, 255, 0.8),
+    100px 350px 0 rgba(0, 212, 255, 0.9),
+    800px 100px 0 rgba(255, 255, 255, 0.8),
+    350px 400px 0 rgba(20, 241, 149, 0.7),
+    550px 200px 0 rgba(255, 255, 255, 0.9),
+    250px 150px 0 rgba(153, 69, 255, 0.7),
+    650px 450px 0 rgba(0, 212, 255, 0.8);
+  animation: loadingParticleFloat 8s ease-in-out infinite;
+}
+
+.loading-particles::after {
+  animation-delay: -4s;
+  opacity: 0.7;
+}
+
+@keyframes loadingParticleFloat {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translateY(-100px) translateX(50px) scale(1.2);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-200px) translateX(-50px) scale(0.8);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-100px) translateX(30px) scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+/* Logo Pulsating Glow */
+.loading-logo-glow {
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 1));
+  animation: logoGlowPulse 2s ease-in-out infinite;
+}
+
+@keyframes logoGlowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 40px rgba(255, 255, 255, 1));
+    transform: scale(1.02);
+  }
+}
+
+/* Loading Bar Glow */
+.loading-bar-glow {
+  box-shadow: 
+    0 0 10px rgba(153, 69, 255, 0.8),
+    0 0 20px rgba(0, 212, 255, 0.6),
+    0 0 30px rgba(20, 241, 149, 0.4);
+  animation: barGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes barGlow {
+  0%, 100% {
+    box-shadow: 
+      0 0 10px rgba(153, 69, 255, 0.8),
+      0 0 20px rgba(0, 212, 255, 0.6),
+      0 0 30px rgba(20, 241, 149, 0.4);
+  }
+  50% {
+    box-shadow: 
+      0 0 15px rgba(153, 69, 255, 1),
+      0 0 30px rgba(0, 212, 255, 0.8),
+      0 0 45px rgba(20, 241, 149, 0.6);
+  }
+}
+
