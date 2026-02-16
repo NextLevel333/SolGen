@@ -7,6 +7,7 @@ import { CONFIG } from '../config/constants';
 import { createPaymentTransaction, verifyPayment, waitForConfirmation } from '../utils/payment';
 import { createTicket, consumeTicket } from '../utils/ticket';
 import { Keypair } from '@solana/web3.js';
+import { deployToPumpFun, uploadMetadata, getPumpFunUrl } from '../utils/pumpfun';
 
 interface VanityContractFormData {
   tokenName: string;
@@ -56,7 +57,34 @@ export const VanityContractForm: React.FC = () => {
       getTokenBalance(connection, publicKey, CONFIG.SOLGEN_MINT_ADDRESS)
         .then(setTokenBalance)
         .catch(console.error);
+
+      // Check for pending deployment state
+      try {
+        const savedStateStr = localStorage.getItem('solgen_pending_deployment');
+        if (savedStateStr) {
+          const savedState = JSON.parse(savedStateStr);
+          
+          // Verify it's for this wallet
+          if (savedState.walletAddress === publicKey.toBase58() && savedState.generatedCA) {
+            // Offer to resume
+            const shouldResume = window.confirm(
+              'You have a pending deployment. Would you like to resume where you left off?'
+            );
+            
+            if (shouldResume) {
+              setFormData(savedState.formData);
+              setGeneratedCA(savedState.generatedCA);
+              setCurrentStep('confirmation');
+            } else {
+              localStorage.removeItem('solgen_pending_deployment');
+            }
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load saved state:', err);
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [publicKey, connection]);
 
   const handleInputChange = (field: keyof VanityContractFormData, value: string) => {
@@ -278,19 +306,43 @@ export const VanityContractForm: React.FC = () => {
     setCurrentStep('deploying');
 
     try {
-      // Simulate pump.fun deployment
-      // In a real implementation, this would:
-      // 1. Upload logo/banner to IPFS or CDN
-      // 2. Call pump.fun API to create token with the vanity CA
-      // 3. Execute initial dev buy if specified
+      // Create metadata object
+      const metadata = {
+        name: formData.tokenName,
+        symbol: formData.tokenSymbol,
+        description: `${formData.tokenName} (${formData.tokenSymbol}) - Deployed via SolGen`,
+        twitter: formData.twitter,
+        telegram: formData.telegram,
+        discord: formData.discord,
+        website: formData.website,
+      };
+
+      // Upload metadata (placeholder implementation)
+      const metadataUri = await uploadMetadata(metadata);
       
-      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API call
+      // Create keypair from generated CA
+      const mintKeypair = Keypair.fromSecretKey(new Uint8Array(generatedCA.secretKey));
+      
+      // Deploy to pump.fun (placeholder implementation)
+      const initialBuy = formData.initialDevBuy ? parseFloat(formData.initialDevBuy) : undefined;
+      await deployToPumpFun(connection, {
+        mint: mintKeypair,
+        metadata,
+        initialBuy,
+      });
       
       setDeployedCA(generatedCA.publicKey);
       
       // Consume the ticket after successful deployment
       if (publicKey) {
         consumeTicket(publicKey.toBase58());
+      }
+      
+      // Clear any saved pending deployment state
+      try {
+        localStorage.removeItem('solgen_pending_deployment');
+      } catch (err) {
+        console.error('Failed to clear saved state:', err);
       }
       
       setCurrentStep('success');
@@ -305,9 +357,22 @@ export const VanityContractForm: React.FC = () => {
 
   const handleHoldOff = () => {
     // User chose to hold off on deployment
-    // The generated CA is saved in state, they can come back to it
-    alert('Contract address saved. You can return to deploy it later.');
-    // For now, just show the confirmation again
+    // Save the generated CA to localStorage so they can come back later
+    if (generatedCA && publicKey) {
+      try {
+        const savedState = {
+          formData,
+          generatedCA,
+          timestamp: Date.now(),
+          walletAddress: publicKey.toBase58(),
+        };
+        localStorage.setItem('solgen_pending_deployment', JSON.stringify(savedState));
+        alert('Contract address saved! You can return to deploy it later from this same wallet.');
+      } catch (err) {
+        console.error('Failed to save state:', err);
+        alert('Warning: Could not save state. Please note your contract address.');
+      }
+    }
   };
 
   const handleBackToForm = () => {
@@ -544,7 +609,7 @@ export const VanityContractForm: React.FC = () => {
         </div>
 
         <a
-          href={`https://pump.fun/coins/${deployedCA}`}
+          href={getPumpFunUrl(deployedCA)}
           target="_blank"
           rel="noopener noreferrer"
           className="solana-button-primary w-full text-center block"
