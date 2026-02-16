@@ -15,7 +15,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
         <div className="text-center space-y-6">
           <h1 className="text-4xl md:text-6xl font-bold">
             <div className="flex justify-center">
-              <Image src="/alienlogo.svg" alt="SolGen Logo" width={320} height={103} priority className="h-auto drop-shadow-[0_0_20px_rgba(255,255,255,0.9)] animate-pulse"/>
+              <Image src="/alienlogo.svg" alt="SolGen Logo" width={280} height={103} priority className="h-auto drop-shadow-[0_0_20px_rgba(255,255,255,0.9)] animate-pulse"/>
             </div>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300">
