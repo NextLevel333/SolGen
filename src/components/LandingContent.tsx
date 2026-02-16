@@ -76,7 +76,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4">
             <div className="bg-gradient-to-br from-purple-900/30 to-gray-700/30 border border-purple-600/50 p-4 md:p-6 rounded-lg">
               <div className="flex items-center gap-2 mb-3">
-                <span className="text-3xl">🥈</span>
+                <span className="text-3xl">🥉</span>
                 <h3 className="text-lg md:text-xl font-semibold text-purple-300">Tier 3</h3>
               </div>
               <p className="text-sm md:text-base text-gray-300 mb-2">
