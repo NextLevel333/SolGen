@@ -6,6 +6,8 @@ interface LoadingScreenProps {
 }
 
 const FADE_OUT_DURATION = 500; // Must match CSS transition-opacity duration
+const PROGRESS_INCREMENT = 1.5; // Progress units per tick for extended loading duration
+const PROGRESS_INTERVAL_MS = 40; // Milliseconds between progress updates
 
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
@@ -13,10 +15,10 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete 
   const [showEnterButton, setShowEnterButton] = useState(false);
 
   useEffect(() => {
-    // Simulate loading progress with extended duration
+    // Simulate loading progress with extended duration (~4.5 seconds to reach 100%)
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
-        const newProgress = prev + 1.5; // Slower progress for extended duration
+        const newProgress = prev + PROGRESS_INCREMENT;
         if (newProgress >= 100) {
           clearInterval(progressInterval);
           setShowEnterButton(true); // Show enter button when progress is complete
@@ -24,7 +26,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete 
         }
         return newProgress;
       });
-    }, 40); // Increased interval for slower, extended loading
+    }, PROGRESS_INTERVAL_MS);
 
     return () => {
       clearInterval(progressInterval);

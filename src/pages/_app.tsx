@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
     const now = Date.now();
     
     // If visited within last 5 seconds, skip loading (this covers refresh and navigation)
-    if (lastVisitTimestamp && now - parseInt(lastVisitTimestamp) < 5000) {
+    if (lastVisitTimestamp && now - parseInt(lastVisitTimestamp, 10) < 5000) {
       setIsLoading(false);
       setShowContent(true);
     }
