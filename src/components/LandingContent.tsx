@@ -215,7 +215,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             onClick={onStartGeneration}
             className="solana-button-primary w-full text-lg md:text-xl py-4 pulse-glow mt-6"
           >
-            Start Generator
+            Generate Custom Wallet
           </button>
         </div>
       </ScrollReveal>
@@ -283,8 +283,8 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             href="/vanity-contract"
             className="solana-button-primary w-full text-center inline-block py-4 mt-4"
           >
-            <span className="text-xl mr-2">✨</span>
-            <span>Generate Custom Contract</span>
+            <span className="text-xl mr-2"></span>
+            <span>Generate & Deploy Custom CA</span>
           </Link>
         </div>
       </ScrollReveal>
