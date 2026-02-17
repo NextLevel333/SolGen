@@ -64,7 +64,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
 
           {/* Combined description */}
           <p className="text-sm md:text-base text-gray-200 max-w-3xl mx-auto">
-            Custom wallet generation happens in your browser using Web Workers—no server communication, no data storage, complete privacy. 
+            All custom generation happens in your browser using Web Workers—no server communication, no data storage, complete privacy. 
             Leveraging parallel processing with real-time progress tracking and ETA for high performance. 
             Our 3-tier holder system grants holders discounts off all current and future services. 
           </p>
@@ -73,7 +73,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
       
       <ScrollReveal direction="up" delay={250}>
         <div className="solana-card p-6 md:p-8 space-y-4">
-          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text text-center">About AlienTek Token</h2>
+          <h2 className="text-xl md:text-2xl font-bold solana-gradient-text text-center">AlienTek Token</h2>
           {/* Image placeholder - replace with custom image */}
           <div className="w-full bg-gray-700/30 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600 p-4 md:p-6">
             <Image src="/img1.svg" alt="AlienTek Logo" width={600} height={337} priority className="w-full h-auto object-contain"/>          </div>
@@ -97,7 +97,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             className="solana-button-primary inline-flex items-center gap-2 mt-4"
           >
             <span className="text-xl">🚀</span>
-            <span>BUY $ALIENT</span>
+            <span className="w-full">BUY $ALIENT</span>
           </a>
         </div>
       </ScrollReveal>
