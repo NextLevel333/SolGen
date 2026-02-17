@@ -83,7 +83,7 @@ export default function Home() {
   };
   
   return (
-    <div className="min-h-screen scroll-smooth">
+    <div className="min-h-screen scroll-smooth overflow-x-hidden">
       {/* Background Effects */}
       <div className="tech-particles" aria-hidden="true"></div>
       <div className="light-lines" aria-hidden="true"></div>
@@ -213,7 +213,7 @@ export default function Home() {
         )}
       </main>
       
-      <footer className="border-t border-gray-800 mt-20 bg-gray-900/80 backdrop-blur-sm">
+      <footer className="border-t border-gray-800 mt-8 bg-gray-900/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 py-12">
           {/* About Section */}
           <div className="max-w-3xl mx-auto mb-8 text-center">
