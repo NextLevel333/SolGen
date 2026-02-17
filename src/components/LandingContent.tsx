@@ -78,8 +78,8 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
           <div className="w-full h-34 bg-gray-700/30 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600">
             <Image src="/img1.svg" alt="AlienTek Logo" width={300} height={103} priority className="h-auto"/>          </div>
           <p className="text-sm md:text-base text-gray-300">
-            AlienTek is the native utility token for this platform. Launched on pump.fun through our "Custom CA Maker". Token holders receive automatic discounts based on their tier level.
-            Developer fees that are collected will go back into the token's eco-system i.e. development, marketing, giveaways, and future staking programs.
+            AlienTek is the native utility token for this platform. Launched on pump.fun through our &quot;Custom CA Maker&quot;. Token holders receive automatic discounts based on their tier level.
+            Developer fees that are collected will go back into the token&apos;s eco-system i.e. development, marketing, giveaways, and future staking programs.
           </p>
           <p className="text-sm md:text-base text-gray-300">
             <strong>Status:</strong> NOT LIVE
@@ -108,7 +108,6 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
           {/* Image placeholder - replace with custom image */}
           <div className="w-full h-48 bg-gray-700/30 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600">
             <Image src="/tier.svg" alt="tier" width={300} height={120} priority className="w-auto"/>          </div>
-          </div>
           <p className="text-sm md:text-base text-gray-300">
             AlienTek offers a 3-tier reward system for token holders, providing significant benefits and discounts:
           </p>
@@ -234,7 +233,6 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
               <div className="space-y-4 animate-fadeIn">
                 <div className="w-full h-48 bg-gray-700/30 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600">
                  <Image src="/wallet.svg" alt="wallet" width={300} height={103} priority className="h-auto"/>          </div>
-                </div>
                 
                 <p className="text-sm md:text-base text-gray-300">
                   Generate custom Solana wallet addresses with your chosen prefix or suffix.
@@ -312,7 +310,6 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
               <div className="space-y-4 animate-fadeIn">
                 <div className="w-full h-48 bg-gray-700/30 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600">
                  <Image src="/ca.svg" alt="ca" width={300} height={120} priority className="w-auto"/>          </div>
-                </div>
                 <h3 className="text-lg md:text-xl font-semibold text-solana-purple">Launch your custom CA on pump.fun!</h3>
                 <p className="text-sm md:text-base text-gray-300">
                   Create a custom contract address (CA) token on pump.fun with your desired vanity pattern.
