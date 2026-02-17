@@ -15,12 +15,12 @@ export default function App({ Component, pageProps }: AppProps) {
   
   // Handle loading screen on first visit only (not on refresh or navigation)
   useEffect(() => {
-    // Use a timestamp-based approach: only skip loading if visited in last 5 seconds (navigation case)
+    // Use a timestamp-based approach: only skip loading if visited in last 3 seconds (navigation case)
     const lastVisitTimestamp = sessionStorage.getItem('lastVisit');
     const now = Date.now();
     
-    // If visited within last 5 seconds, skip loading (this covers refresh and navigation)
-    if (lastVisitTimestamp && now - parseInt(lastVisitTimestamp, 10) < 5000) {
+    // If visited within last 3 seconds, skip loading (this covers refresh and navigation)
+    if (lastVisitTimestamp && now - parseInt(lastVisitTimestamp, 10) < 3000) {
       setIsLoading(false);
       setShowContent(true);
     }
