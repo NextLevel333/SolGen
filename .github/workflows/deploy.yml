@@ -30,9 +30,13 @@ jobs:
       - name: Copy .nojekyll to output
         run: cp .nojekyll ./out/
 
+      - name: Copy CNAME to output
+        run: cp CNAME ./out/
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
           force_orphan: true
+          cname: alientek.fun
