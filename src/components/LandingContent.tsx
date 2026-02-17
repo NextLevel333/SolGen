@@ -46,7 +46,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
       <ScrollReveal direction="up" delay={100}>
         <div className="solana-card p-6 md:p-8 space-y-6">
           <h2 className="text-2xl md:text-3xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-400">
-            Fully Private | High Performance | Holder Benefits
+            Secure High Performance
           </h2>
           
           {/* Three images in a row */}
@@ -63,10 +63,10 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
           </div>
 
           {/* Combined description */}
-          <p className="text-sm md:text-base text-gray-200 text-center max-w-3xl mx-auto">
-            All key generation happens in your browser using Web Workers—no server communication, no data storage, complete privacy. 
+          <p className="text-sm md:text-base text-gray-200 max-w-3xl mx-auto">
+            Custom wallet generation happens in your browser using Web Workers—no server communication, no data storage, complete privacy. 
             Leveraging parallel processing with real-time progress tracking and ETA for high performance. 
-            Our 3-tier holder system grants holders 40-100% discounts off all current and future services—holders benefit with AlienTek!
+            Our 3-tier holder system grants holders discounts off all current and future services. 
           </p>
         </div>
       </ScrollReveal>
@@ -78,10 +78,11 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
           <div className="w-full h-34 bg-gray-700/30 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600">
             <Image src="/img1.svg" alt="AlienTek Logo" width={300} height={103} priority className="h-auto"/>          </div>
           <p className="text-sm md:text-base text-gray-300">
-            AlienTek is the native utility token for this platform. Token holders receive automatic discounts based on their tier level, ranging from 40% off (Tier 3) to 80% off (Tier 2) to completely free VIP access (Tier 1).
+            AlienTek is the native utility token for this platform. Launched on pump.fun through our "Custom CA Maker". Token holders receive automatic discounts based on their tier level.
+            Developer fees that are collected will go back into the token's eco-system i.e. development, marketing, giveaways, and future staking programs.
           </p>
           <p className="text-sm md:text-base text-gray-300">
-            <strong>Status:</strong> Launched on pump.fun with LP
+            <strong>Status:</strong> NOT LIVE
           </p>
           <p className="text-sm md:text-base text-gray-300">
             <strong>Contract Address:</strong> <span className="text-solana-green font-mono text-xs break-all">TBA</span>
@@ -95,8 +96,8 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             rel="noopener noreferrer"
             className="solana-button-primary inline-flex items-center gap-2 mt-4"
           >
-            <span className="w-full text-xl">🚀</span>
-            <span>Buy $ALIENT</span>
+            <span className="text-xl">🚀</span>
+            <span>BUY $ALIENT</span>
           </a>
         </div>
       </ScrollReveal>
@@ -106,7 +107,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
           <h2 className="text-xl md:text-2xl font-bold solana-gradient-text text-center">Tier Holder System</h2>
           {/* Image placeholder - replace with custom image */}
           <div className="w-full h-48 bg-gray-700/30 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600">
-            <p className="text-gray-500 text-sm">Tier System Image Placeholder</p>
+            <Image src="/tier.svg" alt="tier" width={300} height={120} priority className="w-auto"/>          </div>
           </div>
           <p className="text-sm md:text-base text-gray-300">
             AlienTek offers a 3-tier reward system for token holders, providing significant benefits and discounts:
@@ -232,7 +233,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             {selectedTool === 'wallet' && (
               <div className="space-y-4 animate-fadeIn">
                 <div className="w-full h-48 bg-gray-700/30 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600">
-                  <p className="text-gray-500 text-sm">Custom Wallet Maker Image Placeholder</p>
+                 <Image src="/wallet.svg" alt="wallet" width={300} height={103} priority className="h-auto"/>          </div>
                 </div>
                 
                 <p className="text-sm md:text-base text-gray-300">
@@ -310,7 +311,7 @@ export const LandingContent: React.FC<LandingContentProps> = ({ onStartGeneratio
             {selectedTool === 'contract' && (
               <div className="space-y-4 animate-fadeIn">
                 <div className="w-full h-48 bg-gray-700/30 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600">
-                  <p className="text-gray-500 text-sm">Custom CA Generator Image Placeholder</p>
+                 <Image src="/ca.svg" alt="ca" width={300} height={120} priority className="w-auto"/>          </div>
                 </div>
                 <h3 className="text-lg md:text-xl font-semibold text-solana-purple">Launch your custom CA on pump.fun!</h3>
                 <p className="text-sm md:text-base text-gray-300">
